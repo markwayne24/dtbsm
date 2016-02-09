@@ -26,12 +26,10 @@ Route::get('/', function () {
 |
 */
 
-Route::get('/admin/dashboard', function () {
-    return view('layouts.admin');
-});
-
 Route::group(['middleware' => 'web'], function () {
-    Route::auth();
 
-    Route::get('/home', 'Dashboard\DashboardController@index');
+    Route::auth();
+    Route::get('/admin/dashboard', 'Dashboard\DashboardController@index');
+
+
 });
