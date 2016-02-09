@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -26,6 +27,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $users =User::all();
+        return view('layouts.admin')->with('users', $users);
     }
 }
