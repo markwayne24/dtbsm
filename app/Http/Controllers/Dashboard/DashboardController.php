@@ -28,6 +28,6 @@ class DashboardController extends Controller
     public function index()
     {
         $users =User::all();
-        return view('layouts.admin')->with('users', $users);
+        return view('admin.dashboard')->with('users', $users);
     }
 }
