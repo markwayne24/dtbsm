@@ -12,8 +12,19 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    protected $guarded = ['id'];
+
     protected $fillable = [
-        'user_group_id','firstname','middlename','lastname', 'email', 'password',
+        'group_id',
+        'firstname',
+        'middlename',
+        'lastname',
+        'email',
+        'password',
+        'address',
+        'gender',
+        'mobilenum'
     ];
 
     /**
@@ -24,4 +35,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function userGroup()
+    {
+        return $this->belongsTo('App\Models\UserGroup','group_id');
+    }
 }
