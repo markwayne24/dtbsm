@@ -23,8 +23,28 @@
 */
 
 Route::group(['middleware' => 'web'], function () {
+    //Login routes from
     Route::auth();
-    Route::get('/admin/dashboard', 'Dashboard\DashboardController@index');
 
+    //Admin dashboard
+    Route::group(['prefix' => 'admin/dashboard'], function(){
 
+        Route::get('/','Dashboard\DashboardController@index');
+
+        // Users
+/*        Route::group(['prefix' => 'users'], function() {
+            Route::get('/', 'User\UsersController@index');
+            Route::post('/', 'User\UsersController@store');
+            Route::post('/{userId}','User\UsersController@update');
+            Route::post('/{userId}/delete','User\UsersController@destroy');
+        });*/
+
+        // Users
+        Route::group(['prefix' => 'users'], function() {
+            Route::get('/', 'User\UsersController@index');
+            Route::post('/', 'User\UsersController@store');
+            Route::post('/{userId}','User\UsersController@update');
+            Route::post('/{userId}/delete','User\UsersController@destroy');
+        });
+    });
 });
