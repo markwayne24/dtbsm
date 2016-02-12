@@ -203,21 +203,22 @@
             <ul class="sidebar-menu">
                 <li class="header">MAIN NAVIGATION</li>
                 <li class="active treeview">
-                    <a href="#">
+                    <a href="{{ url('admin/dashboard') }}">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
                     </a>
                 </li>
                 <li class="treeview">
-                    <a href="#">
+                    <a href="dashboard/users">
                         <i class="ion ion-person"></i>
-                        <span>Users</span>
+                        <span>Users</span><i class="fa fa-angle-left pull-right"></i>
                         <span class="label label-primary pull-right">{{ $users->count() }}</span>
                     </a>
+
                 </li>
 
 
                 <li class="treeview">
-                    <a href="#">
+                    <a href="">
                         <i class="fa fa-files-o"></i>
                         <span>Notification</span>
                         <span class="label label-primary pull-right"></span>
@@ -228,6 +229,7 @@
         <!-- /.sidebar -->
     </aside>
 
+    <!-- main content -->
     @yield('content')
 
     @yield('footer')
