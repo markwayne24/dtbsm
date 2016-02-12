@@ -10,7 +10,7 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('login/verify') }}">
                             {!! csrf_field() !!}
 
-                            <div class="form-group">
+                            <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label">Enter Code</label>
 
                                 <div class="col-md-6">
