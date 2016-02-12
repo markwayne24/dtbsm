@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\MessageBag;
 
 
 class VerifyController extends Controller
@@ -40,7 +41,8 @@ class VerifyController extends Controller
                 ]
             ];
 
-            return redirect()->back()->withErrors($message)->withInput();
+            $errors = new MessageBag(['code' => ['Incorrect code!']]);
+            return redirect()->back()->withErrors($errors)->withInput();
 
         }
 
