@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Notif;
 
 class DashboardController extends Controller
 {
@@ -27,7 +28,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $users =User::all();
+        $users = Notif::all();
+
         return view('admin.dashboard')->with('users', $users);
     }
 }

@@ -33,14 +33,7 @@ class VerifyController extends Controller
             // Security code passed...
             return redirect()->intended('/admin/dashboard');
         } else{
-
-            $message = [
-                "error" => [
-                    "code" => 401,
-                    "message" => "Invalid code"
-                ]
-            ];
-
+            
             $errors = new MessageBag(['code' => ['Incorrect code!']]);
             return redirect()->back()->withErrors($errors)->withInput();
 
