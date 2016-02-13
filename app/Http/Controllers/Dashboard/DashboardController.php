@@ -30,7 +30,7 @@ class DashboardController extends Controller
     {
         $users = User::all();
         $notif= Notif::all();
-        
+
         return view('admin.dashboard')->with('users', $users)->with('notif',$notif);
     }
 }
