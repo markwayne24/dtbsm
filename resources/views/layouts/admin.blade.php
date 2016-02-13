@@ -202,13 +202,13 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
                 <li class="header">MAIN NAVIGATION</li>
-                <li class="active treeview">
+                <li class="treeview">
                     <a href="{{ url('admin/dashboard') }}">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
                     </a>
                 </li>
                 <li class="treeview">
-                    <a href="dashboard/users">
+                    <a href="/admin/dashboard/users">
                         <i class="ion ion-person"></i>
                         <span>Users</span><i class="fa fa-angle-left pull-right"></i>
                         <span class="label label-primary pull-right">{{ $users->count() }}</span>
@@ -219,9 +219,9 @@
 
                 <li class="treeview">
                     <a href="">
-                        <i class="fa fa-files-o"></i>
+                        <i class="fa fa-bell-o"></i>
                         <span>Notification</span>
-                        <span class="label label-primary pull-right"></span>
+                        <span class="label label-primary pull-right">{{--{{ $notif->count() }}--}} {{ $notif->count() }}</span>
                     </a>
                 </li>
             </ul>
