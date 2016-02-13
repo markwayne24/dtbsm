@@ -6,10 +6,9 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Users Page
+            User's Page
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Dashboard</li>
         </ol>
     </section>
@@ -18,7 +17,45 @@
         <section>
             <div class="row">
                 <!-- left column -->
-                <div class="col-md-6">
+                <div class="col-md-7">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">List of Users</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th style="width: 10px"></th>
+                                    <th style="width: 10px">Name</th>
+                                    <th style="width: 10px">Phone Number</th>
+                                    <th style="width: 40px">Access Rights</th>
+                                </tr>
+
+                                @foreach ($users as $user)
+
+                                    <tr>
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->firstname }}</td>
+                                        <td>
+                                            <span class="badge bg-blue">{{ $user->mobilenum }}</span>
+                                        </td>
+                                        <td>
+                                            {{$user->userGroup->name}}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div><!-- /.box-body -->
+                        <div class="box-footer clearfix">
+                            <ul class="pagination pagination-sm no-margin pull-right">
+                                <li>{!! $users->render() !!}</li>
+                            </ul>
+                        </div>
+                    </div><!-- /.box -->
+                </div>
+
+                <!-- right column -->
+                <div class="col-md-3">
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
@@ -124,48 +161,6 @@
                         </form>
                     </div><!-- /.box -->
                 </div> <!-- end of right pane-->
-
-                <!-- right column -->
-                <div class="col-md-6">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">List of Users</h3>
-                        </div><!-- /.box-header -->
-                        <div class="box-body">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th style="width: 10px"></th>
-                                    <th>Name</th>
-                                    <th>Phone Number</th>
-                                    <th style="width: 40px">Access Rights</th>
-                                </tr>
-
-                                @foreach ($users as $user)
-
-                                <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->firstname }}</td>
-                                    <td>
-                                        <span class="badge bg-blue">{{ $user->mobilenum }}</span>
-                                    </td>
-                                    <td>
-                                        {{$user->userGroup->name}}
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </table>
-                        </div><!-- /.box-body -->
-                        <div class="box-footer clearfix">
-                            <ul class="pagination pagination-sm no-margin pull-right">
-                                <li><a href="#">&laquo;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">&raquo;</a></li>
-                            </ul>
-                        </div>
-                    </div><!-- /.box -->
-                </div>
             </div>
         </section>
     </div>
