@@ -14,9 +14,9 @@ class CreateNotificationTable extends Migration
     {
         Schema::create('notif', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('group_id')->unsigned();
-            $table->string('name');
+            $table->integer('user_id')->unsigned();
             $table->string('description');
+            $table->string('message');
             $table->rememberToken();
             $table->timestamps();
         });
