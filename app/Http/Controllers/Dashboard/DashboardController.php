@@ -28,8 +28,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $users = Notif::all();
-
-        return view('admin.dashboard')->with('users', $users);
+        $users = User::all();
+        $notif= Notif::all();
+        
+        return view('admin.dashboard')->with('users', $users)->with('notif',$notif);
     }
 }
