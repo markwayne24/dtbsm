@@ -8,9 +8,8 @@
         <h1>
             User's Page
         </h1>
-        <ol class="breadcrumb">
-            <li class="active">Dashboard</li>
-        </ol>
+    </section>
+    <section class="content-header">
     </section>
 
     <div class="container">
@@ -55,7 +54,7 @@
                 </div>
 
                 <!-- right column -->
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
