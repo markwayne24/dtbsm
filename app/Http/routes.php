@@ -23,39 +23,25 @@
 */
 
 Route::group(['middleware' => 'web'], function () {
-/*    //Login routes from
-    // Authentication Routes...
-    Route::get('login', 'Auth\AuthController@showLoginForm');
-    Route::post('login', 'Auth\AuthController@login');
-    Route::get('logout', 'Auth\AuthController@logout');
-
-    // Password Reset Routes...
-    Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
-    Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
-    Route::post('password/reset', 'Auth\PasswordController@reset');*/
 
     //Login
     // Authentication Routes...
+    Route::get('/', 'Auth\AuthController@showLoginForm');
     Route::get('/login', 'Auth\AuthController@showLoginForm');
     Route::post('/login', 'Auth\AuthController@login');
-    Route::get('/login/verify','Auth\VerifyController@index');
-    Route::post('/login/verify','Auth\VerifyController@verify');
+
+    Route::group(['middleware' => 'auth'], function() {
+        Route::get('/login/verify','Auth\VerifyController@index');
+        Route::post('/login/verify','Auth\VerifyController@verify');
+    });
+
     Route::get('logout', 'Auth\AuthController@logout');
 
     //Admin dashboard
-    Route::group(['prefix' => 'admin/dashboard'], function(){
-
+    Route::group(['prefix' => 'admin/dashboard', 'middleware' => 'auth'], function(){
+        //admin dashboard
         Route::get('/','Dashboard\DashboardController@index');
-
-        // Users
-/*        Route::group(['prefix' => 'users'], function() {
-            Route::get('/', 'User\UsersController@index');
-            Route::post('/', 'User\UsersController@store');
-            Route::post('/{userId}','User\UsersController@update');
-            Route::post('/{userId}/delete','User\UsersController@destroy');
-        });*/
-
-        // Users
+        // Users page
         Route::group(['prefix' => 'users'], function() {
             Route::get('/', 'User\UsersController@index');
             Route::post('/', 'User\UsersController@store');
