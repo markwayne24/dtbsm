@@ -9,11 +9,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\MessageBag;
-
+use Illuminate\Session\SessionInterface;
+use Illuminate\Session\SessionManager;
 
 class VerifyController extends Controller
 {
 
+    protected $session;
+
+    public function __construct(SessionManager $session)
+    {
+        $this->session = $session;
+    }
 
     public function index()
     {
@@ -31,9 +38,13 @@ class VerifyController extends Controller
 
         if ($code['code'] == $verificationCode) {
             // Security code passed...
+
+            $this->session->set('verified', true);
+
             return redirect()->intended('/admin/dashboard');
         } else{
-            
+            $this->session->set('verified', false);
+
             $errors = new MessageBag(['code' => ['Incorrect code!']]);
             return redirect()->back()->withErrors($errors)->withInput();
 
