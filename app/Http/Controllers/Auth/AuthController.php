@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -29,6 +30,7 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = '/login/verify';
+    //protected $redirectAfterLogout = '/linkToRedirect';
 
     /**
      * Create a new authentication controller instance.
@@ -54,23 +56,6 @@ class AuthController extends Controller
             'lastname' => 'required|min:1',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'firstname' => $data['firstname'],
-            'middlename' => $data['middlename'],
-            'lastname' => $data['lastname'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
         ]);
     }
 
