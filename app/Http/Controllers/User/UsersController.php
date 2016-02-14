@@ -8,9 +8,18 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
+use Illuminate\Session\SessionManager;
 
 class UsersController extends Controller
 {
+
+    protected $session;
+
+    public function __construct(SessionManager $session)
+    {
+        $this->session = $session;
+
+    }
 
     public function index()
     {
@@ -22,10 +31,11 @@ class UsersController extends Controller
     public function store(StoreUserRequest $request)
     {
         $input = $request->all();
+        $input['group_id']= 'user';
 
         $user = User::create($input);
 
-        return $user;
+        return view('admin/dashboard/users');
     }
 
     public function update(StoreUserRequest $request, $userId)
@@ -34,7 +44,7 @@ class UsersController extends Controller
 
         $user = User::where('id', $userId)->update($input);
 
-        return $user;
+        return view('admin/dashboard/users');
     }
 
     public function destroy($userId)
@@ -45,7 +55,7 @@ class UsersController extends Controller
             return 'User Id not found';
         }
 
-        return $user;
+        return view('admin/dashboard/users');
     }
 
 }
