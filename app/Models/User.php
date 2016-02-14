@@ -40,9 +40,4 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\UserGroup','group_id');
     }
-
-    public function userNotif()
-    {
-        return $this->hasMany('App\Models\Notif','user_id');
-    }
 }
