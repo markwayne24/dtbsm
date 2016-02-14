@@ -221,7 +221,7 @@
                     <a href="">
                         <i class="fa fa-bell-o"></i>
                         <span>Notification</span>
-                        <span class="label label-primary pull-right">{{--{{ $notif->count() }}--}} {{ $notif->count() }}</span>
+                        <span class="label label-primary pull-right">10</span>
                     </a>
                 </li>
             </ul>
