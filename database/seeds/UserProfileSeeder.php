@@ -11,7 +11,8 @@ class UserProfileSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user_groups')->truncate();
+        $faker = Faker\Factory::create();
+        DB::table('user_profiles')->truncate();
 
         $userProfiles = [
             [
@@ -21,7 +22,7 @@ class UserProfileSeeder extends Seeder
                 'lastname' => 'admin',
                 'address' => 'Tarlac',
                 'gender' => 'male',
-                'mobilenum' => '09124092030',
+                'contact_number' => '09124092030',
             ],
             [
                 'user_id'  => 2,
@@ -30,7 +31,16 @@ class UserProfileSeeder extends Seeder
                 'lastname' => 'User',
                 'address' => 'Capas',
                 'gender' => 'female',
-                'mobilenum' => '09194092030',
+                'contact_number' => '09194092030',
+            ],
+            [
+                'user_id'  => 3,
+                'firstname' => $faker->firstName,
+                'middlename' => $faker->lastName,
+                'lastname' => $faker->lastName,
+                'address' => $faker->address,
+                'gender' => 'male',
+                'contact_numbers' => '09124592430'
             ]
         ];
 
