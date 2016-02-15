@@ -23,89 +23,16 @@ class UserTableSeeder extends Seeder
             ],
             [
                 'group_id' => 2,
-                'firstname' => $faker->firstName,
-                'middlename' => $faker->lastName,
-                'lastname' => $faker->lastName,
                 'email' => $faker->email,
                 'password' => bcrypt(str_random(10)),
-                'address' => $faker->address,
-                'gender' => 'male',
-                'mobilenum' => '09124592430',
                 'remember_token' => str_random(10)
             ],
             [
                 'group_id' => 2,
-                'firstname' => $faker->firstName,
-                'middlename' => $faker->lastName,
-                'lastname' => $faker->lastName,
                 'email' => $faker->email,
                 'password' => bcrypt(str_random(10)),
-                'address' => $faker->address,
-                'gender' => 'male',
-                'mobilenum' => '09352392210',
                 'remember_token' => str_random(10)
-            ],
-            [
-                'group_id' => 2,
-                'firstname' => $faker->firstName,
-                'middlename' => $faker->lastName,
-                'lastname' => $faker->lastName,
-                'email' => $faker->email,
-                'password' => bcrypt(str_random(10)),
-                'address' => $faker->address,
-                'gender' => 'male',
-                'mobilenum' => '09145222110',
-                'remember_token' => str_random(10)
-            ],
-
-            [
-                'group_id' => 2,
-                'firstname' => $faker->firstName,
-                'middlename' => $faker->lastName,
-                'lastname' => $faker->lastName,
-                'email' => $faker->email,
-                'password' => bcrypt(str_random(10)),
-                'address' => $faker->address,
-                'gender' => 'male',
-                'mobilenum' => '09164022110',
-                'remember_token' => str_random(10)
-            ],
-            [
-                'group_id' => 2,
-                'firstname' => $faker->firstName,
-                'middlename' => $faker->lastName,
-                'lastname' => $faker->lastName,
-                'email' => $faker->email,
-                'password' => bcrypt(str_random(10)),
-                'address' => $faker->address,
-                'gender' => 'male',
-                'mobilenum' => '09194022110',
-                'remember_token' => str_random(10)
-            ],
-            [
-                'group_id' => 2,
-                'firstname' => $faker->firstName,
-                'middlename' => $faker->lastName,
-                'lastname' => $faker->lastName,
-                'email' => $faker->email,
-                'password' => bcrypt(str_random(10)),
-                'address' => $faker->address,
-                'gender' => 'male',
-                'mobilenum' => '09192022110',
-                'remember_token' => str_random(10)
-            ],
-            [
-                'group_id' => 2,
-                'firstname' => $faker->firstName,
-                'middlename' => $faker->lastName,
-                'lastname' => $faker->lastName,
-                'email' => $faker->email,
-                'password' => bcrypt(str_random(10)),
-                'address' => $faker->address,
-                'gender' => 'male',
-                'mobilenum' => '09194122110',
-                'remember_token' => str_random(10)
-            ],
+            ]
         ];
 
 
