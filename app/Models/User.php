@@ -17,14 +17,8 @@ class User extends Authenticatable
 
     protected $fillable = [
         'group_id',
-        'firstname',
-        'middlename',
-        'lastname',
         'email',
         'password',
-        'address',
-        'gender',
-        'mobilenum'
     ];
 
     /**
@@ -39,5 +33,10 @@ class User extends Authenticatable
     public function userGroup()
     {
         return $this->belongsTo('App\Models\UserGroup','group_id');
+    }
+
+    public function userProfile()
+    {
+        return $this->hasOne('App\Models\UserProfile','user_id');
     }
 }
