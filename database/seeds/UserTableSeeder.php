@@ -17,14 +17,8 @@ class UserTableSeeder extends Seeder
         $users = [
             [
                 'group_id' => 1,
-                'firstname' => 'admin',
-                'middlename' => 'admin',
-                'lastname' => 'admin',
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('admin'),
-                'address' => 'Tarlac',
-                'gender' => 'male',
-                'mobilenum' => '09124092030',
                 'remember_token' => str_random(10)
             ],
             [
