@@ -23,14 +23,14 @@ class UserTableSeeder extends Seeder
             ],
             [
                 'group_id' => 2,
-                'email' => $faker->email,
-                'password' => bcrypt(str_random(10)),
+                'email' => 'user@gmail.com',
+                'password' => Hash::make('user'),
                 'remember_token' => str_random(10)
             ],
             [
                 'group_id' => 2,
                 'email' => $faker->email,
-                'password' => bcrypt(str_random(10)),
+                'password' => Hash::make('user'),
                 'remember_token' => str_random(10)
             ]
         ];
