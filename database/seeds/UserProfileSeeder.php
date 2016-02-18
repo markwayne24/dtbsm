@@ -17,9 +17,9 @@ class UserProfileSeeder extends Seeder
         $userProfiles = [
             [
                 'user_id'  => 1,
-                'firstname' => 'admin',
-                'middlename' => 'admin',
-                'lastname' => 'admin',
+                'firstname' => 'Admin',
+                'middlename' => 'A',
+                'lastname' => 'Administrator',
                 'address' => 'Tarlac',
                 'gender' => 'male',
                 'contact_number' => '09124092030',
@@ -40,12 +40,12 @@ class UserProfileSeeder extends Seeder
                 'lastname' => $faker->lastName,
                 'address' => $faker->address,
                 'gender' => 'male',
-                'contact_numbers' => '09124592430'
+                'contact_number' => '09124592430'
             ]
         ];
 
-        foreach ($userProfiles as $userProfiles) {
-            \App\Models\UserProfile::create($userProfiles);
+        foreach ($userProfiles as $userProfile) {
+            \App\Models\UserProfile::create($userProfile);
         }
     }
 }
