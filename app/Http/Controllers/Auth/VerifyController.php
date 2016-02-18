@@ -40,17 +40,12 @@ class VerifyController extends Controller
             // Security code passed...
 
             $this->session->set('verified', true);
-
             return redirect()->intended('/admin/dashboard');
         } else{
             $this->session->set('verified', false);
 
             $errors = new MessageBag(['code' => ['Incorrect code!']]);
             return redirect()->back()->withErrors($errors)->withInput();
-
         }
-
-
-
     }
 }
