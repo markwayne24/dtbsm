@@ -24,10 +24,13 @@ class StoreUserRequest extends Request
     public function rules()
     {
         return [
-                'group_id'=>'required|min:1|max|2',
+                'group_id'=>'required',
                 'firstname' => 'required|min:2',
-                'middlename' => 'required|min:1',
-                'lastname' => 'required|min:1',
+                'middlename' => 'required',
+                'lastname' => 'required',
+                'address' => 'required|min:5',
+                'gender' => 'required',
+                'contact_number' => 'required|numeric',
                 'email' => 'required|email|max:255|unique:users',
                 'password' => 'required|confirmed|min:6',
         ];
