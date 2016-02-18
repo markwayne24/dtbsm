@@ -30,23 +30,25 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/login', 'Auth\AuthController@showLoginForm');
     Route::post('/login', 'Auth\AuthController@login');
 
-    Route::group(['middleware' => 'auth'], function() {
         Route::get('/login/verify','Auth\VerifyController@index');
         Route::post('/login/verify','Auth\VerifyController@verify');
-    });
 
-    Route::get('logout', 'Auth\AuthController@logout');
+        Route::get('logout', 'Auth\AuthController@logout');
 
-    //Admin dashboard
-    Route::group(['prefix' => 'admin/dashboard', 'middleware' => 'auth'], function(){
-        //admin dashboard
-        Route::get('/','Dashboard\DashboardController@index');
-        // Users page
-        Route::group(['prefix' => 'users'], function() {
-            Route::get('/', 'User\UsersController@index');
-            Route::post('/', 'User\UsersController@store');
-            Route::post('/{userId}','User\UsersController@update');
-            Route::post('/{userId}/delete','User\UsersController@destroy');
+        //Admin dashboard if verified
+        Route::group(['prefix' => 'admin/dashboard','middleware'=>'admin'], function(){
+            //admin dashboard
+            Route::get('/','Dashboard\DashboardController@index');
+            //User's list and Registration
+            Route::group(['prefix' => 'users'], function() {
+                Route::get('/', 'User\UsersController@index');
+                Route::post('/', 'User\UsersController@store');
+                Route::post('/{userId}','User\UsersController@update');
+                Route::post('/{userId}/delete','User\UsersController@destroy');
+            });
         });
+        //User's page
+        Route::group(['prefix' => '/user'], function(){
+            return "User's page";
     });
 });
