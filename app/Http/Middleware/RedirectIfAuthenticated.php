@@ -19,13 +19,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-/*            $users = User::with('userGroup')->get();
-            if ($users->userGroup->name == 'admin'){*/
-                return redirect('/admin/dashboard');
-/*            }else{
-                return redirect('');
-            }*/
-
+                //return redirect('/admin/dashboard');
         }
 
         return $next($request);
