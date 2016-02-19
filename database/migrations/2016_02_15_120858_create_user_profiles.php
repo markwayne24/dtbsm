@@ -14,7 +14,7 @@ class CreateUserProfiles extends Migration
     {
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
             $table->string('firstname');
             $table->string('middlename');
             $table->string('lastname');
@@ -22,6 +22,11 @@ class CreateUserProfiles extends Migration
             $table->string('gender', 10);
             $table->string('contact_number')->unique();
             $table->timestamps();
+
+            $table->foreach('user_id')
+                ->reference('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 
