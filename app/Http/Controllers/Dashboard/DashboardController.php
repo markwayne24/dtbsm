@@ -28,7 +28,6 @@ class DashboardController extends Controller
     public function index()
     {
         $users = User::with('userGroup')->get();
-
         return view('admin.dashboard')->with('users', $users);
     }
 }
