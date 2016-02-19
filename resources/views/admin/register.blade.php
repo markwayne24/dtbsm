@@ -22,12 +22,13 @@
                             <h3 class="box-title">List of Users</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
+
                             <table class="table table-bordered">
                                 <tr>
                                     <th style="width: 10px"></th>
                                     <th style="width: 10px">Name</th>
-                                    <th style="width: 10px">Phone Number</th>
-                                    <th style="width: 40px">Access Rights</th>
+                                    <th style="width: 40px">Role</th>
+                                    <th style="width: 10px">Actions</th>
                                 </tr>
 
                                 @foreach ($users as $user)
@@ -35,11 +36,11 @@
                                     <tr>
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->userProfile->firstname }}</td>
+                                        <td>{{$user->userGroup->name}}</td>
                                         <td>
-                                            <span class="badge bg-blue">{{ $user->userProfile->contact_number }}</span>
-                                        </td>
-                                        <td>
-                                            {{$user->userGroup->name}}
+                                            <button class="btn btn-success btn-flat"><a href="#"><i class="fa fa-pencil-square-o"></i></a></button>
+                                            <button class="btn btn-info btn-flat"><a href="#"><i class="fa fa-pencil-square-o"></i></a></button>
+                                            <button class="btn btn-danger btn-flat"><a href="#"><i class="fa fa-trash-o"></i></a></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -61,6 +62,10 @@
                             <h3 class="box-title">Registration Form</h3>
                         </div><!-- /.box-header -->
                         <!-- form start -->
+                        @if (Session::has('message'))
+                            <div class="alert alert-info">{{ Session::get('message') }}</div>
+                        @endif
+
                         <form role="form" method="POST" action="users">
                             {{ csrf_field() }}
 
