@@ -25,7 +25,7 @@ class RedirectIfVerified
        /* if($this->session->get('verified')== true){*/
             return $next($request);
        /* } else {*/
-            return redirect('/login/verify');
+           // return redirect('/login/verify');
        /* }*/
 
     }
