@@ -30,7 +30,7 @@ class StoreUserRequest extends Request
                 'lastname' => 'required',
                 'address' => 'required|min:5',
                 'gender' => 'required',
-                'contact_number' => 'required|numeric',
+                'contact_number' => 'required|numeric|unique:user_profiles,contact_number',
                 'email' => 'required|email|max:255|unique:users',
                 'password' => 'required|confirmed|min:6',
         ];
