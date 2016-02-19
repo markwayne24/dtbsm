@@ -22,11 +22,6 @@ class CreateUserProfiles extends Migration
             $table->string('gender', 10);
             $table->string('contact_number')->unique();
             $table->timestamps();
-
-            $table->foreach('user_id')
-                ->reference('id')
-                ->on('users')
-                ->onDelete('cascade');
         });
     }
 
