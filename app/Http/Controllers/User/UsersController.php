@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
+use Illuminate\Support\Facades\Hash;
+use App\Models\UserGroup;
+use App\Models\UserProfile;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -9,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Session\SessionManager;
+use Illuminate\Session;
 
 class UsersController extends Controller
 {
@@ -18,24 +22,29 @@ class UsersController extends Controller
     public function __construct(SessionManager $session)
     {
         $this->session = $session;
-
     }
 
     public function index()
     {
-
-        $users = User::paginate(5);
-        return view('admin.register')->with('users', $users);
+        $users = User::with('userProfile','userGroup')->paginate(15);
+        $usertypes = UserGroup::all();
+        return view('admin.register')->with('users', $users)->with('usertypes',$usertypes);
     }
 
     public function store(StoreUserRequest $request)
     {
-        $input = $request->all();
-        $input['group_id']= 'user';
+        $id = $request->only('group_id');
+        $id = UserGroup::where('name',$id)->first();
+        $type = $id->id;
+        $user = User::create($request->all());
+        $user->group_id = $type;
+        $user->password = Hash::make($request->input([('password')]));
+        $user->remember_token = $request->input(['_token']);
+        $user->save();
+        $user->userProfile()->create($request->all());
+        //Session::success('message', 'Successfully created user');
+        return redirect()->back();
 
-        $user = User::create($input);
-
-        return view('admin/dashboard/users');
     }
 
     public function update(StoreUserRequest $request, $userId)
