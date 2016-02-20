@@ -216,6 +216,19 @@
 
                 </li>
 
+                <li class="treeview">
+                    <a href="#">
+                        <i class="ion ion-person"></i>
+                        <span>Supplies</span><i class="fa fa-angle-left pull-right"></i>
+                        <span class="label label-primary pull-right">{{ $users->count() }}</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/admin/dashboard/supplies"><i class="fa-circle-o"></i> Supplies</a></li>
+                        <li><a href="/admin/dashboard/inventory"><i class="fa-circle-o"></i> Inventory</a></li>
+                    </ul>
+
+                </li>
+
 
                 <li class="treeview">
                     <a href="">

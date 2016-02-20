@@ -30,6 +30,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/login', 'Auth\AuthController@showLoginForm');
     Route::post('/login', 'Auth\AuthController@login');
 
+
         Route::get('/login/verify','Auth\VerifyController@index');
         Route::post('/login/verify','Auth\VerifyController@verify');
 
