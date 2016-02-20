@@ -28,7 +28,8 @@ class UsersController extends Controller
     {
         $users = User::with('userProfile','userGroup')->paginate(15);
         $usertypes = UserGroup::all();
-        return view('admin.register')->with('users', $users)->with('usertypes',$usertypes);
+
+        return view('admin.users.index')->with('users', $users)->with('usertypes',$usertypes);
     }
 
     public function store(StoreUserRequest $request)
