@@ -22,11 +22,10 @@ class RedirectIfVerified
      */
     public function handle($request, Closure $next)
     {
-       /* if($this->session->get('verified')== true){*/
+        if (\Session::has('verified') && \Session::get('verified') == true) {
             return $next($request);
-       /* } else {*/
-           // return redirect('/login/verify');
-       /* }*/
+        }
 
+        return redirect()->to('/login');
     }
 }
