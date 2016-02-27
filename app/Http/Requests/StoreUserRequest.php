@@ -25,14 +25,14 @@ class StoreUserRequest extends Request
     {
         return [
                 'group_id'=>'required',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|confirmed|min:6',
                 'firstname' => 'required|min:2',
                 'middlename' => 'required',
                 'lastname' => 'required',
                 'address' => 'required|min:5',
                 'gender' => 'required',
                 'contact_number' => 'required|numeric|unique:user_profiles,contact_number',
-                'email' => 'required|email|max:255|unique:users',
-                'password' => 'required|confirmed|min:6',
         ];
     }
 }
