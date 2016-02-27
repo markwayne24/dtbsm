@@ -39,4 +39,10 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\UserProfile','user_id');
     }
+
+
+    public function items()
+    {
+        return $this->hasMany('App\Models\Items');
+    }
 }
