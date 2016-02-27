@@ -27,16 +27,12 @@
 <body>
 <div class="container">
     <div class="content">
-
         @yield('content')
-
     </div>
 </div>
 
 <div class="footer">
-
     @yield('footer')
-
 </div>
 
 
