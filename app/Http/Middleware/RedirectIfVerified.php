@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Session\SessionManager;
+use Illuminate\Support\Facades\Auth;
 
 class RedirectIfVerified
 {
@@ -20,12 +21,26 @@ class RedirectIfVerified
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = null)
     {
-        if (\Session::has('verified') && \Session::get('verified') == true) {
-            return $next($request);
+        if (Auth::guard($guard)->guest()) {
+            if ($request->ajax()) {
+                return response('Unauthorized.', 401);
+            } else {
+                return redirect()->guest('/login');
+            }
         }
 
-        return redirect()->to('/login');
+        if (\Session::has('verified') && \Session::get('verified') == true) {
+                return $next($request);
+            }
+
+            if ($request->path() == 'login/verify') {
+                return $next($request);
+            }
+
+            return redirect()->to('/login/verify');
     }
+
+
 }
