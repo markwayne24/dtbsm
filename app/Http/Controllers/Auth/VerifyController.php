@@ -34,7 +34,12 @@ class VerifyController extends Controller
 
             \Session::set('verified', true);
              //('verified', true);
-            return redirect()->intended('/admin/dashboard');
+            if(Auth::user()->userGroup->name == 'admin'){
+                return redirect()->intended('/admin/dashboard');
+            } else{
+                return redirect()->intended('/user');
+            }
+
         } else{
             \Session::set('verified', false);
 

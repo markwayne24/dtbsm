@@ -30,7 +30,7 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = '/login/verify';
-/*    protected $redirectAfterLogout = '/logout';*/
+   // protected $redirectAfterLogout = '/login';
 
     /**
      * Create a new authentication controller instance.
@@ -40,6 +40,7 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+        \Session::set('verified',false);
     }
 
     /**
