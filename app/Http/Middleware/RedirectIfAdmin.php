@@ -13,13 +13,21 @@ class RedirectIfAdmin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = null)
     {
             //check the user if it's admin
-        if(Auth::user()->userGroup->name = 'admin'){
-            return $next($request);
+        if (Auth::guard($guard)->check()) {
+            if(Auth::user()->userGroup->name == 'admin') {
+                if (preg_match_all('/^admin/', $request->path())) {
+                    return $next($request);
+                }
+
+                return redirect('/admin/dashboard');
+            } else {
+                return redirect('/user');
+            }
         } else {
-            return redirect('/user');
+            return redirect()->to('/login');
         }
 
     }
