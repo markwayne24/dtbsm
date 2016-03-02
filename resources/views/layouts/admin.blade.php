@@ -161,8 +161,7 @@
                     <ul class="treeview-menu">
                         <li><a href="{{ url('/admin/dashboard/supplies/item-types') }}">Item Types</a></li>
                         <li><a href="{{ url('/admin/dashboard/supplies/items') }}">Items</a></li>
-                        <li><a href="/admin/dashboard/supplies">Supplies</a></li>
-                        <li><a href="/admin/dashboard/inventory">Inventory</a></li>
+                        <li><a href="{{ url('/admin/dashboard/supplies/inventory') }}">Inventory</a></li>
                     </ul>
 
                 </li>
