@@ -63,6 +63,14 @@ Route::group(['middleware' => 'web'], function () {
                 Route::post('/{userId}','Admin\ItemType\ItemTypesController@update');
                 Route::post('/{userId}/delete','Admin\ItemType\ItemTypesController@destroy');
             });
+
+            //Inventory
+            Route::group(['prefix' => 'supplies/inventory'], function() {
+                Route::get('/', 'Admin\ItemType\ItemTypesController@index');
+                Route::post('/', 'Admin\ItemType\ItemTypesController@store');
+                Route::post('/{userId}','Admin\ItemType\ItemTypesController@update');
+                Route::post('/{userId}/delete','Admin\ItemType\ItemTypesController@destroy');
+            });
         });
         //User's page
         Route::group(['prefix' => '/user'], function(){
