@@ -133,6 +133,7 @@
                     url: url + '/' + id + '/edit',
                     success: function (data) {
                         console.log(data);
+                        $('#item_type_id').val(data.item_type_id);
                         $('#name').val(data.name);
                         $('.btn-save').html('Update');
                         $('.btn-save').val('edit');
@@ -148,11 +149,11 @@
             });
 
             $('.btn-save').click(function (e) {
-                var formData = {
-                    item_type_id: $('.select2').val(),
+
+       var formData = {
+                    item_type_id: $('#item_type_id').val(),
                     name: $('#name').val(),
                 };
-
                 //used to determine the http verb to use [add=POST], [update=PUT]
                 var state = $('.btn-save').val();
                 var type = "POST"; //for creating new resource
@@ -171,7 +172,7 @@
                     data: formData,
                     success: function (data) {
                         console.log(data);
-                       $('#myModal').modal('hide')
+                       $('#confirmBox').modal('hide')
                         location.reload();
                     },
                     error: function (data) {
@@ -204,6 +205,7 @@
                         },
 
                         success: function() {
+                            $('#confirmBox').modal('hide')
                             parent.fadeOut(300,function() {
                                 parent.remove();
                             });
@@ -219,77 +221,6 @@
                 $('#deleteItem').val(id);
             });
 
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-
-            // We have two control functions that show or hide dialogs
-
-            function showDialog(id){
-
-                // Find the dialog and show it
-
-                var dialog = $('#' + id),
-                        card = dialog.find('.dialog-card');
-
-                dialog.fadeIn();
-
-                // Center it on screen
-
-                card.css({
-                    'margin-top' : -card.outerHeight()/2
-                });
-
-            }
-
-            function hideAllDialogs(){
-
-                // Hide all visible dialogs
-                $('.dialog-overlay').fadeOut();
-
-            }
-
-            // Here is how to use these functions
-
-            $('.dialog-confirm-button, .dialog-reject-button').on('click', function () {
-
-                // Hide the dialog when the confirm button is pressed
-                hideAllDialogs();
-
-            });
-
-            $('.dialog-overlay').on('click', function (e) {
-
-                if(e.target == this){
-                    // If the overlay was clicked/touched directly, hide the dialog
-                    hideAllDialogs();
-                }
-
-
-            });
-
-            $(document).keyup(function(e) {
-
-                if (e.keyCode == 27) {
-                    // When escape is pressed, hide all dialogs
-
-                    hideAllDialogs();
-                }
-
-            });
-
-
-            // Here, we are listening for clicks on the "show dialog" buttons,
-            // and showing the correct dialog
-
-            $('.dialog-show-button').on('click', function () {
-
-                // Take the contents of the  "data-show-dialog" attribute
-                var toShow = $(this).data('show-dialog');
-
-                showDialog(toShow);
-            });
         });
     </script>
 @stop
