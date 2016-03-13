@@ -45,6 +45,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @if($users)
                             @foreach($users as $user)
                                 <tr id="user-{{$type->id}}">
                                     <td>{{$user->id}}</td>
@@ -58,6 +59,7 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @endif
                             </tbody>
                             <tfoot>
                             <tr>
