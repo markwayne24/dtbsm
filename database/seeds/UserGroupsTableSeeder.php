@@ -24,7 +24,7 @@ class UserGroupsTableSeeder extends Seeder
         ];
 
         foreach ($userGroups as $group) {
-            \App\Models\UserGroup::create($group);
+            UserGroup::create($group);
         }
     }
 }
