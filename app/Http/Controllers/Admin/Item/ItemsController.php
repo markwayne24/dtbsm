@@ -6,11 +6,9 @@ use App\Http\Requests\Request;
 use App\Http\Requests\StoreItemsRequest;
 use App\Models\Items;
 use App\Models\ItemType;
+use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\MessageBag;
 use illuminate\Session\SessionManager;
-use Illuminate\Validation\Validator;
 
 class ItemsController extends Controller
 {
@@ -25,20 +23,40 @@ class ItemsController extends Controller
     {
         $itemTypes = ItemType::orderBy('name', 'ASC')->get();
         $items = Items::with('itemTypes')->get();
-        return view('admin.items.items.index')->with('items',$items)->with('itemTypes',$itemTypes);
+
+        return view('admin.items.items.index')->with('items', $items)->with('itemTypes', $itemTypes);
     }
 
     public function store(StoreItemsRequest $request)
     {
-        $id = $request->only('item_type_id');
+        $input = $request->all();
+        $items = Items::create($input);
 
-        $id = ItemType::where('name',$id)->first();
-        $type = $id->id;
-        $items = Items::create($request->all());
-        $items->item_type_id = $type;
-        $items->save();
+        return response()->json($items);
+    }
 
-        \Session::flash('flash_message','Successfully created Items.');
-        return redirect()->back()->with('message',flash_message);
+    public function edit($itemId)
+    {
+        $items = Items::findOrFail($itemId);
+
+        return response()->json($items);
+    }
+
+
+    public function update(StoreItemsRequest $request, $itemId)
+    {
+        $input = $request->all();
+        $items = Items::where('id', $itemId)->update($input);
+
+        return response()->json($items);
+    }
+
+    public function destroy($items)
+    {
+        $item = Items::destroy($items);
+        return response(['msg' => 'Product deleted', 'status' => 'success']);
+        \Session::flash('flash_message', 'Successfully deleted Items.');
+
+        return redirect()->back()->with('message', flash_message);
     }
 }
