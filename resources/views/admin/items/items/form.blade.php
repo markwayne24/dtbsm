@@ -11,10 +11,12 @@
                         {{csrf_field()}}
                         <div class="form-group {{ $errors->has('item_type_id') ? ' has-error' : '' }}">
                             <label>Item Type</label>
-                            <select class="form-control select2" style="width: 100%;" name="item_type_id">
-                                @foreach($itemTypes as $itemtype)
-                                    <option value="{{$itemtype->id}}">{{$itemtype->name}}</option>
-                                @endforeach
+                            <select class="form-control select2" style="width: 100%;" name="item_type_id" id="item_type_id">
+                                @if($itemTypes)
+                                    @foreach($itemTypes as $itemtype)
+                                        <option value="{{$itemtype->id}}">{{$itemtype->name}}</option>
+                                    @endforeach
+                                @endif
                             </select>
                             @if ($errors->has('item_type_id'))
                                 <span class="help-block">

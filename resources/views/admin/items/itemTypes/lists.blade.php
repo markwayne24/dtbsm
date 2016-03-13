@@ -41,16 +41,19 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @if($types)
                             @foreach($types as $type)
                                 <tr id="type-{{$type->id}}">
                                     <td>{{$type->id}}</td>
                                     <td>{{$type->name}}</td>
                                     <td>
-                                        <button class="btn btn-info btn-flat open-modal-edit" value="{{$type->id}}"><i class="fa fa-pencil-square-o"></i></button>
-                                        <button class="btn btn-danger btn-flat dialog-show-button deleteModal" value="{{$type->id}}" data-show-dialog="my-confirm-dialog"><i class="fa fa-trash-o"></i></button>
+                                        <button class="btn btn-info btn-flaxt open-modal-edit" value="{{$type->id}}"><i class="fa fa-pencil-square-o"></i></button>
+                                        <button type="button" class="btn btn-danger btn-flat deleteModal" data-toggle="modal" data-target=".bs-example-modal-sm" value="{{$type->id}}"><i class="fa fa-trash-o"></i></button>
+
                                     </td>
                                 </tr>
                             @endforeach
+                            @endif
                             </tbody>
                             <tfoot>
                             <tr>
@@ -60,16 +63,19 @@
                             </tr>
                             </tfoot>
                         </table>
-                        <div id="my-confirm-dialog" class="dialog-overlay">
-                            <div class="dialog-card">
-                                <div class="dialog-question-sign"><i class="fa fa-question"></i></div>
-                                <div class="dialog-info">
-                                    <h5>Are you sure you want to delete this?</h5>
-                                    <button class="dialog-confirm-button delete-item" id="deleteItem" value="{{$type->id}}">Yes</button>
-                                    <button class="dialog-reject-button">No</button>
+
+                        <!-- Confirmation modal -->
+                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="confirmBox">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                        <h4 class="modal-header" id="gridSystemModalLabel">Are you sure you want to delete?</h4>
+                                        <div class="modal-body">
+                                            <button class="btn btn-danger btn-flat delete-item" id="deleteItem" value="">Yes</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                        </div>
                                 </div>
                             </div>
-                        </div>
+                        </div><!-- end confirmation-->
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!-- /.col -->
