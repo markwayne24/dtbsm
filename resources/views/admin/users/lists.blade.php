@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Items
+            Users
         </h1>
     </section>
     <section>
@@ -46,15 +46,15 @@
                             </thead>
                             <tbody>
                             @foreach($users as $user)
-                                <tr>
+                                <tr id="user-{{$type->id}}">
                                     <td>{{$user->id}}</td>
                                     <td>{{$user->userGroup->name}}</td>
                                     <td>{{$user->userProfile->lastname}}, {{$user->userProfile->firstname}} {{$user->userProfile->middlename}}. </td>
                                     <td>{{$user->email}} </td>
                                     <td>
-                                        <button class="btn btn-success btn-flat"><a href="#"><i class="fa fa-pencil-square-o"></i></a></button>
-                                        <button class="btn btn-info btn-flat"><a href="#"><i class="fa fa-pencil-square-o"></i></a></button>
-                                        <button class="btn btn-danger btn-flat"><a href="#"><i class="fa fa-trash-o"></i></a></button>
+                                        <button class="btn btn-success btn-flat open-modal"><i class="glyphicon glyphicon-search"></i></button>
+                                        <button class="btn btn-info btn-flat open-modal-edit" value="{{$user->id}}"><i class="fa fa-pencil-square-o"></i></button>
+                                        <button class="btn btn-danger btn-flat dialog-show-button deleteModal" value="{{$user->id}}" data-show-dialog="my-confirm-dialog"><i class="fa fa-trash-o"></i></button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -69,6 +69,16 @@
                             </tr>
                             </tfoot>
                         </table>
+                        <div id="my-confirm-dialog" class="dialog-overlay">
+                            <div class="dialog-card">
+                                <div class="dialog-question-sign"><i class="fa fa-question"></i></div>
+                                <div class="dialog-info">
+                                    <h5>Are you sure you want to delete this?</h5>
+                                    <button class="dialog-confirm-button delete-item" id="deleteUser" value="{{$item->id}}">Yes</button>
+                                    <button class="dialog-reject-button">No</button>
+                                </div>
+                            </div>
+                        </div>
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!-- /.col -->
