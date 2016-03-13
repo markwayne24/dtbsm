@@ -8,7 +8,7 @@ class UserProfile extends Model
 {
     protected $table = 'user_profiles';
 
-    protected $guarded = ['user_id'];
+    protected $guarded = ['id'];
 
     protected $fillable = [
         'firstname',
