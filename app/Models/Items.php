@@ -8,10 +8,9 @@ class Items extends Model
 {
     protected $table = 'items';
 
-    protected $guarded = ['item_type_id'];
-
     protected $fillable = [
-        'name'
+        'name',
+        'item_type_id'
     ];
 
     protected $hidden = ['created_at', 'updated_at'];
@@ -20,5 +19,9 @@ class Items extends Model
     public function itemTypes()
     {
         return $this->belongsTo('App\Models\ItemType', 'item_type_id');
+    }
+
+    public function inventory(){
+        return $this->belongsTo('App\Models\Inventory');
     }
 }
