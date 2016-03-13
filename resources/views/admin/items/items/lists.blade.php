@@ -42,16 +42,15 @@
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="item-list" name="item-list">
                             @foreach($items as $item)
-                                <tr>
+                                <tr id="item-{{$item->id}}">
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->itemTypes->name}}</td>
+                                    <td>{{$item->itemTypes->name or ''}}</td>
                                     <td>{{$item->name}}</td>
                                     <td>
-                                        <button class="btn btn-success btn-flat"><a href="#"><i class="fa fa-pencil-square-o"></i></a></button>
-                                        <button class="btn btn-info btn-flat"><a href="#"><i class="fa fa-pencil-square-o"></i></a></button>
-                                        <button class="btn btn-danger btn-flat"><a href="#"><i class="fa fa-trash-o"></i></a></button>
+                                        <button class="btn btn-info btn-flat open-modal-edit" value="{{$item->id}}"><i class="fa fa-pencil-square-o"></i></button>
+                                        <button class="btn btn-danger btn-flat dialog-show-button deleteModal" value="{{$item->id}}" data-show-dialog="my-confirm-dialog"><i class="fa fa-trash-o"></i></button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -65,6 +64,17 @@
                             </tr>
                             </tfoot>
                         </table>
+                        <div id="my-confirm-dialog" class="dialog-overlay">
+                            <div class="dialog-card">
+                                <div class="dialog-question-sign"><i class="fa fa-question"></i></div>
+                                <div class="dialog-info">
+                                    <h5>Are you sure you want to delete this?</h5>
+                                    <button class="dialog-confirm-button delete-item" id="deleteItem" value="{{$item->id}}">Yes</button>
+                                    <button class="dialog-reject-button">No</button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!-- /.col -->
