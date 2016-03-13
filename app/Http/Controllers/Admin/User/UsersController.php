@@ -55,6 +55,12 @@ class UsersController extends Controller
 
     }
 
+    public function  edit($users)
+    {
+        $user = User::findOrFail($users);
+        \Response::json($user);
+    }
+
     public function update(StoreUserRequest $request, $userId)
     {
         $input = $request->all();
@@ -67,10 +73,8 @@ class UsersController extends Controller
     public function destroy($userId)
     {
         $user = User::find($userId)->delete();
-
-        if (! $user) {
-            return 'User Id not found';
-        }
+        // Delete user's profile from database.
+        $user->userProfile->delete();
 
         return view('admin/dashboard/users');
     }
