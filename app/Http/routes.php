@@ -30,7 +30,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/login', 'Auth\AuthController@showLoginForm');
     Route::post('/login', 'Auth\AuthController@login');
     Route::get('logout', 'Auth\AuthController@logout');
-
+        //checked if verified
     Route::group(['middleware'=>'verify'], function(){
 
         Route::get('/login/verify','Auth\VerifyController@index');
@@ -41,37 +41,45 @@ Route::group(['middleware' => 'web'], function () {
             //admin dashboard
             Route::get('/','Admin\Dashboard\DashboardController@index');
             //User's list and Registration
-            Route::group(['prefix' => 'users'], function() {
-                Route::get('/', 'Admin\User\UsersController@index');
+/*            Route::resource('users','Admin\User\UsersController');*/
+            Route::resource('users','Admin\User\UsersController');
+  /*          Route::group(['prefix' => 'users'], function() {
+              Route::get('/', 'Admin\User\UsersController@index');
                 Route::post('/', 'Admin\User\UsersController@store');
+                Route::get('/{userId}/edit', 'Admin\User\UsersController@edit');
                 Route::post('/{userId}','Admin\User\UsersController@update');
                 Route::post('/{userId}/delete','Admin\User\UsersController@destroy');
-            });
+            });*/
 
             //Items
-            Route::group(['prefix' => 'supplies/items'], function() {
+            Route::resource('supplies/items','Admin\Item\ItemsController');
+/*            Route::group(['prefix' => 'supplies/items'], function() {
                 Route::get('/', 'Admin\Item\ItemsController@index');
                 Route::post('/', 'Admin\Item\ItemsController@store');
-                Route::post('/{userId}','Admin\Item\ItemsController@update');
-                Route::post('/{userId}/delete','Admin\Item\ItemsController@destroy');
-            });
+                Route::get('/{itemId}', 'Admin\Item\ItemsController@edit');
+                Route::post('/{itemId}','Admin\Item\ItemsController@update');
+                Route::delete('/{itemId}','Admin\Item\ItemsController@destroy');
+            });*/
 
             //Items types
-            Route::group(['prefix' => 'supplies/item-types'], function() {
+            Route::resource('supplies/item-types','Admin\ItemType\ItemTypesController');
+/*            Route::group(['prefix' => 'supplies/item-types'], function() {
                 Route::get('/', 'Admin\ItemType\ItemTypesController@index');
                 Route::post('/', 'Admin\ItemType\ItemTypesController@store');
-                Route::post('/{userId}','Admin\ItemType\ItemTypesController@update');
-                Route::post('/{userId}/delete','Admin\ItemType\ItemTypesController@destroy');
-            });
+                Route::post('/{item-typesId}','Admin\ItemType\ItemTypesController@update');
+                Route::post('/{item-typesId}/delete','Admin\ItemType\ItemTypesController@destroy');
+            });*/
 
             //Inventory
-            Route::group(['prefix' => 'supplies/inventory'], function() {
-                Route::get('/', 'Admin\ItemType\ItemTypesController@index');
-                Route::post('/', 'Admin\ItemType\ItemTypesController@store');
-                Route::post('/{userId}','Admin\ItemType\ItemTypesController@update');
-                Route::post('/{userId}/delete','Admin\ItemType\ItemTypesController@destroy');
-            });
+            Route::resource('supplies/inventory','Admin\Inventory\InventoryController');
+/*            Route::group(['prefix' => 'supplies/inventory'], function() {
+                Route::get('/', 'Admin\Inventory\InventoryController@index');
+                Route::post('/', 'Admin\Inventory\InventoryController@store');
+                Route::post('/{userId}','Admin\Inventory\InventoryController@update');
+                Route::post('/{userId}/delete','Admin\Inventory\InventoryController@destroy');
+            });*/
         });
+
         //User's page
         Route::group(['prefix' => '/user'], function(){
             return "User's page";
