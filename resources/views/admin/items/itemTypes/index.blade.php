@@ -114,4 +114,221 @@
 
         });
     </script>
+    <script>
+        $(document).ready(function(){
+            var url = "item-types";
+
+            $('.open-modal').click(function(){
+                var id = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: url + '/' + id,
+                    success: function (data) {
+                        console.log(data);
+
+                        $('#name').val(data.name);
+                        $('#item_id').val(data.id);
+                        $('#btn-save').val("Update");
+
+                        $('#myModal').modal('show');
+
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+
+            });
+
+            //delete task and remove it from list
+            $('.delete-item').click(function(){
+                var id = $(this).val();
+
+                $.ajax({
+
+                    type: "DELETE",
+                    url: url + '/' + id,
+                    success: function (data) {
+                        console.log(data);
+
+                        $("#id" + id).remove();
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            });
+
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            var url = "item-types";
+            var options;
+            $('.open-modal-edit').click(function(){
+                var id = $(this).val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: url + '/' + id + '/edit',
+                    success: function (data) {
+                        console.log(data);
+                        $('#name').val(data.name);
+                        $('.btn-save').html('Update');
+                        $('.btn-save').val('edit');
+                        $('#type_id').val(data.id);
+                        $('#myModal').modal('show');
+
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+
+            });
+
+            $('.btn-save').click(function (e) {
+                var formData = {
+                    name: $('#name').val()
+                };
+
+                //used to determine the http verb to use [add=POST], [update=PUT]
+                var state = $('.btn-save').val();
+                var type = "POST"; //for creating new resource
+                var type_id = $('#type_id').val();
+                var my_url = url;
+
+                if (state == "edit"){
+                    type = 'PUT';
+                    my_url += '/' + type_id;
+                }
+
+                console.log(formData);
+                $.ajax({
+                    type: type,
+                    url: my_url,
+                    data: formData,
+                    success: function (data) {
+                        console.log(data);
+                        $('#myModal').modal('hide')
+                        location.reload();
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            });
+            // Clear form fields in a designated area of a page
+            $('body').on('hidden.bs.modal', '.modal', function () {
+                $('.btn-save').html('Create').val('add');
+                $(this).find('input[type="text"],input[type="email"],textarea,select').each(function() {
+                    if (this.defaultValue != '' || this.value != this.defaultValue) {
+                        this.value = this.defaultValue;
+                    } else { this.value = ''; }
+                });
+            });
+
+            //delete task and remove it from list
+            $('.delete-item').click(function(){
+                var id = $(this).val();
+
+                var parent = $('#type-'+id);
+                $.ajax({
+                    type: "DELETE",
+                    url: url + '/' + id ,
+                    data: {"_token": "{{ csrf_token() }}" },
+
+                    beforeSend: function() {
+                        parent.animate({'backgroundColor':'#fb6c6c'},300);
+                    },
+
+                    success: function() {
+                        parent.fadeOut(300,function() {
+                            parent.remove();
+                        });
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            });
+
+            $('.deleteModal').click(function() {
+                var id = $(this).val();
+                $('#deleteItem').val(id);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+
+            // We have two control functions that show or hide dialogs
+
+            function showDialog(id){
+
+                // Find the dialog and show it
+
+                var dialog = $('#' + id),
+                        card = dialog.find('.dialog-card');
+
+                dialog.fadeIn();
+
+                // Center it on screen
+
+                card.css({
+                    'margin-top' : -card.outerHeight()/2
+                });
+
+            }
+
+            function hideAllDialogs(){
+
+                // Hide all visible dialogs
+                $('.dialog-overlay').fadeOut();
+
+            }
+
+            // Here is how to use these functions
+
+            $('.dialog-confirm-button, .dialog-reject-button').on('click', function () {
+
+                // Hide the dialog when the confirm button is pressed
+                hideAllDialogs();
+
+            });
+
+            $('.dialog-overlay').on('click', function (e) {
+
+                if(e.target == this){
+                    // If the overlay was clicked/touched directly, hide the dialog
+                    hideAllDialogs();
+                }
+
+
+            });
+
+            $(document).keyup(function(e) {
+
+                if (e.keyCode == 27) {
+                    // When escape is pressed, hide all dialogs
+
+                    hideAllDialogs();
+                }
+
+            });
+
+
+            // Here, we are listening for clicks on the "show dialog" buttons,
+            // and showing the correct dialog
+
+            $('.dialog-show-button').on('click', function () {
+
+                // Take the contents of the  "data-show-dialog" attribute
+                var toShow = $(this).data('show-dialog');
+
+                showDialog(toShow);
+            });
+        });
+    </script>
 @stop
