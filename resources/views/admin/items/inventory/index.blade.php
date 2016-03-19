@@ -121,4 +121,113 @@
 
         });
     </script>
+    <script>
+        $('document').ready(function(){
+
+            var url = "inventory";
+            var options;
+            $('.open-modal-edit').click(function(){
+                var id = $(this).val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: url + '/' + id + '/edit',
+                    success: function (data) {
+                        console.log(data);
+                        $('#item_id').val(data.item_id);
+                        $('#sku').val(data.sku);
+                        $('#price').val(data.price);
+                        $('#stocks').val(data.stocks);
+                        $('.btn-save').html('Update');
+                        $('#myModalLabel').html('Update Item');
+                        $('.btn-save').val('edit');
+                        $('#inventory_id').val(data.id);
+                        $('#myModal').modal('show');
+
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+
+            });
+
+                   // Clear form fields in a designated area of a page
+            $('body').on('hidden.bs.modal', '.modal', function () {
+                $('.btn-save').html('Create').val('add');
+                $('#myModalLabel').html('Create Item');
+                $(this).find('input[type="text"],input[type="email"],textarea,select').each(function() {
+                    if (this.defaultValue != '' || this.value != this.defaultValue) {
+                        this.value = this.defaultValue;
+                    } else { this.value = ''; }
+                });
+            });
+
+            //delete task and remove it from list
+            $('.delete-item').click(function(){
+                var id = $(this).val();
+                var parent = $('#inventory-'+id);
+
+                $.ajax({
+                    type: "DELETE",
+                    url: url + '/' + id ,
+                    data: {"_token": "{{ csrf_token() }}" },
+
+                    beforeSend: function() {
+                        parent.animate({'backgroundColor':'#fb6c6c'},300);
+                    },
+
+                    success: function() {
+                        $('#confirmBox').modal('hide');
+                        parent.fadeOut(300,function() {
+                            parent.remove();
+                        });
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            });
+
+            $('.deleteModal').click(function() {
+                var id = $(this).val();
+                $('#deleteItem').val(id);
+            });
+
+            $('.btn-save').click(function (e) {
+                var formData = {
+                    item_id:$('#item_id').val(),
+                    sku:    $('#sku').val(),
+                    price:  $('#price').val(),
+                    stocks: $('#stocks').val(),
+                };
+
+                //used to determine the http verb to use [add=POST], [update=PUT]
+                var state = $('.btn-save').val();
+                var type = "POST"; //for creating new resource
+                var inventory_id = $('#inventory_id').val();
+                var my_url = url;
+
+                if (state == "edit"){
+                    type = 'PUT';
+                    my_url += '/' + inventory_id;
+                }
+
+                console.log(formData);
+                $.ajax({
+                    type: type,
+                    url: my_url,
+                    data: formData,
+                    success: function (data) {
+                        console.log(data);
+                        $('#myModal').modal('hide')
+                        location.reload();
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            });
+        });
+    </script>
 @stop
