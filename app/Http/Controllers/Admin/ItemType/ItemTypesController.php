@@ -28,11 +28,10 @@ class ItemTypesController extends Controller
     public function store(StoreItemsRequest $request){
         $input = $request->all();
         $item_type = ItemType::create($input);
+        \Session::flash('flash_message','Successfully saved.');
 
         return response()->json($item_type);
 
-        \Session::flash('flash_message','Successfully Saved.');
-        return redirect()->back()->with('message',flash_message);
     }
 
     public function edit($item_types)
@@ -46,6 +45,7 @@ class ItemTypesController extends Controller
     {
         $input = $request->all();
         $item_type = ItemType::where('id', $item_types)->update($input);
+        \Session::flash('flash_message','Successfully updated.');
 
         return response()->json($item_type);
     }
@@ -53,6 +53,7 @@ class ItemTypesController extends Controller
     public function destroy($item_types)
     {
         $item_type = ItemType::destroy($item_types);
+
         return response()->json($item_type);
     }
 }
