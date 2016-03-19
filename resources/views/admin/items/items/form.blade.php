@@ -2,7 +2,7 @@
 <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="frmItem" name="frmItem"class="bootstrap-modal-form">
+            <form id="frmItem" name="frmItem" class="bootstrap-modal-form">
                 <div class="modal-header bg-primary">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Create Items</h4>
