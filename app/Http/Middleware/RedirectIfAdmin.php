@@ -24,7 +24,7 @@ class RedirectIfAdmin
 
                 return redirect('/admin/dashboard');
             } else {
-                return redirect('/user');
+                return redirect('/users');
             }
         } else {
             return redirect()->to('/login');
