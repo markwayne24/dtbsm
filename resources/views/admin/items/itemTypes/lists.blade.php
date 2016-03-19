@@ -47,7 +47,7 @@
                                     <td>{{$type->id}}</td>
                                     <td>{{$type->name}}</td>
                                     <td>
-                                        <button class="btn btn-info btn-flaxt open-modal-edit" value="{{$type->id}}"><i class="fa fa-pencil-square-o"></i></button>
+                                            <button class="btn btn-info btn-flaxt open-modal-edit" value="{{$type->id}}"><i class="fa fa-pencil-square-o"></i></button>
                                         <button type="button" class="btn btn-danger btn-flat deleteModal" data-toggle="modal" data-target=".bs-example-modal-sm" value="{{$type->id}}"><i class="fa fa-trash-o"></i></button>
 
                                     </td>
@@ -68,11 +68,11 @@
                         <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="confirmBox">
                             <div class="modal-dialog modal-sm">
                                 <div class="modal-content">
-                                        <h4 class="modal-header" id="gridSystemModalLabel">Are you sure you want to delete?</h4>
-                                        <div class="modal-body">
-                                            <button class="btn btn-danger btn-flat delete-item" id="deleteItem" value="">Yes</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                        </div>
+                                    <h4 class="modal-header" id="gridSystemModalLabel">Are you sure you want to delete?</h4>
+                                    <div class="modal-body">
+                                        <button class="btn btn-danger btn-flat delete-item" id="deleteItem" value="">Yes</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                    </div>
                                 </div>
                             </div>
                         </div><!-- end confirmation-->
