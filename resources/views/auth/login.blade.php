@@ -3,10 +3,10 @@
 @section('content')
     <div class="login-box">
         <div class="login-logo">
-            <a href="../../index2.html"><b>DepEd Tarlac Budget and Supply Monitoring</b></a>
+            <a href="../../index2.html"><b></b></a>
         </div><!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <h3 class="login-box-msg">DepEd Tarlac Budget and Supply Monitoring</h3>
 
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                 {!! csrf_field() !!}
