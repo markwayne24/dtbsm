@@ -25,14 +25,20 @@ class StoreUserRequest extends Request
     {
         return [
                 'group_id'=>'required',
-                'email' => 'required|email|max:255|unique:users',
-                'password' => 'required|confirmed|min:6',
-                'firstname' => 'required|min:2',
-                'middlename' => 'required',
-                'lastname' => 'required',
+                'email' => 'required|email|max:56|unique:users,email,' .$this->getSegmentFromEnd().',id',
+                'password' => 'required',
+                'firstname' => 'required|string|min:2|max:56',
+                'middlename' => 'required|string|min:1|max:56',
+                'lastname' => 'required|string|min:2|max:56',
                 'address' => 'required|min:5',
                 'gender' => 'required',
-                'contact_number' => 'required|numeric|unique:user_profiles,contact_number',
+                'contact_number' => [ 'regex:/^(09|9)\d{9}$/' ],
+                /*'required|numeric|unique:user_profiles,contact_number'*/
         ];
+    }
+
+    private function getSegmentFromEnd($position_from_end = 1) {
+        $segments =$this->segments();
+        return $segments[sizeof($segments) - $position_from_end];
     }
 }
