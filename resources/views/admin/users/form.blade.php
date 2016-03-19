@@ -11,10 +11,10 @@
                     {{csrf_field()}}
                     <div class="form-group{{ $errors->has('group_id') ? ' has-error' : '' }}">
                         <!-- Select2-->
-                        <label>Item Type</label>
-                        <select class="form-control select2" style="width: 100%;" name="group_id" id="group_id">
+                        <label>User Type</label>
+                        <select class="form-control" style="width: 100%;" name="group_id" id="group_id">
                             @foreach ($usertypes as $usertype)
-                                <option id="{{$usertype->id}}">{{ $usertype->name }}</option>
+                                <option value="{{$usertype->id}}">{{ $usertype->name }}</option>
                             @endforeach
                         </select>
                         @if ($errors->has('group_id'))
@@ -75,9 +75,9 @@
                             <!-- select -->
                             <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
                                 <label>Select Gender</label>
-                                <select class="form-control"  name="gender">
-                                    <option>Male</option>
-                                    <option>Female</option>
+                                <select class="form-control"  name="gender" id="gender">
+                                    <option>male</option>
+                                    <option>female</option>
                                 </select>
 
                                 @if ($errors->has('gender'))
@@ -91,7 +91,7 @@
                         <div class="col-lg-6">
                             <div class="form-group{{ $errors->has('contact_number') ? ' has-error' : '' }}">
                                 <label for="exampleInputPassword1">Contact Number</label>
-                                <input type="text" class="form-control" placeholder="Enter Contact No." name="contact_number" id="contact_number">
+                                <input type="number" class="form-control" placeholder="Enter Contact No." name="contact_number" id="contact_number">
 
                                 @if ($errors->has('contact_number'))
                                     <span class="help-block">
@@ -128,7 +128,7 @@
                     <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                         <label for="exampleInputPassword1">Confirm Password</label>
 
-                        <input type="password" class="form-control" placeholder="Re-type Password" name="password_confirmation">
+                        <input type="password" class="form-control" placeholder="Re-type Password" name="password_confirmation" id="password">
 
                         @if ($errors->has('password_confirmation'))
                             <span class="help-block">
