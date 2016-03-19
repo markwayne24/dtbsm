@@ -136,6 +136,7 @@
                         $('#item_type_id').val(data.item_type_id);
                         $('#name').val(data.name);
                         $('.btn-save').html('Update');
+                        $('#myModalLabel').html('Update Item');
                         $('.btn-save').val('edit');
                         $('#item_id').val(data.id);
                         $('#myModal').modal('show');
@@ -183,6 +184,7 @@
             // Clear form fields in a designated area of a page
             $('body').on('hidden.bs.modal', '.modal', function () {
                 $('.btn-save').html('Create').val('add');
+                $('#myModalLabel').html('Create Item');
                 $(this).find('input[type="text"],input[type="email"],textarea,select').each(function() {
                     if (this.defaultValue != '' || this.value != this.defaultValue) {
                         this.value = this.defaultValue;
