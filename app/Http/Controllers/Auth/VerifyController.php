@@ -37,7 +37,7 @@ class VerifyController extends Controller
             if(Auth::user()->userGroup->name == 'admin'){
                 return redirect()->intended('/admin/dashboard');
             } else{
-                return redirect()->intended('/user');
+                return redirect()->intended('/users');
             }
 
         } else{
