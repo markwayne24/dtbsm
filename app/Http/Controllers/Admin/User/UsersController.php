@@ -35,48 +35,47 @@ class UsersController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        //get the id of the userGroup
-        $id = $request->only('group_id');
-        $id = UserGroup::where('name',$id)->first();
-        $type = $id->id;
-        //save creadentials
-        $user = User::create($request->all());
-        $user->group_id = $type;
+        $input = $request->all();
+        //save credentials
+        $user = User::create($input);
         $user->password = Hash::make($request->input([('password')]));
         $user->save();
+        $user->userProfile()->create($input);
+        \Session::flash('flash_message','Successfully saved.');
 
-        //saving profile
-        $user->userProfile()->create($request->all());
-
-        //Session::success('message', 'Successfully created user');
-
-        \Session::flash('flash_message','Successfully created Users.');
-        return redirect()->back()->with('message',flash_message);
+        return response()->json($user);
 
     }
 
     public function  edit($users)
     {
         $user = User::findOrFail($users);
-        \Response::json($user);
+        $user->userProfile->get();
+        $user->userGroup->get();
+
+        return response()->json($user);
     }
 
-    public function update(StoreUserRequest $request, $userId)
+    public function update(StoreUserRequest $request, $users)
     {
-        $input = $request->all();
+        $input = $request->only('email');
+        $user = User::where('id', $users)->update($input);
+        $user->password = Hash::make($request->input([('password')]));
+        $user->save();
+        $user->userProfile()->update($input);
+       UserProfile::where('user_id',$users)->update($input);
+        \Session::flash('flash_message','Successfully updated.');
 
-        $user = User::where('id', $userId)->update($input);
-
-        return view('admin/dashboard/users');
+        return response()->json($user);
     }
 
-    public function destroy($userId)
+    public function destroy($users)
     {
-        $user = User::find($userId)->delete();
+        $user = User::destroy($users);
         // Delete user's profile from database.
-        $user->userProfile->delete();
+        UserProfile::where('user_id',$users)->delete();
 
-        return view('admin/dashboard/users');
+        return response()->json($user);
     }
 
 }
