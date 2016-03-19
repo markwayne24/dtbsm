@@ -46,20 +46,22 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($inventories as $inventory)
-                                <tr>
-                                    <td>{{$inventory->id}}</td>
-                                    <td>{{$inventory->items->itemTypes->name}}</td>
-                                    <td>{{$inventory->items->name}}</td>
-                                    <td>{{$inventory->sku}}</td>
-                                    <td>{{$inventory->price}}</td>
-                                    <td>{{$inventory->stocks}}</td>
-                                    <td>
-                                        <button class="btn btn-info btn-flat open-modal"><i class="fa fa-pencil-square-o"></i></button>
-                                        <button class="btn btn-danger btn-flat"><i class="fa fa-trash-o"></i></button>
-                                    </td>
-                                </tr>
-                            @endforeach
+                            @if($inventories)
+                                @foreach($inventories as $inventory)
+                                    <tr id="inventory-{{$inventory->id}}">
+                                        <td>{{$inventory->id}}</td>
+                                        <td>{{$inventory->items->itemTypes->name}}</td>
+                                        <td>{{$inventory->items->name}}</td>
+                                        <td>{{$inventory->sku}}</td>
+                                        <td>{{$inventory->price}}</td>
+                                        <td>{{$inventory->stocks}}</td>
+                                        <td>
+                                            <button class="btn btn-info btn-flat open-modal-edit"  value="{{$inventory->id}}"><i class="fa fa-pencil-square-o"></i></button>
+                                            <button type="button" class="btn btn-danger btn-flat deleteModal" data-toggle="modal" data-target=".bs-example-modal-sm" value="{{$inventory->id}}"><i class="fa fa-trash-o"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
                             </tbody>
                             <tfoot>
                             <tr>
@@ -72,6 +74,18 @@
                             </tr>
                             </tfoot>
                         </table>
+                        <!-- Confirmation modal -->
+                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="confirmBox">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <h4 class="modal-header" id="gridSystemModalLabel">Are you sure you want to delete?</h4>
+                                    <div class="modal-body">
+                                        <button class="btn btn-danger btn-flat delete-item" id="deleteItem" value="">Yes</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end confirmation-->
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!-- /.col -->
