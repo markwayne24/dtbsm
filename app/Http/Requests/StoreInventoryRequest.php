@@ -24,6 +24,7 @@ class StoreInventoryRequest extends Request
     public function rules()
     {
         return [
+            'item_id'=>'required',
             'sku'=>'required|min:1',
             'price'=>'required|numeric',
             'stocks'=>'required|numeric'
