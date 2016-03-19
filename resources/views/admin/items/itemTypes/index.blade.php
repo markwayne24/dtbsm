@@ -175,6 +175,7 @@
                         console.log(data);
                         $('#name').val(data.name);
                         $('.btn-save').html('Update');
+                        $('#myModalLabel').html('Update Types of Item');
                         $('.btn-save').val('edit');
                         $('#type_id').val(data.id);
                         $('#myModal').modal('show');
@@ -221,6 +222,7 @@
             // Clear form fields in a designated area of a page
             $('body').on('hidden.bs.modal', '.modal', function () {
                 $('.btn-save').html('Create').val('add');
+                $('#myModalLabel').html('Create Types of Item');
                 $(this).find('input[type="text"],input[type="email"],textarea,select').each(function() {
                     if (this.defaultValue != '' || this.value != this.defaultValue) {
                         this.value = this.defaultValue;
@@ -243,7 +245,7 @@
                     },
 
                     success: function() {
-                        $('#confirmBox').modal('hide')
+                        $('#confirmBox').modal('hide');
                         parent.fadeOut(300,function() {
                             parent.remove();
                         });
