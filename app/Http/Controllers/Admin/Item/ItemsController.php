@@ -31,6 +31,7 @@ class ItemsController extends Controller
     {
         $input = $request->all();
         $items = Items::create($input);
+        \Session::flash('flash_message','Successfully saved.');
 
         return response()->json($items);
     }
@@ -47,6 +48,7 @@ class ItemsController extends Controller
     {
         $input = $request->all();
         $items = Items::where('id', $itemId)->update($input);
+        \Session::flash('flash_message','Successfully updated.');
 
         return response()->json($items);
     }
@@ -54,9 +56,11 @@ class ItemsController extends Controller
     public function destroy($items)
     {
         $item = Items::destroy($items);
-        return response(['msg' => 'Product deleted', 'status' => 'success']);
+
+        return response()->json($item);
+      /*  return response(['msg' => 'Product deleted', 'status' => 'success']);
         \Session::flash('flash_message', 'Successfully deleted Items.');
 
-        return redirect()->back()->with('message', flash_message);
+        return redirect()->back()->with('message', flash_message);*/
     }
 }
