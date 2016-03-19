@@ -10,6 +10,7 @@ class Inventory extends Model
 
     protected $guarded = ['id'];
     protected  $fillable = [
+        'item_id',
         'sku',
         'price',
         'stocks'
