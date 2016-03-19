@@ -26,26 +26,33 @@ class InventoryController extends Controller
 
     public function store(StoreInventoryRequest $request)
     {
-        $id = $request->only('item_id');
-
-        $id = Items::where('name',$id)->first();
-        $type = $id->id;
-        $items = Inventory::create($request->all());
-        $items->item_id = $type;
-        $items->save();
-
+        $input = $request->all();
+        $inventories = Inventory::create($input);
         \Session::flash('flash_message','Successfully created Inventory.');
-        return redirect()->back()->with('message',flash_message);
+
+        return response()->json($inventories);
     }
 
-    public function edit()
+    public function edit($inventory)
     {
+        $input = Inventory::findOrFail($inventory);
 
+        return response()->json($input);
     }
 
-    public function destroy()
+    public function update(StoreInventoryRequest $request, $inventory)
     {
+        $input = $request->all();
+        $inventory = Inventory::where('id',$inventory)->update($input);
 
+        return response()->json($inventory);
+    }
+
+    public function destroy($inventory)
+    {
+        $inventories = Inventory::destroy($inventory);
+
+        return response()->json($inventories);
     }
 
 }
