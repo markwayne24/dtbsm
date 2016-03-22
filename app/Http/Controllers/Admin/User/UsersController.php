@@ -58,12 +58,27 @@ class UsersController extends Controller
 
     public function update(StoreUserRequest $request, $users)
     {
-        $input = $request->only('email');
-        $user = User::where('id', $users)->update($input);
-        $user->password = Hash::make($request->input([('password')]));
-        $user->save();
-        $user->userProfile()->update($input);
-       UserProfile::where('user_id',$users)->update($input);
+        $input = $request->all();
+
+        $userData = [
+            'group_id'=> $input['group_id'],
+            'email' => $input['email'],
+            'password'=> Hash::make($input['password']),
+        ];
+
+        $profileData = [
+            'firstname' => $input['firstname'],
+            'middlename'=> $input['middlename'],
+            'lastname'  => $input['lastname'],
+            'address'   =>  $input['address'],
+            'gender'    =>  $input['gender'],
+            'contact_number' => $input['contact_number'],
+        ];
+
+        $user = User::where('id', $users)->update($userData);
+        $user = UserProfile::where('user_id',$users)->update($profileData);
+        //$user->userProfile()->update($profileData);
+
         \Session::flash('flash_message','Successfully updated.');
 
         return response()->json($user);
