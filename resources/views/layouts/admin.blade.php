@@ -37,6 +37,9 @@
     <link rel="stylesheet" href="/assets/plugins/promptbox/dialog-prompt.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/assets/dist/css/AdminLTE.min.css">
+    <!-- preload -->
+    <link rel="stylesheet" href="/assets/dist/css/preload.css">
+    <link rel="stylesheet" href="/assets/dist/css/queryLoader.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
 
@@ -49,7 +52,6 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
     <header class="main-header">
         <!-- Logo -->
         <a href="here.html" class="logo">
@@ -110,8 +112,12 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="/assets/dist/img/avatar5.png" class="user-image" alt="User Image">
-                            <span class="hidden-xs">{{ Auth::user()->userProfile->firstname  }}</span>
+                            @if(Auth::user()->userProfile->gender == "male")
+                                <img src="/assets/dist/img/avatar5.png" class="user-image" alt="User Image">
+                            @elseif(Auth::user()->userProfile->gender == "female")
+                                <img src="/assets/dist/img/avatar2.png" class="user-image" alt="User Image">
+                            @endif
+                                <span class="hidden-xs">{{ Auth::user()->userProfile->firstname  }}</span>
                         </a>
                     </li>
                     <!-- Control Sidebar Toggle Button -->
@@ -154,7 +160,7 @@
                 </li>
 
                 <li class="treeview">
-                    <a href="#">
+                    <a href="">
                         <i class="glyphicon glyphicon-list-alt"></i>
                         <span>Supplies</span><i class="fa fa-angle-left pull-right"></i>
                         <span class="label label-primary pull-right"></span>
@@ -208,6 +214,9 @@
         }
     });
 </script>
+<!--preload-->
+<script src="/assets/dist/js/preload.js"></script>
+<script src="/assets/dist/js/queryLoader.js"></script>
 
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
