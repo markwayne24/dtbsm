@@ -15,6 +15,7 @@ class CreateRequests extends Migration
         Schema::create('requests', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->string('status');
             $table->timestamps();
         });
     }
