@@ -30,7 +30,7 @@ class StoreUserRequest extends Request
                 'firstname' => 'required|string|min:2|max:56',
                 'middlename' => 'required|string|min:1|max:56',
                 'lastname' => 'required|string|min:2|max:56',
-                'address' => 'required|min:5',
+                'address' => 'required|min:2',
                 'gender' => 'required',
                 'contact_number' => [ 'regex:/^(09|9)\d{9}$/' ],
                 /*'required|numeric|unique:user_profiles,contact_number'*/
