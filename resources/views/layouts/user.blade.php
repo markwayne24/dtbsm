@@ -52,7 +52,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="here.html" class="logo">
+        <a href="" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b></b></span>
             <!-- logo for regular state and mobile devices -->
@@ -129,7 +129,11 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="/assets/dist/img/avatar5.png" class="img-circle" alt="User Image">
+                    @if(Auth::user()->userProfile->gender == "male")
+                        <img src="/assets/dist/img/avatar5.png" class="img-circle" alt="User Image">
+                    @elseif(Auth::user()->userProfile->gender == "female")
+                        <img src="/assets/dist/img/avatar2.png" class="img-circle" alt="User Image">
+                    @endif
                 </div>
                 <div class="pull-left info">
                     <p>{{  Auth::user()->userProfile->firstname }}</p>
