@@ -16,8 +16,12 @@
                 <!-- Profile Image -->
                 <div class="box box-primary">
                     <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" src="/assets/dist/img/avatar5.png" alt="User profile picture">
-                        <h3 class="profile-username text-center">{{ Auth::user()->userProfile->firstname }}</h3>
+                        @if(Auth::user()->userProfile->gender == "male")
+                            <img class="profile-user-img img-responsive img-circle" src="/assets/dist/img/avatar5.png" alt="User profile picture">
+                        @elseif(Auth::user()->userProfile->gender == "female")
+                            <img class="profile-user-img img-responsive img-circle" src="/assets/dist/img/avatar2.png" alt="User profile picture">
+                        @endif
+                            <h3 class="profile-username text-center">{{ Auth::user()->userProfile->firstname }}</h3>
                         <p class="text-muted text-center"> {{ Auth::user()->userGroup->name }}</p>
                         <button class="btn btn-primary btn-block open-modal-edit" value="{{Auth::user()->id}}"/><b>Edit Profile</b>
                     </div><!-- /.box-body -->
