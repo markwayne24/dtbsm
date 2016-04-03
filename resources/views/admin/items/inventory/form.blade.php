@@ -52,7 +52,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary btn-save" value="add">Create</button>
+                    <button type="submit" class="btn btn-primary btn-save" value="add">Create</button>
                     <input type="hidden" id="inventory_id" name="inventory_id">
                 </div>
             </form>
