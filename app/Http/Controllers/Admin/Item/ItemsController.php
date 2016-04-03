@@ -44,10 +44,10 @@ class ItemsController extends Controller
     }
 
 
-    public function update(StoreItemsRequest $request, $itemId)
+    public function update(StoreItemsRequest $request, $items)
     {
         $input = $request->all();
-        $items = Items::where('id', $itemId)->update($input);
+        $items = Items::where('id', $items)->update($input);
         \Session::flash('flash_message','Successfully updated.');
 
         return response()->json($items);
