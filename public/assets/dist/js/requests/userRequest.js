@@ -7,6 +7,10 @@ $(function () {
     $(".select2").select2();
 });
 
+function hide_modal(){
+    $('#myModal').modal('hide');
+}
+
 $(".maxmin").each(function () {
 
     var thisJ = $(this);
@@ -122,33 +126,60 @@ $('document').ready(function(){
             $(this).closest('tr').find('#quantity').val(),
             button
         ];
-        table.row.add(data).draw( false );
+        var first = $(this).closest('tr').find('td:first').text();
+        var check;
+
+        $('#example2 tr').each(function(row, tr){
+            switch(first){
+                case $(tr).find('td:eq(0)').text():
+                    check = false;
+                    break;
+                default:
+                    check = true;
+
+            }
+        });
+
+        var alerts = [
+            '<div class="alert alert-warning">'+ '<a href="#" class="close" data-dismiss="alert">&times;</a>' +
+            '<strong>Already exists!</strong> There was a problem with your network connection.</div>'
+        ];
+
+            if(check){
+                table.row.add(data).draw( false );
+            }else{
+                //show modal on page laod
+                $('#myModal').modal('show');
+                //setTimeout for the modal to hide
+                window.setTimeout(hide_modal, 4400);
+            }
+
+
 
     });
 
     $('.btn-send').click(function(){
-        $(this).closest('tr').find('td:first').text();
-
         var TableData = [];
 
         $('#example2 tr').each(function(row, tr){
-            TableData[row]={
-                "id" : $(tr).find('td:eq(0)').text(),
-                "type" :$(tr).find('td:eq(1)').text(),
-                "name" : $(tr).find('td:eq(2)').text(),
-                "sku" : $(tr).find('td:eq(3)').text(),
-                "price" : $(tr).find('td:eq(4)').text(),
-                "quantity" : $(tr).find('td:eq(5)').text(),
+
+            if(row != 0){
+                TableData[row - 1] = {
+                    id : $(tr).find('td:eq(0)').text(),
+                    type :$(tr).find('td:eq(1)').text(),
+                    name : $(tr).find('td:eq(2)').text(),
+                    sku : $(tr).find('td:eq(3)').text(),
+                    price : $(tr).find('td:eq(4)').text(),
+                    quantity : $(tr).find('td:eq(5)').text(),
+                }
             }
+
         });
-
-/*        alert(TableData[1].id);exit;*/
-
-
                 $.ajax({
                     type:'POST',
                     url:'/users/requests/add',
-                    data: {TableData:TableData},
+                    dataType:'json',
+                    data: JSON.stringify(TableData),
                     success: function (data) {
                         console.log(data);
                     },
@@ -156,6 +187,7 @@ $('document').ready(function(){
                         console.log(data);
                     }
                 });
+
     });
 
     $('.deleteModal').click(function() {
