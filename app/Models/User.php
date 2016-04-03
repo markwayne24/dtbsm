@@ -13,7 +13,7 @@ class User extends Authenticatable
      * @var array
      */
 
-    protected $guarded = ['id'];
+/*    protected $guarded = ['id'];*/
 
     protected $fillable = [
         'group_id',
@@ -37,12 +37,15 @@ class User extends Authenticatable
 
     public function userProfile()
     {
-        return $this->hasOne('App\Models\UserProfile','user_id');
+        return $this->hasOne('App\Models\UserProfile');
     }
-
 
     public function items()
     {
         return $this->hasMany('App\Models\Items');
+    }
+
+    public function userRequest(){
+        return $this->belongsTo('App\Models\Requests');
     }
 }
