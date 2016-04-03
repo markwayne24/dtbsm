@@ -153,7 +153,7 @@
                 <li class="treeview">
                     <a href="{{ url('admin/dashboard/users') }}">
                         <i class="ion ion-person"></i>
-                        <span>Users</span><i class="fa fa-angle-left pull-right"></i>
+                        <span>Users</span></i>
                         <span class="label label-primary pull-right"></span>
                     </a>
 
@@ -172,8 +172,20 @@
                     </ul>
 
                 </li>
+                <li class="treeview">
+                    <a href="">
+                        <i class="fa fa-plus-square"></i>
+                        <span>Requests</span><i class="fa fa-angle-left pull-right"></i>
+                        <span class="label label-primary pull-right"></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('/admin/dashboard/requests') }}">All</a></li>
+                        <li><a href="{{ url('/admin/dashboard/requests/pending') }}">Pending</a></li>
+                        <li><a href="{{ url('/admin/dashboard/requests/approved') }}">Approve</a></li>
+                        <li><a href="{{ url('/admin/dashboard/requests/declined') }}">Decline</a></li>
+                    </ul>
 
-
+                </li>
                 <li class="treeview">
                     <a href="">
                         <i class="fa fa-bell-o"></i>
