@@ -17,8 +17,11 @@
             $(".select2").select2();
         });
     </script>
+
     <script>
-        $('document').ready(function() {
+        $(document).ready(function(){
+            var url = "items";
+            var options;
 
             // Prepare reset.
             function resetModalFormErrors() {
@@ -26,14 +29,37 @@
                 $('.form-group').find('.help-block').remove();
             }
 
-            // Intercept submit.
-            $('form.bootstrap-modal-form').on('button', function(submission) {
+            $('.open-modal-edit').click(function(){
+                var id = $(this).val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: url + '/' + id + '/edit',
+                    success: function (data) {
+                        console.log(data);
+                        $('#item_type_id').val(data.item_type_id);
+                        $('#name').val(data.name);
+                        $('.btn-save').html('Update');
+                        $('#myModalLabel').html('Update Item');
+                        $('.btn-save').val('edit');
+                        $('#item_id').val(data.id);
+                        $('#myModal').modal('show');
+
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+
+            });
+
+            $('form.bootstrap-modal-form').on('submit', function(submission) {
                 submission.preventDefault();
 
                 // Set vars.
                 var form   = $(this),
                         url    = form.attr('action'),
-                        submit = form.find('[type=button]');
+                        submit = form.find('[type=submit]');
 
                 // Check for file inputs.
                 if (form.find('[type=file]').length) {
@@ -73,17 +99,37 @@
                     submit.val('Please wait...');
                 }
 
-                // Request.
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: data,
-                    dataType: 'json',
-                    cache: false,
-                    contentType: contentType,
-                    processData: false
 
-                    // Response.
+                //Capitalize all words
+                var name = $('#name').val().toUpperCase();
+                var formData = {
+                    item_type_id: $('#item_type_id').val(),
+                    name: name
+                };
+                //used to determine the http verb to use [add=POST], [update=PUT]
+                var state = $('.btn-save').val();
+                var type = "POST"; //for creating new resource
+                var item_id = $('#item_id').val();
+                var my_url =  "items";
+
+                if (state == "edit"){
+                    type = 'PUT';
+                    my_url += '/' + item_id;
+                }
+
+                console.log(formData);
+                $.ajax({
+                    type: type,
+                    url: my_url,
+                    data: formData,
+                    success: function (data) {
+                        console.log(data);
+                       $('#confirmBox').modal('hide')
+                        location.reload();
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
                 }).always(function(response, status) {
 
                     // Reset errors.
@@ -109,78 +155,11 @@
 
                         // If successful, reload.
                     } else {
-                        location.reload();
+                       // location.reload();
                     }
                 });
             });
 
-            // Reset errors when opening modal.
-            $('.bootstrap-modal-form-open').click(function() {
-                resetModalFormErrors();
-            });
-
-        });
-    </script>
-    <script>
-        $(document).ready(function(){
-            var url = "items";
-            var options;
-            $('.open-modal-edit').click(function(){
-                var id = $(this).val();
-
-                $.ajax({
-                    type: 'GET',
-                    url: url + '/' + id + '/edit',
-                    success: function (data) {
-                        console.log(data);
-                        $('#item_type_id').val(data.item_type_id);
-                        $('#name').val(data.name);
-                        $('.btn-save').html('Update');
-                        $('#myModalLabel').html('Update Item');
-                        $('.btn-save').val('edit');
-                        $('#item_id').val(data.id);
-                        $('#myModal').modal('show');
-
-                    },
-                    error: function (data) {
-                        console.log('Error:', data);
-                    }
-                });
-
-            });
-
-            $('.btn-save').click(function (e) {
-
-       var formData = {
-                    item_type_id: $('#item_type_id').val(),
-                    name: $('#name').val(),
-                };
-                //used to determine the http verb to use [add=POST], [update=PUT]
-                var state = $('.btn-save').val();
-                var type = "POST"; //for creating new resource
-                var item_id = $('#item_id').val();
-                var my_url = url;
-
-                if (state == "edit"){
-                    type = 'PUT';
-                    my_url += '/' + item_id;
-                }
-
-                console.log(formData);
-                $.ajax({
-                    type: type,
-                    url: my_url,
-                    data: formData,
-                    success: function (data) {
-                        console.log(data);
-                       $('#confirmBox').modal('hide')
-                        location.reload();
-                    },
-                    error: function (data) {
-                        console.log('Error:', data);
-                    }
-                });
-            });
             // Clear form fields in a designated area of a page
             $('body').on('hidden.bs.modal', '.modal', function () {
                 $('.btn-save').html('Create').val('add');
@@ -190,6 +169,7 @@
                         this.value = this.defaultValue;
                     } else { this.value = ''; }
                 });
+                resetModalFormErrors();
             });
 
             //delete task and remove it from list
