@@ -21,6 +21,7 @@ class CreateUserProfiles extends Migration
             $table->string('address');
             $table->string('gender', 10);
             $table->string('contact_number');
+            $table->string('image');
             $table->timestamps();
         });
     }
