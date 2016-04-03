@@ -1,7 +1,32 @@
 @extends('layouts.user')
 
-@section('content')
-        <!-- Content Wrapper. Contains page content -->
+@section('style')
+    <style>
+        .modal  {
+        /*   display: block;*/
+        padding-right: 0px;
+        background-color: rgba(4, 4, 4, 0.8);
+        }
+
+        .modal-dialog {
+        top: 20%;
+        width: 100%;
+        position: absolute;
+        }
+        .modal-content {
+        border-radius: 0px;
+        border: none;
+        top: 40%;
+        }
+        .modal-body {
+        background-color: #E22E2E;
+        color: white;
+        }
+    </style>
+    @stop
+
+    @section('content')
+            <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 
     <!-- Content Header (Page header) -->
@@ -88,17 +113,6 @@
                             <tbody>
 
                             </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>Id</th>
-                                <th>Type</th>
-                                <th>Name</th>
-                                <th>SKU</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Action</th>
-                            </tr>
-                            </tfoot>
                         </table>
                         <!-- Confirmation modal -->
                         <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="confirmBox">
@@ -115,6 +129,21 @@
                         <h3 class="box-title pull-right">
                             <button class="btn btn-primary btn-send">Send</button>
                         </h3>
+
+                        <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                    <div class="modal-body">
+
+                                        <center><H2>It is already exists on your list</H2></center>
+                                        <center> <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button></center>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!-- /.col -->
