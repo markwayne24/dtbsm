@@ -101,45 +101,46 @@
                             </div>
                         </div>
                     </div><!--end of row-->
+                    {{--@if($user->has('user_id'))--}}
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="exampleInputPassword1">Email</label>
+                            <input type="email" class="form-control" placeholder="Enter Email" name="email" id="email">
 
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <label for="exampleInputPassword1">Email</label>
-                        <input type="email" class="form-control" placeholder="Enter Email" name="email" id="email">
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+                        </div>
 
-                        @if ($errors->has('email'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
-                    </div>
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="exampleInputPassword1">Password</label>
 
-                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" placeholder="Enter Password" name="password" id="password">
 
-                        <input type="password" class="form-control" placeholder="Enter Password" name="password" id="password">
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                 </span>
+                            @endif
+                        </div>
 
-                        @if ($errors->has('password'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('password') }}</strong>
-                             </span>
-                        @endif
-                    </div>
+                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                            <label for="exampleInputPassword1">Confirm Password</label>
 
-                    <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                        <label for="exampleInputPassword1">Confirm Password</label>
+                            <input type="password" class="form-control" placeholder="Re-type Password" name="password_confirmation" id="password">
 
-                        <input type="password" class="form-control" placeholder="Re-type Password" name="password_confirmation" id="password">
-
-                        @if ($errors->has('password_confirmation'))
-                            <span class="help-block">
-                                 <strong>{{ $errors->first('password_confirmation') }}</strong>
-                             </span>
-                        @endif
-                    </div>
+                            @if ($errors->has('password_confirmation'))
+                                <span class="help-block">
+                                     <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                 </span>
+                            @endif
+                        </div>
+                    {{--@endif--}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary btn-save">Create</button>
+                    <button type="submit" class="btn btn-primary btn-save">Create</button>
                     <input type="hidden" id="user_id" name="user_id" value="0">
                 </div>
             </form>
