@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User\Profile;
 
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserRequest;
 
 use App\Models\User;
 use App\Http\Requests;
@@ -32,11 +34,34 @@ class ProfileController extends Controller
         return response()->json($user);
     }
 
-    public function update(Request $request,$users)
+    public function update(UserRequest $request,$users)
     {
         $input = $request->all();
+        $userData = [
+            'email' => $input['email'],
+            'password'=> Hash::make($input['password']),
+        ];
+        $profileData = [
+            'firstname'=>  $input['firstname'],
+            'middlename'=> $input['middlename'],
+            'lastname' => $input['lastname'],
+            'address' => $input['address'],
+            'gender'=>$input['gender'],
+            'contact_number'=>$input['contact_number'],
+        ];
 
-        $user = UserProfile::where('user_id', $users)->update($input);
+       $user = User::where('id', $users)->update($userData);
+        $user = UserProfile::where('user_id',$users)->update($profileData);
+
+       /* //image
+        $image = $request->file('image');
+        $imageTempName = $image->getPathname();
+        $imageName = $image->getClientOriginalName();
+        $path = base_path() . '/public/uploads/images/';
+        $request->file('image')->move($path , $imageName);
+        UserProfile::table('consultants')
+            ->where('image', $imageTempName)
+            ->update(['image' => $imageName]);*/
 
         return response()->json($user);
     }
