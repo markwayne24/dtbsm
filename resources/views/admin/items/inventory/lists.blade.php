@@ -50,8 +50,8 @@
                                 @foreach($inventories as $inventory)
                                     <tr id="inventory-{{$inventory->id}}">
                                         <td>{{$inventory->id}}</td>
-                                        <td>{{$inventory->items->itemTypes->name}}</td>
-                                        <td>{{$inventory->items->name}}</td>
+                                        <td>{{$inventory->items->itemTypes->name or ''}}</td>
+                                        <td>{{$inventory->items->name or ''}}</td>
                                         <td>{{$inventory->sku}}</td>
                                         <td>{{$inventory->price}}</td>
                                         <td>{{$inventory->stocks}}</td>
