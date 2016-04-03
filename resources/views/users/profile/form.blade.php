@@ -9,11 +9,6 @@
                 </div>
                 <div class="modal-body">
                     {{csrf_field()}}
-                    <div class="form-group{{ $errors->has('group_id') ? ' has-error' : '' }}">
-                        <!-- Select2-->
-                        <label>User Type</label>
-                        <label class="form-control">{{Auth::user()->userGroup->name}}</label>
-                    </div>
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
@@ -94,12 +89,51 @@
                     </div><!--end of row-->
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label for="exampleInputPassword1">Email</label>
-                        <label class="form-control">{{Auth::user()->email}}</label>
+                        <input type="email" class="form-control" placeholder="Enter Email" name="email" id="email">
+
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <label for="exampleInputPassword1">Password</label>
+
+                        <input type="password" class="form-control" placeholder="Enter Password" name="password" id="password">
+
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                             </span>
+                        @endif
+                    </div>
+                    <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                        <label for="exampleInputPassword1">Confirm Password</label>
+
+                        <input type="password" class="form-control" placeholder="Re-type Password" name="password_confirmation" id="password">
+
+                        @if ($errors->has('password_confirmation'))
+                            <span class="help-block">
+                                 <strong>{{ $errors->first('password_confirmation') }}</strong>
+                             </span>
+                        @endif
+                    </div>
+
+                    <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
+                        <label for="exampleInputFile">Upload image</label>
+                        <input type="file" id="image" name="image">
+
+                        @if ($errors->has('image'))
+                            <span class="help-block">
+                                 <strong>{{ $errors->first('image') }}</strong>
+                             </span>
+                        @endif
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary btn-save">Update</button>
+                    <button type="submit" class="btn btn-primary btn-save">Update</button>
                     <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id}}">
                 </div>
             </form>
