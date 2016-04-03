@@ -47,7 +47,7 @@
                             @foreach($items as $item)
                                 <tr id="item-{{$item->id}}">
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->itemTypes->name}}</td>
+                                    <td>{{$item->itemTypes->name or ''}}</td>
                                     <td>{{$item->name}}</td>
                                     <td>
                                         <button class="btn btn-info btn-flat open-modal-edit" value="{{$item->id}}"><i class="fa fa-pencil-square-o"></i></button>
@@ -77,6 +77,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!-- /.col -->
