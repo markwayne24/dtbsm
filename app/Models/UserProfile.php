@@ -16,7 +16,8 @@ class UserProfile extends Model
         'lastname',
         'address',
         'gender',
-        'contact_number'
+        'contact_number',
+        'image'
     ];
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
