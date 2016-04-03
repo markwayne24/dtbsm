@@ -38,7 +38,7 @@ Route::group(['middleware' => 'web'], function () {
 
         //Admin dashboard if verified
         Route::group(['prefix' => 'admin/dashboard','middleware'=>'admin'], function(){
-            //admin dashboard
+            //admin
             Route::get('/','Admin\Dashboard\DashboardController@index');
 
             //User's list and Registration
@@ -58,6 +58,31 @@ Route::group(['middleware' => 'web'], function () {
                 Route::post('/{userId}','Admin\Inventory\InventoryController@update');
                 Route::post('/{userId}/delete','Admin\Inventory\InventoryController@destroy');
             });*/
+
+            //Requests
+            Route::group(['prefix'=>'requests'], function(){
+                Route::get('/','Admin\Request\RequestsController@index');
+                Route::get('/{id}/view','Admin\Request\RequestsController@view');
+                Route::put('/{request_id}/view','Admin\Request\RequestsController@update');
+                Route::get('/pending', 'Admin\Request\RequestsController@pending');
+                Route::get('/approved', 'Admin\Request\RequestsController@approved');
+                Route::get('/declined', 'Admin\Request\RequestsController@declined');
+            });
+        });
+
+
+        //Requests
+        Route::group(['prefix'=>'users'], function(){
+            Route::group(['prefix'=>'requests'], function() {
+                Route::get('/','User\Request\RequestsController@index');
+                Route::get('/add', 'User\Request\RequestsController@add');
+                Route::post('/add', 'User\Request\RequestsController@send');
+                Route::get('/{id}/view', 'User\Request\RequestsController@view');
+                Route::put('/{request_id}/view', 'User\Request\RequestsController@update');
+                Route::get('/pending', 'User\Request\RequestsController@pending');
+                Route::get('/approved', 'User\Request\RequestsController@approved');
+                Route::get('/declined', 'User\Request\RequestsController@declined');
+            });
         });
 
         //User's page
