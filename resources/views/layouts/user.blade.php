@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin | Dashboard</title>
+    <title>User | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -146,12 +146,25 @@
                 <li class="treeview">
                     <a href="{{ url('users') }}">
                         <i class="ion ion-person"></i>
-                        <span>Profile</span><i class="fa fa-angle-left pull-right"></i>
+                        <span>Profile</span></i>
                         <span class="label label-primary pull-right"></span>
                     </a>
 
                 </li>
+                <li class="treeview">
+                    <a href="">
+                        <i class="fa fa-plus-square"></i>
+                        <span>Requests</span><i class="fa fa-angle-left pull-right"></i>
+                        <span class="label label-primary pull-right"></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('/users/requests') }}">All</a></li>
+                        <li><a href="{{ url('/admin/dashboard/requests/pending') }}">Pending</a></li>
+                        <li><a href="{{ url('/admin/dashboard/requests/approved') }}">Approve</a></li>
+                        <li><a href="{{ url('/admin/dashboard/requests/declined') }}">Decline</a></li>
+                    </ul>
 
+                </li>
             </ul>
         </section>
         <!-- /.sidebar -->
