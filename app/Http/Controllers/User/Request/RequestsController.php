@@ -51,10 +51,13 @@ class RequestsController extends Controller
         return view('users.requests.view')->with('requests',$requests);
     }
 
-    public function send(Requests $requests)
+    public function send(Request $requests)
     {
 
         $user = Auth()->user()->id;
+        $userData = Request::all();
+
+
 
 /*        $requestId = Requests::create([
             'user_id' => $user
@@ -62,12 +65,13 @@ class RequestsController extends Controller
 
         $requestIds = $requestId->id;*/
 
-        $userData = json_decode($requests->all(), true);
-/*        foreach ($requests as $key => $value)
-        {
-            $request = $value['quantity'];
 
-        }*/
+
+        foreach ($requests as $key => $value)
+        {
+            $request = $value['price'];
+
+        }
 
         return response()->json($userData);
 
