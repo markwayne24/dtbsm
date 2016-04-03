@@ -37,6 +37,9 @@
     <link rel="stylesheet" href="/assets/plugins/promptbox/dialog-prompt.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/assets/dist/css/AdminLTE.min.css">
+
+    @yield('style')
+
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
 
