@@ -18,15 +18,19 @@
         border: none;
         top: 40%;
         }
-        #modal-body {
-        background-color: #E22E2E;
-        color: white;
+        #duplicate{
+            background-color: #E22E2E;
+            color: white;
         }
-
-        #modal-body2{
+        #added{
             background-color: green;
             color: white;
         }
+        #null{
+            background-color: deepskyblue;
+            color: white;
+        }
+
     </style>
     @stop
 
@@ -141,20 +145,6 @@
                                     <div class="modal-body" id="modal-body">
                                         <div class="message">
                                             <center><H2>It is already exists on your list</H2></center>
-                                            <center> <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button></center>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--alert message if already exists-->
-                        <div class="modal fade bs-example-modal-lg" id="alertModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                            <div class="modal-dialog modal-lg" id ="modal-dialog" >
-                                <div class="modal-content" id="modal-content">
-                                    <div class="modal-body" id="modal-body2">
-                                        <div class="message">
-                                            <center><H2>Successfully Added</H2></center>
                                             <center> <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button></center>
                                         </div>
                                     </div>

@@ -9,7 +9,6 @@ $(function () {
 
 function hide_modal(){
     $('#alertModal').modal('hide');
-    $('#alertModal2').modal('hide');
 }
 // to check the maximum and minum of the numbers
 $(".maxmin").each(function () {
@@ -141,20 +140,45 @@ $('document').ready(function(){
             }
         });
 
-        if(check){
-            //to display data on the second table below first table
-            table.row.add(data).draw( false );
-            $('#alertModal2').modal('show');
+        var alertDuplicate = [
+            '<div class="modal-body" id="duplicate">'+
+            '<center><H2>This item already exists</H2></center>'+
+            '<center> <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button></center></div>'
+        ];
+
+        var alertAdded = [
+            '<div class="modal-body" id="added">'+
+            '<center><H2>Successfully Added on your list</H2></center>'+
+            '<center> <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button></center></div>'
+        ];
+
+        var alertNull = [
+            '<div class="modal-body" id="null">'+
+            '<center><H2>Please enter quantity value to add</H2></center>'+
+            '<center> <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button></center></div>'
+        ];
+
+        var text = $(this).closest('tr').find('#quantity').val();
+        //check if the textbox has quantity value
+        if(text == ""){
+            $('.modal-body').replaceWith(alertNull);
+            $('#alertModal').modal('show');
             window.setTimeout(hide_modal, 1000);
         }else{
-            //show modal on page laod
-            $('#alertModal').modal('show');
-            //setTimeout for the modal to hide
-            window.setTimeout(hide_modal, 4400);
+            if(check){
+                //to display data on the second table below first table
+                table.row.add(data).draw( false );
+                $('.modal-body').replaceWith(alertAdded);
+                $('#alertModal').modal('show');
+                window.setTimeout(hide_modal, 1000);
+            }else{
+                //show modal on page laod
+                $('.modal-body').replaceWith(alertDuplicate);
+                $('#alertModal').modal('show');
+                //setTimeout for the modal to hide
+                window.setTimeout(hide_modal, 1000);
+            }
         }
-
-
-
     });
 
     $('.btn-send').click(function(){
