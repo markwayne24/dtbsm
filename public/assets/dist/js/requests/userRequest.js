@@ -149,7 +149,7 @@ $('document').ready(function(){
                 table.row.add(data).draw( false );
             }else{
                 //show modal on page laod
-                $('#myModal').modal('show');
+                $('#alertModal').modal('show');
                 //setTimeout for the modal to hide
                 window.setTimeout(hide_modal, 4400);
             }
