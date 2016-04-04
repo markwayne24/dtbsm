@@ -2,23 +2,23 @@
 
 @section('style')
     <style>
-        .modal  {
+        #modal  {
         /*   display: block;*/
         padding-right: 0px;
         background-color: rgba(4, 4, 4, 0.8);
         }
 
-        .modal-dialog {
+        #modal-dialog {
         top: 20%;
         width: 100%;
         position: absolute;
         }
-        .modal-content {
+        #modal-content {
         border-radius: 0px;
         border: none;
         top: 40%;
         }
-        .modal-body {
+        #modal-body {
         background-color: #E22E2E;
         color: white;
         }
@@ -130,12 +130,10 @@
                             <button class="btn btn-primary btn-send">Send</button>
                         </h3>
 
-                        <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-
-                                    <div class="modal-body">
-
+                        <div class="modal fade bs-example-modal-lg" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                            <div class="modal-dialog modal-lg" id ="modal-dialog" >
+                                <div class="modal-content" id="alert-modal-content">
+                                    <div class="modal-body" id="modal-body">
                                         <center><H2>It is already exists on your list</H2></center>
                                         <center> <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button></center>
 

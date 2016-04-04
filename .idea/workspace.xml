@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f639420b-ee51-4376-afbb-23ecdad0c045" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/dist/js/requests/userRequest.js" afterPath="$PROJECT_DIR$/public/assets/dist/js/requests/userRequest.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/users/requests/add.blade.php" afterPath="$PROJECT_DIR$/resources/views/users/requests/add.blade.php" />
     </list>
     <ignored path="Inventory.iws" />
@@ -48,10 +48,10 @@
         <entry file="file://$PROJECT_DIR$/public/assets/dist/js/requests/userRequest.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="174" column="13" selection-start-line="174" selection-start-column="13" selection-end-line="174" selection-end-column="13" />
+              <caret line="151" column="30" selection-start-line="151" selection-start-column="30" selection-end-line="151" selection-end-column="30" />
               <folding>
-                <marker date="1459706197605" expanded="true" signature="4080:4241" placeholder="..." />
-                <marker date="1459706197605" expanded="true" signature="4080:4247" placeholder="..." />
+                <marker date="1459727790895" expanded="true" signature="4080:4241" placeholder="..." />
+                <marker date="1459727790895" expanded="true" signature="4080:4247" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -60,8 +60,8 @@
       <file leaf-file-name="add.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/users/requests/add.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.1912282">
-              <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.20877193">
+              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -161,9 +161,9 @@
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_02_15_122202_create_requests.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/user.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/users/requests/add.blade.php" />
-        <option value="$PROJECT_DIR$/public/assets/dist/js/requests/userRequest.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/User/Request/RequestsController.php" />
+        <option value="$PROJECT_DIR$/public/assets/dist/js/requests/userRequest.js" />
+        <option value="$PROJECT_DIR$/resources/views/users/requests/add.blade.php" />
       </list>
     </option>
   </component>
@@ -1200,17 +1200,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/dist/js/requests/userRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="174" column="13" selection-start-line="174" selection-start-column="13" selection-end-line="174" selection-end-column="13" />
-          <folding>
-            <marker date="1459706197605" expanded="true" signature="4080:4241" placeholder="..." />
-            <marker date="1459706197605" expanded="true" signature="4080:4247" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/User/Request/RequestsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.346153">
@@ -1221,10 +1210,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/dist/js/requests/userRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="151" column="30" selection-start-line="151" selection-start-column="30" selection-end-line="151" selection-end-column="30" />
+          <folding>
+            <marker date="1459727790895" expanded="true" signature="4080:4241" placeholder="..." />
+            <marker date="1459727790895" expanded="true" signature="4080:4247" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/users/requests/add.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.1912282">
-          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.20877193">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
           <folding />
         </state>
       </provider>
