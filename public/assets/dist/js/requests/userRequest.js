@@ -9,10 +9,10 @@ $(function () {
 
 function hide_modal(){
     $('#alertModal').modal('hide');
+    $('#alertModal2').modal('hide');
 }
-
+// to check the maximum and minum of the numbers
 $(".maxmin").each(function () {
-
     var thisJ = $(this);
     var max = thisJ.attr("max") * 1;
     var min = thisJ.attr("min") * 1;
@@ -59,7 +59,6 @@ $('document').ready(function(){
     });
 
     //Item Requests
-
     $('.btn-status').click(function(){
         var status = $(this).attr('name');
         var id = $(this).val();
@@ -95,9 +94,10 @@ $('document').ready(function(){
             }
         });
     });
-    var firstTable = $('#example1').DataTable();
 
+    //to select the selected row
     $('#example1 tbody').on( 'click', 'tr', function () {
+        var firstTable = $('#example1').DataTable();
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
@@ -138,12 +138,14 @@ $('document').ready(function(){
                     break;
                 default:
                     check = true;
-
             }
         });
 
         if(check){
+            //to display data on the second table below first table
             table.row.add(data).draw( false );
+            $('#alertModal2').modal('show');
+            window.setTimeout(hide_modal, 1000);
         }else{
             //show modal on page laod
             $('#alertModal').modal('show');
