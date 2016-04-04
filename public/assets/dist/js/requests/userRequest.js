@@ -8,7 +8,7 @@ $(function () {
 });
 
 function hide_modal(){
-    $('#myModal').modal('hide');
+    $('#alertModal').modal('hide');
 }
 
 $(".maxmin").each(function () {
@@ -117,6 +117,7 @@ $('document').ready(function(){
             '<button class="btn btn-danger btn-flat btn-remove" data-toggle="modal" data-target=".bs-example-modal-sm" value="' +id +'"><i class="fa fa-trash-o"></i></button>'
         ];
 
+    //to get all data from the selected row on first table
         var data = [
             $(this).closest('tr').find('td:first').text(),
             $(this).closest('tr').find('td:nth-child(2)').text(),
@@ -129,6 +130,7 @@ $('document').ready(function(){
         var first = $(this).closest('tr').find('td:first').text();
         var check;
 
+        //to check if the items are already on the lists
         $('#example2 tr').each(function(row, tr){
             switch(first){
                 case $(tr).find('td:eq(0)').text():
@@ -140,27 +142,22 @@ $('document').ready(function(){
             }
         });
 
-        var alerts = [
-            '<div class="alert alert-warning">'+ '<a href="#" class="close" data-dismiss="alert">&times;</a>' +
-            '<strong>Already exists!</strong> There was a problem with your network connection.</div>'
-        ];
-
-            if(check){
-                table.row.add(data).draw( false );
-            }else{
-                //show modal on page laod
-                $('#alertModal').modal('show');
-                //setTimeout for the modal to hide
-                window.setTimeout(hide_modal, 4400);
-            }
+        if(check){
+            table.row.add(data).draw( false );
+        }else{
+            //show modal on page laod
+            $('#alertModal').modal('show');
+            //setTimeout for the modal to hide
+            window.setTimeout(hide_modal, 4400);
+        }
 
 
 
     });
 
     $('.btn-send').click(function(){
+        // Storing all data on the table to an multidimentional array
         var TableData = [];
-
         $('#example2 tr').each(function(row, tr){
 
             if(row != 0){
