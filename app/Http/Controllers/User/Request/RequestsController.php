@@ -20,23 +20,24 @@ use App\Models\User;
 class RequestsController extends Controller
 {
     protected $session;
+    protected $authId;
 
     public function __construct(SessionManager $session)
     {
         $this->session = $session;
+        $this->authId = Auth::user()->id;
     }
 
     public function index()
     {
         $id = Auth::user()->id;
-        $requests = Requests::where('user_id', $id)->get();
+        $requests = Requests::where('user_id', $this->authId)->get();
 
         return view('users.requests.index')->with('requests',$requests);
     }
 
     public function add()
     {
-        $id = Auth::user()->id;
         $inventories = Inventory::with('items')->get();
 
         return view('users.requests.add')->with('inventories',$inventories);
@@ -77,10 +78,11 @@ class RequestsController extends Controller
 
     }
 
-    public function pending($request)
+    public function pending()
     {
         $requests = Requests::with('user')
             ->where('status','Pending')
+            ->where('user_id',$this->authId)
             ->get();
         return view('users.requests.index')->with('requests',$requests);
     }
@@ -89,6 +91,7 @@ class RequestsController extends Controller
     {
         $requests = Requests::with('user')
             ->where('status','Approved')
+            ->where('user_id',$this->authId)
             ->get();
         return view('users.requests.index')->with('requests',$requests);
     }
@@ -96,6 +99,7 @@ class RequestsController extends Controller
     {
         $requests = Requests::with('user')
             ->where('status','Declined')
+            ->where('user_id', $this->authId)
             ->get();
         return view('users.requests.index')->with('requests',$requests);
     }
