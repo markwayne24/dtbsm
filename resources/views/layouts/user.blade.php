@@ -162,9 +162,9 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{ url('/users/requests') }}">All</a></li>
-                        <li><a href="{{ url('/admin/dashboard/requests/pending') }}">Pending</a></li>
-                        <li><a href="{{ url('/admin/dashboard/requests/approved') }}">Approve</a></li>
-                        <li><a href="{{ url('/admin/dashboard/requests/declined') }}">Decline</a></li>
+                        <li><a href="{{ url('/users/requests/pending') }}">Pending</a></li>
+                        <li><a href="{{ url('/users/requests/approved') }}">Approve</a></li>
+                        <li><a href="{{ url('/users/requests/declined') }}">Decline</a></li>
                     </ul>
 
                 </li>
