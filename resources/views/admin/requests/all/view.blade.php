@@ -1,5 +1,15 @@
 @extends('layouts.admin')
 
+@section('style')
+    <style>
+        .modal-header{
+            background-color: #337ab7;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+@stop
+
 @section('content')
         <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -82,14 +92,14 @@
                         <div class="box-footer">
                             <div class="box-tools pull-right">
                                 <td>
-                                    @if($request->requests->status == 'Approved')
-                                        <button class="btn btn-danger btn-flat btn-status" value="{{$request->request_id}}" name="Declined"></i>Decline</button>
-                                    @elseif($request->requests->status == 'Pending')
-                                        <button class="btn btn-success btn-flat btn-status" value="{{$request->request_id}}" name="Approved">Approve</button>
-                                        <button class="btn btn-danger btn-flat btn-status" value="{{$request->request_id}}" name="Declined"></i>Decline</button>
-                                    @else
-                                        <button class="btn btn-success btn-flat btn-status" value="{{$request->request_id}}" name="Approved">Approve</button>
-                                    @endif
+                                    @foreach($requests as $request)
+                                            @if($request->requests->status == 'Pending')
+                                                <button class="btn btn-success btn-flat btn-approved" value="{{$request->request_id}}" name="Approved">Approve</button>
+                                                <button class="btn btn-danger btn-flat btn-declined" value="{{$request->request_id}}" name="Declined">Decline</button>
+                                            @else
+                                                <a href="{{url('/admin/dashboard/requests')}}" class="btn btn-primary btn-flat">Back</a>
+                                            @endif
+                                    @endforeach
                                 </td>
                             </div>
                         </div>
@@ -99,6 +109,30 @@
             </div><!-- /.col -->
         </div><!-- /.row -->
     </section><!-- /.content -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Reason</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Message:</label>
+                            <textarea class="form-control" id="reason"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-flat btn-save" value="{{$request->request_id}}" id="save">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div><!-- /.content-wrapper -->
 @stop
 
