@@ -5,6 +5,7 @@
     <section class="content-header">
         <h1>
             Users
+
         </h1>
     </section>
     <section>
@@ -14,7 +15,7 @@
     </section>
     <section>
         @include('admin.users.form')
-        @include('admin.users.info');
+        @include('admin.users.info')
     </section>
 
     <!-- Main content -->
