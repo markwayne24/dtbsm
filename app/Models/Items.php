@@ -24,4 +24,9 @@ class Items extends Model
     public function inventory(){
         return $this->belongsTo('App\Models\Inventory');
     }
+
+    public function budgetHistories()
+    {
+        return $this->belongsToMany('App\Models\BudgetHistory');
+    }
 }
