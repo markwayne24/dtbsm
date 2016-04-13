@@ -20,6 +20,31 @@ $('document').ready(function(){
             success: function (data) {
                 console.log(data);
                 window.location.href= '/admin/dashboard/requests/'+ id + '/' +'view';
+            },
+            error: function(data){
+                console.log('Error:',data);
+            }
+        });
+    });
+
+    //Item Requests
+
+    $('.btn-approved').click(function(){
+        var id = $(this).val();
+        var reason = $('#reason').val();
+        var data = {
+            status: 'Approved',
+            reason: ''
+        };
+
+        $.ajax({
+            type: 'PUT',
+            data:  data,
+            url: '/admin/dashboard/requests/' + id +'/'+ 'view',
+            success: function (data) {
+                console.log(data);
+
+                location.reload();
 
             },
             error: function(data){
@@ -29,20 +54,27 @@ $('document').ready(function(){
         });
     });
 
-    //Item Requests
+    $('.btn-declined').click(function(){
+        var id = $('.btn-declined').val();
+        $('.btn-save').val(id) ;
+        $('#myModal').modal('show');
+    });
 
-    $('.btn-status').click(function(){
-        var status = $(this).attr('name');
-        var id = $(this).val();
+    $('.btn-save').click(function(){
+        var reason = $('#reason').val();
+        var id = $('.btn-save').val();
         var data = {
-            status:status
+            status: 'Declined',
+            reason: reason
         };
+
         $.ajax({
             type: 'PUT',
             data:  data,
             url: '/admin/dashboard/requests/' + id +'/'+ 'view',
             success: function (data) {
                 console.log(data);
+                $('#myModal').modal('hide');
                 location.reload();
 
             },
