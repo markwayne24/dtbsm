@@ -3,14 +3,19 @@
 namespace App\Http\Controllers\User\Profile;
 
 use App\Models\UserProfile;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Input;
 
 use App\Models\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Session\SessionManager;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -36,34 +41,101 @@ class ProfileController extends Controller
 
     public function update(UserRequest $request,$users)
     {
-        $input = $request->all();
-        $userData = [
-            'email' => $input['email'],
-            'password'=> Hash::make($input['password']),
-        ];
-        $profileData = [
-            'firstname'=>  $input['firstname'],
-            'middlename'=> $input['middlename'],
-            'lastname' => $input['lastname'],
-            'address' => $input['address'],
-            'gender'=>$input['gender'],
-            'contact_number'=>$input['contact_number'],
-        ];
+ /*       $file = $request->file('image_path');
 
-       $user = User::where('id', $users)->update($userData);
-        $user = UserProfile::where('user_id',$users)->update($profileData);
+            $extension = $file->getClientOriginalExtension();
 
-       /* //image
-        $image = $request->file('image');
-        $imageTempName = $image->getPathname();
-        $imageName = $image->getClientOriginalName();
-        $path = base_path() . '/public/uploads/images/';
-        $request->file('image')->move($path , $imageName);
-        UserProfile::table('consultants')
-            ->where('image', $imageTempName)
-            ->update(['image' => $imageName]);*/
+            $filename = $request->only('firstname') . '-' . $users . '.jpg';
+
+            if($file) {
+                Storage::disk('local')->put($filename, File::get($file));
+            }
+
+        print_r($file);exit();
+
+            return redirect()->route('users');*/
+
+
+
+      $input = $request->all();
+                $userData = [
+                    'email' => $input['email'],
+                    'password'=> Hash::make($input['password']),
+                ];
+
+               $user = User::where('id', $users)->update($userData);
+                $imageName = $users . '.' .
+                    $request->file('image')->getClientOriginalName();
+
+                $request->file('image')->move(
+                    base_path() . '/public/uploads/images/', $imageName
+                );
+
+
+                $profileData = [
+                    'firstname'=>  $input['firstname'],
+                    'middlename'=> $input['middlename'],
+                    'lastname' => $input['lastname'],
+                    'address' => $input['address'],
+                    'gender'=>$input['gender'],
+                    'contact_number'=>$input['contact_number'],
+                ];
+                $user = UserProfile::where('user_id',$users)->update($profileData);
+                $user->image = $imageName;
 
         return response()->json($user);
+        /*
+                $photo = null;
+                $file= $request->file('image_path');
+                if(Input::hasFile('image_path')){
+                    $destinationPath = '/public/uploads/images/';
+                    $extension = $file->getClientOriginalExtension();
+                    $name = $file->getClientOriginalName();
+                    $name =date('Y-m-d').Time().rand(11111,99999).'.'.$extension;
+                    $photo	= $destinationPath.'/'.$name;
+                    $file->move($destinationPath,$name);
+                }else{$photo='no image';}
+
+                print_r($file); exit();
+
+                $dataStore = [
+                    'image_path'=> $photo
+                ];*/
+
+
+        /*
+                public function upload() {
+                if(Input::hasFile('file')) {
+                    //upload an image to the /img/tmp directory and return the filepath.
+                    $file = Input::file('file');
+                    $tmpFilePath = '/img/tmp/';
+                    $tmpFileName = time() . '-' . $file->getClientOriginalName();
+                    $file = $file->move(public_path() . $tmpFilePath, $tmpFileName);
+                    $path = $tmpFilePath . $tmpFileName;
+                    return response()->json(array('path'=> $path), 200);
+                } else {
+                    return response()->json(false, 200);
+                }
+            }*/
+
+        /*        if(Input::hasFile('file')) {
+                    //upload an image to the /img/tmp directory and return the filepath.
+                    $file = Input::file('image_path');
+                    $tmpFilePath = '/img/tmp/';
+                    $tmpFileName = time() . '-' . $file->getClientOriginalName();
+                    $file = $file->move(public_path() . $tmpFilePath, $tmpFileName);
+                    $path = $tmpFilePath . $tmpFileName;
+                    $imageName = UserProfile::where('user_id',Auth()->user()->id)
+                        ->update('image_path',$path);
+                    return response()->json(array('path'=> $path), 200);
+                } else {
+                    return response()->json(false, 200);
+                }*/
+    }
+
+    public function getUserImage($filename){
+        $file = Storage::disk('local')->get($filename);
+        return new \Response($file, 200);
     }
 
     public function destroy($users)
@@ -72,5 +144,7 @@ class ProfileController extends Controller
 
         return response()->json($user);
     }
+
+
 
 }
