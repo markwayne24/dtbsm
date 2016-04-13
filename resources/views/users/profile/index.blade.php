@@ -106,6 +106,8 @@
                 var middlename = $('#middlename').val().substring(0, 1).toUpperCase() + $('#middlename').val().substring(1);
                 var lastname = $('#lastname').val().substring(0, 1).toUpperCase() + $('#lastname').val().substring(1);
 
+                var file = new FormData($('#image_path'));
+
 
                 var formData = {
                     firstname: firstname,
@@ -116,6 +118,7 @@
                     contact_number: $('#contact_number').val(),
                     email: $('#email').val(),
                     password:$('#password').val(),
+                    image_path: $('#image_path')[0].files[0]
                 };
 
                 var type = "PUT";
@@ -129,8 +132,7 @@
                     data: formData,
                     success: function (data) {
                         console.log(data);
-                        $('#myModal').modal('hide')
-                        location.reload();
+
                     },
                     error: function (data) {
                         console.log('Error:', data);
