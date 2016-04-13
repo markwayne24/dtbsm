@@ -2,7 +2,7 @@
 <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form role="form" class="bootstrap-modal-form">
+            <form role="form" class="bootstrap-modal-form" id="upload-doc" files="true">
                 <div class="modal-header bg-primary">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
@@ -120,13 +120,13 @@
                         @endif
                     </div>
 
-                    <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
+                    <div class="form-group{{ $errors->has('image_path') ? ' has-error' : '' }}">
                         <label for="exampleInputFile">Upload image</label>
-                        <input type="file" id="image" name="image">
+                        <input type="file" id="image_path" name="image_path">
 
-                        @if ($errors->has('image'))
+                        @if ($errors->has('image_path'))
                             <span class="help-block">
-                                 <strong>{{ $errors->first('image') }}</strong>
+                                 <strong>{{ $errors->first('image_path') }}</strong>
                              </span>
                         @endif
                     </div>
