@@ -26,4 +26,9 @@ class Inventory extends Model
         return $this->hasMany('App\Models\ItemRequests');
     }
 
+    public function budget()
+    {
+        return $this->hasOne('App\Models\Budget');
+    }
+
 }
