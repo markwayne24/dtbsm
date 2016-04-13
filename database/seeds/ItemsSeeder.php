@@ -17,6 +17,14 @@ class ItemsSeeder extends Seeder
             [
                 'item_type_id' => 1,
                 'name'  => 'OROCAN'
+            ],
+            [
+                'item_type_id' => 2,
+                'name'  => 'OROCAN'
+            ],
+            [
+                'item_type_id' => 2,
+                'name'  => 'TUPPERWARE'
             ]
         ];
 
