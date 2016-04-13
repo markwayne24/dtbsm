@@ -5,6 +5,9 @@
         <h1>
             Profile
         </h1>
+        @if(Storage::disk('local')->has(Auth()->user()->first_name . '-' . Auth()->user()->id. '.jpg'))
+            <img src="{{ route('account.image',['file' =>$user->first_name. '-' . $user->id . '.jpg']) }}">
+        @endif
     </section>
     @include('users.profile.form')
     <!-- Main content -->
