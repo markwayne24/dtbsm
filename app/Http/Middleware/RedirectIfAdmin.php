@@ -24,7 +24,11 @@ class RedirectIfAdmin
 
                 return redirect('/admin/dashboard');
             } else {
-                return redirect('/users');
+                    if (preg_match_all('/^user/', $request->path())) {
+                        return $next($request);
+                    }
+
+                    return redirect('/users');
             }
         } else {
             return redirect()->to('/login');

@@ -25,7 +25,6 @@ class StoreInventoryRequest extends Request
     {
         return [
             'item_id'=>'required',
-            'sku'=>'required|min:1',
             'price'=>'required|numeric',
             'stocks'=>'required|numeric'
         ];
