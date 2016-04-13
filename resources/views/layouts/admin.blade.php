@@ -40,7 +40,9 @@
     <!-- preload -->
     <link rel="stylesheet" href="/assets/dist/css/preload.css">
     <link rel="stylesheet" href="/assets/dist/css/queryLoader.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
+    @yield('style')
+
+            <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -50,8 +52,8 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+<body class="hold-transition skin-purple-light sidebar-mini">
+<div class="c">
     <header class="main-header">
         <!-- Logo -->
         <a href="" class="logo">
@@ -194,10 +196,9 @@
                     </a>
 
                 <li class="treeview">
-                    <a href="">
+                    <a href="{{url('/admin/dashboard/budget-histories')}}">
                         <i class="fa fa-history"></i>
                         <span>Budget History</span>
-                        <span class="label label-primary pull-right">10</span>
                     </a>
                 </li>
                 </li>
