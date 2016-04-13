@@ -12,12 +12,13 @@ class CreateBudgetHistories extends Migration
      */
     public function up()
     {
-        Schema::create('budge_histories', function (Blueprint $table) {
+        Schema::create('budget_histories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->integer('item_id');
             $table->string('action');
             $table->double('amount');
-            $table->date('budget_year');
+            $table->double('budget_year');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateBudgetHistories extends Migration
      */
     public function down()
     {
-        Schema::drop('budge_histories');
+        Schema::drop('budget_histories');
     }
 }
