@@ -77,13 +77,7 @@
                         <div class="box-footer">
                             <div class="box-tools pull-right">
                                 <td>
-                                    @if($request->requests->status == 'Approved')
-                                        <a href="{{ url('/users/requests') }}"><button class="btn btn-primary btn-flat">Back</button></a>
-                                    @elseif($request->requests->status == 'Pending')
-                                        <button class="btn btn-success btn-flat btn-edit" value="{{$request->request_id}}" name="Approved">Edit</button>
-                                    @else
-                                        <button class="btn btn-success btn-flat btn-edit" value="{{$request->request_id}}" name="Approved">Edit</button>
-                                    @endif
+                                    <a href="{{ url('/users/requests') }}"><button class="btn btn-primary btn-flat">Back</button></a>
                                 </td>
                             </div>
                         </div>
