@@ -68,8 +68,12 @@ Route::group(['middleware' => 'web'], function () {
                 Route::get('/approved', 'Admin\Request\RequestsController@approved');
                 Route::get('/declined', 'Admin\Request\RequestsController@declined');
             });
-        });
 
+            //Budget Histories
+            Route::group(['prefix'=>'budget-histories'], function(){
+                Route::get('/','Admin\Budget\BudgetHistoryController@index');
+            });
+        });
 
         //Requests
         Route::group(['prefix'=>'users'], function(){
@@ -87,5 +91,9 @@ Route::group(['middleware' => 'web'], function () {
 
         //User's page
         Route::resource('users','User\Profile\ProfileController');
+        Route::get('/userimage/{filename}',[
+            'uses' => 'User\Profile\ProfileController@getUserImage',
+            'as'   => 'account.image'
+        ]);
     });
 });
