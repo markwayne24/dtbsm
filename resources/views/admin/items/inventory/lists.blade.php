@@ -12,6 +12,12 @@
             <div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
         @endif
     </section>
+
+    <section>
+        @if(\Session::has('flash_message2'))
+            <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove"></span><em> {!! session('flash_message2') !!}</em></div>
+        @endif
+    </section>
     <section>
         @include('admin.items.inventory.form')
     </section>
@@ -24,14 +30,16 @@
 
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Inventory
+                        <h3 class="box-title">
                             <!-- Button trigger modal -->
                             <button type="button" class="bootstrap-modal-form-open btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
                                 <i class="glyphicon glyphicon-plus"></i>
                                 Create
-                            </button></h3>
-                    </div><!-- /.box-header -->
+                            </button>
+                            </h3>
 
+                    </div><!-- /.box-header -->
+                    <h3 class="budget-left"><center>Budget Left: {{$budgetLeft->amount}}</center></h3>
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
