@@ -25,11 +25,11 @@ class RequestsController extends Controller
     public function __construct(SessionManager $session)
     {
         $this->session = $session;
-        $this->authId = Auth::user()->id;
     }
 
     public function index()
     {
+        $this->authId = Auth::user()->id;
         $id = Auth::user()->id;
         $requests = Requests::where('user_id', $this->authId)->get();
 
@@ -67,14 +67,7 @@ class RequestsController extends Controller
         $requestIds = $requestId->id;*/
 
 
-
-        foreach ($requests as $key => $value)
-        {
-            $request = $value['price'];
-
-        }
-
-        return response()->json($userData);
+        return response()->json($requests->all());
 
     }
 
