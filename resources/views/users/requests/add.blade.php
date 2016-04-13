@@ -80,7 +80,7 @@
                                             <td class="price">{{$inventory->price}}</td>
                                             <td class="quantity">{{$inventory->stocks}}</td>
                                             <td>
-                                                <input type="number" class=" form-control maxmin" min="1" max="{{$inventory->stocks}}" intOnly="true" name="quantity" id="quantity"/>
+                                                <input type="number" class=" form-control maxmin" min="1" step="1.00" value="1" max="{{$inventory->stocks}}" intOnly="true" name="quantity" id="quantity"/>
                                                 <button class="btn btn-info btn-flat btn-add"  value="{{$inventory->id}}">Add</button>
                                             </td>
                                         </tr>
@@ -128,10 +128,18 @@
                             <div class="modal-dialog modal-sm">
                                 <div class="modal-content">
                                     <h4 class="modal-header" id="gridSystemModalLabel">Are you sure you want to remove?</h4>
-                                    <div class="modal-body">
-                                        <button class="btn btn-danger btn-flat delete-item" id="deleteItem" value="">Yes</button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                    </div>
+                                        <center>
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-4">
+                                            <button class="btn btn-danger btn-flat delete-item" id="deleteItem" value="">Yes</button>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                            </div>
+                                            <div class="col-sm-2"></div>
+                                        </center>
+                                    <div class="modal-footer">
+                                </div>
                                 </div>
                             </div>
                         </div><!-- end confirmation-->
@@ -142,7 +150,7 @@
                         <div class="modal fade bs-example-modal-lg" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                             <div class="modal-dialog modal-lg" id ="modal-dialog" >
                                 <div class="modal-content" id="modal-content">
-                                    <div class="modal-body" id="modal-body">
+                                    <div class="modal-body" id="modal-body2">
                                         <div class="message">
                                             <center><H2>It is already exists on your list</H2></center>
                                             <center> <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button></center>
