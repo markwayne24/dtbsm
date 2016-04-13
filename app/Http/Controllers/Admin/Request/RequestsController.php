@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Request;
 use App\Models\ItemRequests;
 use App\Models\Requests;
+use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 use Illuminate\Session\SessionManager;
 use Illuminate\Http\Request;
@@ -63,12 +64,18 @@ class RequestsController extends Controller
 
     public function update(Request $request, $requests_id)
     {
-        $status = $request->only('status');
-        $statusUpdate = Requests::where('id',$requests_id)->update($status);
+        $input = $request->all();
+        $dataStatus = [
+            'status' => $input['status'],
+            'reason' => $input['reason'],
+            'approved_at' => Carbon::now()
+        ];
+
+        $statusUpdate = Requests::where('id',$requests_id)->update($dataStatus);
 
         \Session::flash('flash_message','Successfully Updated Status');
 
 
-        return response()->json($status);
+        return response()->json($statusUpdate);
     }
 }
