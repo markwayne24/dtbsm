@@ -39,7 +39,6 @@
                     success: function (data) {
                         console.log(data);
                         $('#item_id').val(data.item_id);
-                        $('#sku').val(data.sku);
                         $('#price').val(data.price);
                         $('#stocks').val(data.stocks);
                         $('.btn-save').html('Update');
@@ -82,11 +81,15 @@
                         parent.animate({'backgroundColor':'#fb6c6c'},300);
                     },
 
-                    success: function() {
+                    success: function(data) {
                             $('#confirmBox').modal('hide');
                         parent.fadeOut(300,function() {
                             parent.remove();
                         });
+                        var budgetLeft = [
+                                '<h3 class="budget-left"><center>Budget Left:' + data.budget_year + '</center></h3>'
+                        ];
+                        $('.budget-left').replaceWith(budgetLeft).html();
                     },
                     error: function (data) {
                         console.log('Error:', data);
@@ -145,23 +148,25 @@
                     submit.val('Please wait...');
                 }
 
-                var formData = {
-                    item_id:$('#item_id').val(),
-                    sku:    $('#sku').val(),
-                    price:  $('#price').val(),
-                    stocks: $('#stocks').val(),
-                };
-
                 //used to determine the http verb to use [add=POST], [update=PUT]
                 var state = $('.btn-save').val();
                 var type = "POST"; //for creating new resource
                 var inventory_id = $('#inventory_id').val();
                 var my_url = "inventory";
+                var action = 'Add'
 
                 if (state == "edit"){
                     type = 'PUT';
                     my_url += '/' + inventory_id;
+                    action = 'Edit';
                 }
+
+                var formData = {
+                    item_id:$('#item_id').val(),
+                    price:  $('#price').val(),
+                    stocks: $('#stocks').val(),
+                    action: action,
+                };
 
                 console.log(formData);
                 $.ajax({
