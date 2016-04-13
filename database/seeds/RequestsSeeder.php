@@ -16,7 +16,6 @@ class RequestsSeeder extends Seeder
         $requests = [
             [
                 'user_id'  => 2,
-                'status' => 'Declined'
             ]
         ];
 
