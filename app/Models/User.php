@@ -48,4 +48,9 @@ class User extends Authenticatable
     public function userRequest(){
         return $this->belongsTo('App\Models\Requests');
     }
+
+    public function budgetHistory()
+    {
+        return $this->hasMany('App\Models\BudgetHistory');
+    }
 }
