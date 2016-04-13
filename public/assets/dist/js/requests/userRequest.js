@@ -113,7 +113,7 @@ $('document').ready(function(){
         var firstTable = $('#example1').DataTable();
 
         var button = [
-            '<button class="btn btn-danger btn-flat btn-remove" data-toggle="modal" data-target=".bs-example-modal-sm" value="' +id +'"><i class="fa fa-trash-o"></i></button>'
+                '<button class="btn btn-danger btn-flat btn-remove" data-toggle="modal" data-target=".bs-example-modal-sm" value="' +id +'"><i class="fa fa-trash-o"></i></button>'
         ];
 
     //to get all data from the selected row on first table
@@ -127,17 +127,20 @@ $('document').ready(function(){
             button
         ];
         var first = $(this).closest('tr').find('td:first').text();
-        var check;
+        var check = true;
 
         //to check if the items are already on the lists
         $('#example2 tr').each(function(row, tr){
-            switch(first){
-                case $(tr).find('td:eq(0)').text():
-                    check = false;
-                    break;
-                default:
-                    check = true;
+            if(check == true){
+                switch(first){
+                    case $(tr).find('td:eq(0)').text():
+                        check = false;
+                        break;
+                    default:
+                        check = true;
+                }
             }
+
         });
 
         var alertDuplicate = [
@@ -185,9 +188,8 @@ $('document').ready(function(){
         // Storing all data on the table to an multidimentional array
         var TableData = [];
         $('#example2 tr').each(function(row, tr){
-
             if(row != 0){
-                TableData[row - 1] = {
+                TableData[row] = {
                     id : $(tr).find('td:eq(0)').text(),
                     type :$(tr).find('td:eq(1)').text(),
                     name : $(tr).find('td:eq(2)').text(),
@@ -196,13 +198,12 @@ $('document').ready(function(){
                     quantity : $(tr).find('td:eq(5)').text(),
                 }
             }
-
         });
+        console.log(TableData);
                 $.ajax({
                     type:'POST',
                     url:'/users/requests/add',
-                    dataType:'json',
-                    data: JSON.stringify(TableData),
+                    data: TableData,
                     success: function (data) {
                         console.log(data);
                     },
@@ -221,6 +222,7 @@ $('document').ready(function(){
     $('.delete-item').click(function(){
         var table = $('#example2').DataTable();
         var id = $(this).val();
+
 
         $('#example2 tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {
