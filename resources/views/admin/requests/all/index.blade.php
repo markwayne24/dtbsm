@@ -43,7 +43,19 @@
                                         <td>{{$request->id}}</td>
                                         <td>{{$request->user->userProfile->lastname}},{{$request->user->userProfile->firstname}} {{$request->user->userProfile->middlename}}.</td>
                                         <td>{{$request->updated_at->format('m/d/Y')}} - {{$request->created_at->diffForHumans()}}</td>
-                                        <td>{{$request->status}}</td>
+                                        @if($request->status == 'Approved')
+                                            <td><label class="bg-green">{{$request->status or ''}}</label></td>
+                                        @elseif($request->status == 'Declined')
+                                            <td><label class="bg-red">{{$request->status or ''}}</label></td>
+                                        @else
+                                            <td><label class="bg-yellow-gradient">{{$request->status or ''}}</label></td>
+                                        @endif
+                                        <th>{{$request->reason or ''}}</th>
+                                        @if($request->approved_at)
+                                            <td>{{$request->approved_at or ''}} </td>
+                                        @else
+                                            <td></td>
+                                        @endif
                                         <th>{{$request->reason or ''}}</th>
                                         @if($request->approved_at)
                                             <td>{{$request->approved_at or ''}} </td>
