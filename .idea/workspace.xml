@@ -4,7 +4,6 @@
     <list default="true" id="f639420b-ee51-4376-afbb-23ecdad0c045" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/User/Request/RequestsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/Request/RequestsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/users/profile/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/users/profile/index.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/users/requests/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/users/requests/index.blade.php" />
     </list>
     <ignored path="Inventory.iws" />
