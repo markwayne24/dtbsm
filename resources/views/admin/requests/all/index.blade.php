@@ -8,7 +8,11 @@
     <section class="content-header">
         <h1>
             All Requests
-        </h1>
+        </h1><br>
+
+        <label class="bg-yellow">Yellow</label>- Pending
+        <label class="bg-green">Green</label> - Approved
+        <label class="bg-red">Red</label> - Declined
     </section>
     <section>
         @if(\Session::has('flash_message'))
