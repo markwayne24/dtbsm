@@ -118,7 +118,7 @@
                     contact_number: $('#contact_number').val(),
                     email: $('#email').val(),
                     password:$('#password').val(),
-                    image_path: $('#image_path')[0].files[0]
+                    image_path: $('#image_path').files
                 };
 
                 var type = "PUT";
