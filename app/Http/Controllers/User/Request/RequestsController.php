@@ -15,7 +15,6 @@ use App\Models\Requests;
 use App\Models\ItemRequests;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Carbon\Carbon;
 
 
 class RequestsController extends Controller
@@ -56,19 +55,10 @@ class RequestsController extends Controller
     public function send(Request $requests)
     {
 
-        // From a datetime string
-        $datetime = Carbon::createFromFormat('Y-m-d H:i:s', '2016-01-23 11:53:20');
-
-// From a date string
-        $date = Carbon::createFromFormat('Y-m-d', '2016-01-23 PHT');
-
-// From a time string
-        $time = Carbon::createFromFormat('H:i:s', '07:00:00');
-
       /*  Carbon::create($year, $month, $day, $hour, $minute, $second, $tz);*/
-/*
+
         $user = Auth()->user()->id;
-        $userData = Request::all();*/
+        $userData = Request::all();
 
 
 
@@ -79,7 +69,7 @@ class RequestsController extends Controller
         $requestIds = $requestId->id;*/
 
 
-        return response()->json($date);
+        return response()->json($userData);
 
     }
 
