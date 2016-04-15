@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="/assets/plugins/morris/morris.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="/assets/plugins/datatables/dataTables.bootstrap.css">
+    <!-- TableTools -->
+    <link rel = "stylesheet" type = "text/css" href="//cdn.datatables.net/tabletools/2.2.4/css/dataTables.tableTools.css"/>
+    <link rel = "stylesheet" type = "text/css" href="//cdn.datatables.net/tabletools/2.2.4/css/dataTables.tableTools.min.css"/>
     <!-- jvectormap -->
     <link rel="stylesheet" href="/assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
     <!-- Select2 -->
@@ -56,11 +59,8 @@
 <div class="c">
     <header class="main-header">
         <!-- Logo -->
-        <a href="" class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b></span>
-            <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b></span>
+        <a href="" >
+            <img src="/assets/dist/img/logo.png" class="logo" alt="Logo">
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -257,6 +257,9 @@
 <!-- DataTables -->
 <script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- TableTools -->
+<script src="//cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.js"></script>
+<script src = "//cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.min.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
