@@ -55,11 +55,8 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="" class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b></b></span>
-            <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>User</b></span>
+        <a href="" >
+            <img src="/assets/dist/img/logo.png" class="logo" alt="Logo">
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
