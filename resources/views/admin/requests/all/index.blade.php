@@ -55,17 +55,7 @@
                                             <td><label class="bg-yellow-gradient">{{$request->status or ''}}</label></td>
                                         @endif
                                         <th>{{$request->reason or ''}}</th>
-                                        @if($request->approved_at)
-                                            <td>{{$request->approved_at or ''}} </td>
-                                        @else
-                                            <td></td>
-                                        @endif
-                                        <th>{{$request->reason or ''}}</th>
-                                        @if($request->approved_at)
-                                            <td>{{$request->approved_at or ''}} </td>
-                                        @else
-                                            <td></td>
-                                        @endif
+                                        <td>{{$request->approved_at or ''}} </td>
                                         <td>
                                             <button class="btn btn-info btn-flat btn-view" value="{{$request->id}}"><i class="glyphicon glyphicon-eye-open"></i></button>
                                         </td>

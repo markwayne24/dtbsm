@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('style')
+
+@stop
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -91,6 +94,7 @@
 @stop
 
 @section('script')
+
     <script>
         $(function () {
             $("#example1").DataTable();
@@ -100,6 +104,17 @@
         $(function () {
             //Initialize Select2 Elements
             $(".select2").select2();
+        });
+    </script>
+
+    <script type = "text/javascript">
+        $(document).ready(function() {
+            var table = $('#example1').DataTable();
+            var tableTools = new $.fn.DataTable.TableTools(table, {
+                'sSwfPath': '//cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf',
+                'aButtons':['copy','print']
+            });
+            $(tableTools.fnContainer()).insertBefore('#example1');
         });
     </script>
 @stop
