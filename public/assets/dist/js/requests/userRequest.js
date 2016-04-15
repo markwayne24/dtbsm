@@ -44,10 +44,10 @@ $('document').ready(function(){
 
         $.ajax({
             type: 'GET',
-            url: '/users/requests/' + id +'/'+ 'view',
+            url: url + '/view/' + id ,
             success: function (data) {
                 console.log(data);
-                window.location.href= '/users/requests/'+ id + '/' +'view';
+                window.location.href= url + '/view/' + id;
 
             },
             error: function(data){
@@ -105,6 +105,11 @@ $('document').ready(function(){
             $(this).addClass('selected');
         }
     } );
+        var oTable =  $('#example2'). dataTable();
+        $('#example2').on('click', 'tr', function(){
+            oData = oTable.fnGetData(this);
+            console.log(oData);
+        });
 
     $('.btn-add').click(function(){
         var quantity = $('#quantity').val();
@@ -185,33 +190,63 @@ $('document').ready(function(){
     });
 
     $('.btn-send').click(function(){
-        // Storing all data on the table to an multidimentional array
-        var TableData = [];
-        $('#example2 tr').each(function(row, tr){
-            if(row != 0){
-                TableData[row] = {
-                    id : $(tr).find('td:eq(0)').text(),
-                    type :$(tr).find('td:eq(1)').text(),
-                    name : $(tr).find('td:eq(2)').text(),
-                    sku : $(tr).find('td:eq(3)').text(),
-                    price : $(tr).find('td:eq(4)').text(),
-                    quantity : $(tr).find('td:eq(5)').text(),
-                }
-            }
-        });
-        console.log(TableData);
-                $.ajax({
-                    type:'POST',
-                    url:'/users/requests/add',
-                    data: TableData,
-                    success: function (data) {
-                        console.log(data);
-                    },
-                    error: function (data){
-                        console.log(data);
-                    }
-                });
+        var empty ;
+        var alertEmpty = [
+            '<div class="modal-body" id="null">'+
+            '<center><H2>You must add items on your list!</H2></center>'+
+            '<center> <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button></center></div>'
+        ];
 
+        $('#example2 tr').each(function(row, tr) {
+                if($(tr).find('td:eq(0)').text() > 0) {
+                    empty = true;
+                }else {
+                    empty = false;
+                }
+        });
+
+        if(empty){
+            $.ajax({
+                type:'POST',
+                url:'/users/requests/save',
+                success: function (data) {
+                    console.log(data);
+                    var request_id = data.id;
+
+                    $('#example2 tr').each(function(row, tr){
+                        if(row != 0){
+                            var TableData = {
+                                request_id: request_id,
+                                inventory_id : $(tr).find('td:eq(0)').text(),
+                                quantity : $(tr).find('td:eq(5)').text(),
+                                price : $(tr).find('td:eq(4)').text()
+                            };
+                            console.log(TableData);
+                            $.ajax({
+                                type:'POST',
+                                url:'/users/requests/add',
+                                data: TableData,
+                                success: function (data) {
+                                    console.log(data);
+                                    window.location.href= '/users/requests';
+                                },
+                                error: function (data){
+                                    console.log(data);
+                                }
+                            });
+                        }
+                    });
+
+                },
+                error: function (data){
+                    console.log(data);
+                }
+            });
+        }else {
+            $('.modal-body').replaceWith(alertEmpty);
+            $('#alertModal').modal('show');
+            window.setTimeout(hide_modal, 1000);
+        }
     });
 
     $('.deleteModal').click(function() {
