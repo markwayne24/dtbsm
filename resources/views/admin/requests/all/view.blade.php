@@ -36,25 +36,17 @@
                     <div class="box-body">
                         <div class="box-header with-border">
                             <h3 class="box-title">
-                                @foreach($requests as $date)
-                                    <label>Date: {{$date->requests->created_at->format('m/d/Y')}} - {{$date->requests->created_at->diffForHumans()}}</label>
-                                @endforeach
+                                    <label>Date: {{$requested->created_at->format('m/d/Y')}} - {{$requested->created_at->diffForHumans()}}</label>
                             </h3>
                             <h3 class="box-title pull-right">
-                                @foreach($requests as $status)
-                                    <label>Status: {{$status->requests->status}}</label>
-                                @endforeach
+                                <label>Status: {{$requested->status}}</label>
                             </h3>
                         </div>
                         <div class="box-header with-border">
                             <h4>
-                                @foreach($requests as $user)
-                                    <label>Name: {{$user->requests->user->userProfile->firstname}}, {{$user->requests->user->userProfile->firstname}} {{$user->requests->user->userProfile->middlename}}.</label>
-                                @endforeach
+                                <label>Name: {{$requested->user->userProfile->firstname}}, {{$requested->user->userProfile->firstname}} {{$requested->user->userProfile->middlename}}.</label>
                             </h4>
-                                @foreach($requests as $reason)
-                                    <label>Reason if declined: {{$reason->requests->reason}}</label>
-                                @endforeach
+                                    <label>Reason if declined: {{$requested->reason}}</label>
                         </div><!-- /.box-body --></br>
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -92,14 +84,12 @@
                         <div class="box-footer">
                             <div class="box-tools pull-right">
                                 <td>
-                                    @foreach($requests as $request)
-                                            @if($request->requests->status == 'Pending')
-                                                <button class="btn btn-success btn-flat btn-approved" value="{{$request->request_id}}" name="Approved">Approve</button>
-                                                <button class="btn btn-danger btn-flat btn-declined" value="{{$request->request_id}}" name="Declined">Decline</button>
-                                            @else
-                                                <a href="{{url('/admin/dashboard/requests')}}" class="btn btn-primary btn-flat">Back</a>
-                                            @endif
-                                    @endforeach
+                                    @if($request->requests->status == 'Pending')
+                                        <button class="btn btn-success btn-flat btn-approved" value="{{$request->request_id}}" name="Approved">Approve</button>
+                                        <button class="btn btn-danger btn-flat btn-declined" value="{{$request->request_id}}" name="Declined">Decline</button>
+                                    @else
+                                        <a href="{{url('/admin/dashboard/requests')}}" class="btn btn-primary btn-flat">Back</a>
+                                    @endif
                                 </td>
                             </div>
                         </div>
