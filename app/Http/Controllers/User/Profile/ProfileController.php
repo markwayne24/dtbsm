@@ -65,9 +65,9 @@ class ProfileController extends Controller
 
                $user = User::where('id', $users)->update($userData);
                 $imageName = $users . '.' .
-                    $request->file('image')->getClientOriginalName();
+                    $request->file('image_path')->getClientOriginalName();
 
-                $request->file('image')->move(
+                $request->file('image_path')->move(
                     base_path() . '/public/uploads/images/', $imageName
                 );
 
@@ -83,25 +83,26 @@ class ProfileController extends Controller
                 $user = UserProfile::where('user_id',$users)->update($profileData);
                 $user->image = $imageName;
 
-        return response()->json($user);
-        /*
                 $photo = null;
-                $file= $request->file('image_path');
+                $file= Input::file('image_path');
                 if(Input::hasFile('image_path')){
-                    $destinationPath = '/public/uploads/images/';
+
                     $extension = $file->getClientOriginalExtension();
                     $name = $file->getClientOriginalName();
-                    $name =date('Y-m-d').Time().rand(11111,99999).'.'.$extension;
-                    $photo	= $destinationPath.'/'.$name;
-                    $file->move($destinationPath,$name);
+                    $photo	= public_path().'/'.$name . Auth::user()->id .$extension;
+                    $file->move(public_path(),$name);
                 }else{$photo='no image';}
 
                 print_r($file); exit();
 
                 $dataStore = [
                     'image_path'=> $photo
-                ];*/
+                ];
+        UserProfile::where('user_id', $users)->update($dataStore);
 
+
+
+        return response()->json($dataStore);
 
         /*
                 public function upload() {
