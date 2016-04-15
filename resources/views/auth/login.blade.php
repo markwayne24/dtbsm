@@ -1,12 +1,23 @@
 @extends('layouts.app')
+@section('style')
+    <style>
+        .logo {
+            background: rgba(0,0,0, .3);
 
+        }
+    </style>
+@stop
 @section('content')
     <div class="login-box">
-        <div class="login-logo">
-            <a href="../../index2.html"><b></b></a>
-        </div><!-- /.login-logo -->
+
         <div class="login-box-body">
+
             <h3 class="login-box-msg">DepEd Tarlac Budget and Supply Monitoring</h3>
+            <div class="login-logo">
+                <a href="" >
+                    <img src="/assets/dist/img/logo.png" class="logo" alt="Logo">
+                </a>
+            </div><!-- /.login-logo -->
 
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                 {!! csrf_field() !!}
