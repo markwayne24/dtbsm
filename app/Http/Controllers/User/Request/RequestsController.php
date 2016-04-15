@@ -9,13 +9,12 @@ namespace App\Http\Controllers\User\Request;
  */
 use App\Models\Inventory;
 use Illuminate\Session\SessionManager;
-use Illuminate\Support\Facades\Request;
+use App\Http\Requests\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Requests;
 use App\Models\ItemRequests;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-
+use Illuminate\Support\Facades\Input;
 
 class RequestsController extends Controller
 {
@@ -49,25 +48,39 @@ class RequestsController extends Controller
         $requests = ItemRequests::with('requests','inventory')
             ->where('request_id',$id)
             ->get();
-        return view('users.requests.view')->with('requests',$requests);
+        $requested = Requests::with('user')
+            ->where('id',$id)
+            ->first();
+        return view('users.requests.view')->with('requests',$requests)
+            ->with('requested', $requested);
     }
 
-    public function send(Request $requests)
+    public function request()
     {
-
-      /*  Carbon::create($year, $month, $day, $hour, $minute, $second, $tz);*/
-
         $user = Auth()->user()->id;
-        $userData = Request::all();
 
+        $data = [
+            'user_id'=> $user
+        ];
 
+        $request = Requests::create($data);
 
-/*        $requestId = Requests::create([
-            'user_id' => $user
-        ]);
+        return response()->json($request);
+    }
 
-        $requestIds = $requestId->id;*/
+    public function send()
+    {
+        $input = Input::all();
+        $data = [
+            'request_id'=> $input['request_id'],
+            'inventory_id'=> $input['inventory_id'],
+            'quantity'=> $input['quantity'],
+            'price'=> $input['price']
+        ];
 
+        \Session::flash('flash_message','Successfully created requests');
+
+        $userData = ItemRequests::create($data);
 
         return response()->json($userData);
 
