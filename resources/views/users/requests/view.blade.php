@@ -26,20 +26,14 @@
                     <div class="box-body">
                         <div class="box-header with-border">
                             <h3 class="box-title">
-                                @foreach($requests as $date)
-                                    <label>Date: {{$date->requests->created_at->format('m/d/Y')}} - {{$date->requests->created_at->diffForHumans()}}</label>
-                                @endforeach
+                                    <label>Date: {{$requested->created_at->format('m/d/Y')}} - {{$requested->created_at->diffForHumans()}}</label>
                             </h3>
                             <h3 class="box-title pull-right">
-                                @foreach($requests as $status)
-                                    <label>Status: {{$status->requests->status}}</label>
-                                @endforeach
+                                <label>Status: {{$requested->status}}</label>
                             </h3>
                         </div>
                         <div class="box-header with-border">
-                            @foreach($requests as $reason)
-                                <label>Reason if declined: {{$reason->requests->reason}}</label>
-                            @endforeach
+                            <label>Reason if declined: {{$requested->reason}}</label>
                         </div><!-- /.box-body --></br>
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
