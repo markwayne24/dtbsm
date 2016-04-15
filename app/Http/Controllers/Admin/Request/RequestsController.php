@@ -36,7 +36,11 @@ class RequestsController extends Controller
         $requests = ItemRequests::with('requests','inventory')
                     ->where('request_id',$id)
                     ->get();
-        return view('admin.requests.all.view')->with('requests',$requests);
+        $requested = Requests::with('user')
+                    ->where('id',$id)
+                    ->first();
+        return view('admin.requests.all.view')->with('requests',$requests)
+            ->with('requested', $requested);
     }
 
     public function pending()
