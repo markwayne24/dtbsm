@@ -81,7 +81,6 @@ $('document').ready(function(){
             error: function(data){
                 console.log('Error:',data);
             }
-
         });
     });
 });
