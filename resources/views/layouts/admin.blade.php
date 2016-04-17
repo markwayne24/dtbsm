@@ -178,7 +178,7 @@
                     <a href="">
                         <i class="fa fa-plus-square"></i>
                         <span>Requests</span><i class="fa fa-angle-left pull-right"></i>
-                        <span class="label label-primary pull-right"></span>
+                        <span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{ url('/admin/dashboard/requests') }}">All</a></li>
@@ -199,7 +199,7 @@
                     <a href="{{url('/admin/dashboard/budget-histories')}}">
                         <i class="fa fa-history"></i>
                         <span>Budget History</span>
-                        <span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>
+                        <span class="label label-primary pull-right"></span>
                     </a>
                 </li>
                 </li>
