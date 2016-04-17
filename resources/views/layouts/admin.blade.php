@@ -199,6 +199,7 @@
                     <a href="{{url('/admin/dashboard/budget-histories')}}">
                         <i class="fa fa-history"></i>
                         <span>Budget History</span>
+                        <span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>
                     </a>
                 </li>
                 </li>
