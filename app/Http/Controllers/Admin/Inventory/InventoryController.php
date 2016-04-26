@@ -74,7 +74,7 @@ class InventoryController extends Controller
 
             $budgetHistories = [
                 'user_id' => Auth()->user()->id,
-                'inventory_id'=> $id,
+                'inventory_id'=> $input['item_id'],
                 'action'=> $input['action'],
                 'amount' => $amount,
                 'budget_year'=> $budgetLeft
@@ -140,7 +140,7 @@ class InventoryController extends Controller
     public function destroy(Request $request, $inventory_id)
     {
         $reason = $request->all();
-        $this->delReason($reason);
+        $saveReason = $this->delReason($reason);
 
         $inventories = Inventory::where('id',$inventory_id)->first();
         $amount = $inventories->price * $inventories->stocks;
@@ -157,7 +157,7 @@ class InventoryController extends Controller
             'budget_year'=> $budgetLeft
         ];
 
-        BudgetHistory::findOrFail($inventory_id)->update($budgetHistories);
+        BudgetHistory::findOrFail($saveReason->id)->update($budgetHistories);
         Inventory::where('id',$inventory_id)->delete();
         \Session::flash('flash_message2','Successfully deleted');
 
