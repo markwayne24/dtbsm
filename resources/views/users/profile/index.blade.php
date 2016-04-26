@@ -1,5 +1,20 @@
 @extends('layouts.user')
 
+@section('style')
+<style>
+    #contentBg {
+        left: 20%;
+        top: 10%;
+        width: 80%;
+        height: 100%;
+        opacity: 0.6;
+        position:absolute;
+        background-repeat: no-repeat;
+    }
+</style>
+
+@stop
+
 @section('content')
     @include('users.profile.profile')
 @stop
