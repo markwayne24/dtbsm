@@ -15,7 +15,9 @@ class CreateVerficationCodesTable extends Migration
         Schema::create('verification_codes', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->integer('code');
             $table->string('status')->default('pending');
+            $table->date('code_date');
             $table->timestamps();
         });
     }
