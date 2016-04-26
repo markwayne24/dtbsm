@@ -30,7 +30,8 @@ class UsersController extends Controller
         $users = User::with('userProfile','userGroup')->get();
         $usertypes = UserGroup::all();
 
-        return view('admin.users.index')->with('users', $users)->with('usertypes',$usertypes);
+        return view('admin.users.index')->with('users', $users)
+            ->with('usertypes',$usertypes);
     }
 
     public function store(StoreUserRequest $request)
@@ -71,6 +72,7 @@ class UsersController extends Controller
             'middlename'=> $input['middlename'],
             'lastname'  => $input['lastname'],
             'address'   =>  $input['address'],
+            'school'   =>  $input['school'],
             'gender'    =>  $input['gender'],
             'contact_number' => $input['contact_number'],
         ];
