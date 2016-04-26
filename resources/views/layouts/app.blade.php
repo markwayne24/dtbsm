@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/assets/dist/css/AdminLTE.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="/assets/plugins/iCheck/square/blue.css">
+    @yield('style')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,7 +26,7 @@
     <![endif]-->
 </head>
 <body class="hold-transition login-page">
-
+<img id="bgImages" src="/assets/dist/img/logo.png">
 @yield('content')
 
 <!-- jQuery 2.1.4 -->
