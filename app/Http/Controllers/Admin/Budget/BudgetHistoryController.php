@@ -16,7 +16,7 @@ class BudgetHistoryController extends Controller
 
     public function index()
     {
-        $budgets = BudgetHistory::with('user','items')
+        $budgets = BudgetHistory::with('user','inventory')
                 ->orderBy('created_at', 'ASC')->get();
         return view('admin.budget.index')->with('budgets',$budgets);
     }
