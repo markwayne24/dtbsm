@@ -58,7 +58,7 @@
                                             <td></td>
                                         @endif
                                         <td>
-                                                <button class="btn btn-info btn-flat btn-view" value="{{$request->id}}"><i class="glyphicon glyphicon-eye-open"></i></button>
+                                            <button class="btn btn-info btn-flat btn-view" value="{{$request->id}}"><i class="glyphicon glyphicon-eye-open"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
