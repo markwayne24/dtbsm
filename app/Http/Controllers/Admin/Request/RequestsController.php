@@ -27,8 +27,10 @@ class RequestsController extends Controller
     {
         $requests = Requests::with('user')
             ->whereNotNull('status')
+            ->orderBy('created_at', 'ASC')
             ->get();
-        return view('admin.requests.all.index')->with('requests',$requests);
+        return view('admin.requests.all.index')
+            ->with('requests',$requests);
     }
 
     public function view($id)
