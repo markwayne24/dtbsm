@@ -14,6 +14,7 @@ class CreateItemType extends Migration
     {
         Schema::create('item_type', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('categories');
             $table->string('name');
             $table->timestamps();
         });

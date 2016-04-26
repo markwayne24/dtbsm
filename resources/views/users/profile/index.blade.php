@@ -40,6 +40,7 @@
                         $('#middlename').val(data.user_profile.middlename);
                         $('#lastname').val(data.user_profile.lastname);
                         $('#address').val(data.user_profile.address);
+                        $('#school').val(data.user_profile.school);
                         $('#gender').val(data.user_profile.gender);
                         $('#contact_number').val(data.user_profile.contact_number);
                         $('#email').val(data.email);
@@ -106,7 +107,7 @@
                 var middlename = $('#middlename').val().substring(0, 1).toUpperCase() + $('#middlename').val().substring(1);
                 var lastname = $('#lastname').val().substring(0, 1).toUpperCase() + $('#lastname').val().substring(1);
 
-                var file = new FormData($('#image_path'));
+
 
 
                 var formData = {
@@ -115,17 +116,18 @@
                     lastname:lastname,
                     gender:$('#gender').val(),
                     address:$('#address').val(),
+                    school:$('#school').val(),
                     contact_number: $('#contact_number').val(),
                     email: $('#email').val(),
                     password:$('#password').val(),
-                    image_path: $('#image_path').files
+                    image_path: input
                 };
 
                 var type = "PUT";
                 var user_id = $('#user_id').val();
                 var my_url = 'users' + '/' +user_id;
 
-                console.log(formData);
+                console.log(formData)
                 $.ajax({
                     type: type,
                     url: my_url,

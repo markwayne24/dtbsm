@@ -7,6 +7,11 @@ $(function () {
     $(".select2").select2();
 });
 
+//to make the menu active
+$(document).ready(function(){
+    $('#activeRequests').addClass('active');
+});
+
 function hide_modal(){
     $('#alertModal').modal('hide');
 }

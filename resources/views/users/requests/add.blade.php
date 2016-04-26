@@ -153,6 +153,7 @@
                             @endif
                         </h3>
 
+                       {{-- <button class="btn btn-primary btn-send">Send</button>--}}
                         <!--alert message if already exists-->
                         <div class="modal fade bs-example-modal-lg" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                             <div class="modal-dialog modal-lg" id ="modal-dialog" >

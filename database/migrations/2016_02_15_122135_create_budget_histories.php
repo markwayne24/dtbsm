@@ -15,7 +15,8 @@ class CreateBudgetHistories extends Migration
         Schema::create('budget_histories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('item_id');
+            $table->integer('inventory_id');
+            $table->string('reason');
             $table->string('action');
             $table->double('amount');
             $table->double('budget_year');

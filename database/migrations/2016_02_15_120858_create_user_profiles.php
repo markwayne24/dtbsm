@@ -19,6 +19,7 @@ class CreateUserProfiles extends Migration
             $table->string('middlename');
             $table->string('lastname');
             $table->string('address');
+            $table->string('school');
             $table->string('gender', 10);
             $table->string('contact_number');
             $table->string('image_path')->nullable();

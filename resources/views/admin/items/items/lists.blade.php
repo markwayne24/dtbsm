@@ -26,7 +26,7 @@
                     <div class="box-header">
                         <h3 class="box-title">Lists of Items
                             <!-- Button trigger modal -->
-                            <button type="button" class="bootstrap-modal-form-open btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                            <button type="button" class="bootstrap-modal-form-open btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" id="modalFormOpen">
                                 <i class="glyphicon glyphicon-plus"></i>
                                 Create
                             </button></h3>
@@ -37,6 +37,7 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>Categories</th>
                                 <th>Types</th>
                                 <th>Name</th>
                                 <th>Action</th>
@@ -47,6 +48,7 @@
                             @foreach($items as $item)
                                 <tr id="item-{{$item->id}}">
                                     <td>{{$item->id}}</td>
+                                    <td>{{$item->itemTypes->categories or ''}}</td>
                                     <td>{{$item->itemTypes->name or ''}}</td>
                                     <td>{{$item->name}}</td>
                                     <td>
@@ -60,6 +62,7 @@
                             <tfoot>
                             <tr>
                                 <th>Id</th>
+                                <th>Categories</th>
                                 <th>Types</th>
                                 <th>Name</th>
                                 <th>Action</th>

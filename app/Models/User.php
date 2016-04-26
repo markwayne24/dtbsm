@@ -46,7 +46,7 @@ class User extends Authenticatable
     }
 
     public function userRequest(){
-        return $this->belongsTo('App\Models\Requests');
+        return $this->hasMany('App\Models\Requests');
     }
 
     public function budgetHistory()

@@ -1,5 +1,6 @@
 @extends('layouts.admin')
-
+@section('requests')
+        @stop
 @section('style')
 
 @stop
@@ -36,8 +37,10 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>User</th>
+                                    <th>Categories</th>
                                     <th>ItemTypes</th>
                                     <th>Items</th>
+                                    <th>Reason if deleted</th>
                                     <th>Action</th>
                                     <th>Amount</th>
                                     <th>Budget Left</th>
@@ -50,8 +53,10 @@
                                         <tr id="inventory-{{$budget->id}}">
                                             <td>{{$budget->id}}</td>
                                             <td>{{$budget->user->userProfile->lastname}},{{$budget->user->userProfile->firstname}} {{$budget->user->userProfile->middlename}}.</td>
-                                            <td>{{$budget->items->itemTypes->name or ''}}</td>
-                                            <td>{{$budget->items->name or ''}}</td>
+                                            <td>{{$budget->inventory->itemTypes->categories or ''}}</td>
+                                            <td>{{$budget->inventory->itemTypes->name or ''}}</td>
+                                            <td>{{$budget->inventory->name or ''}}</td>
+                                            <td>{{$budget->reason or ''}}
                                             <td>{{$budget->action}}</td>
                                             <td>{{$budget->amount}}</td>
                                             <td>{{$budget->budget_year}}</td>
@@ -64,8 +69,10 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>User</th>
+                                    <th>Categories</th>
                                     <th>ItemTypes</th>
                                     <th>Items</th>
+                                    <th>Reason if deleted</th>
                                     <th>Action</th>
                                     <th>Amount</th>
                                     <th>Budget Left</th>

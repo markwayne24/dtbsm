@@ -11,6 +11,7 @@ class ItemType extends Model
     protected $guarded = ['id'];
 
     protected $fillable = [
+        'categories',
         'name'
     ];
 

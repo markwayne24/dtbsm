@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemRequests extends Model
 {
-    protected $table = 'item_requests';
+    protected $table = 'inventory_requests';
 
     protected $fillable =[
         'request_id',

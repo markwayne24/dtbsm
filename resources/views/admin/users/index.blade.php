@@ -40,6 +40,7 @@
                         $('#middlename').val(data.user_profile.middlename);
                         $('#lastname').val(data.user_profile.lastname);
                         $('#address').val(data.user_profile.address);
+                        $('#school').val(data.user_profile.school);
                         $('#gender').val(data.user_profile.gender);
                         $('#contact_number').val(data.user_profile.contact_number);
                         $('#email').val(data.email);
@@ -68,6 +69,7 @@
                         $('#infoMiddleName').html(data.user_profile.middlename);
                         $('#infoLastName').html(data.user_profile.lastname);
                         $('#infoAddress').html(data.user_profile.address);
+                        $('#infoSchool').html(data.user_profile.school);
                         $('#infoGender').html(data.user_profile.gender);
                         $('#infoContactNumber').html(data.user_profile.contact_number);
                         $('#infoEmail').html(data.email);
@@ -139,6 +141,7 @@
                     lastname: lastname,
                     gender:$('#gender').val(),
                     address:$('#address').val(),
+                    school:$('#school').val(),
                     contact_number: $('#contact_number').val(),
                     email:$('#email').val(),
                     password:$('#password').val(),
@@ -167,6 +170,33 @@
                     },
                     error: function (data) {
                         console.log('Error:', data);
+                    }
+                }).always(function(response, status) {
+
+                    // Reset errors.
+                    resetModalFormErrors();
+
+                    // Check for errors.
+                    if (response.status == 422) {
+                        var errors = $.parseJSON(response.responseText);
+
+                        // Iterate through errors object.
+                        $.each(errors, function(field, message) {
+                            console.error(field+': '+message);
+                            var formGroup = $('[name='+field+']', form).closest('.form-group');
+                            formGroup.addClass('has-error').append('<p class="help-block">'+message+'</p>');
+                        });
+
+                        // Reset submit.
+                        if (submit.is('button')) {
+                            submit.html(submitOriginal);
+                        } else if (submit.is('input')) {
+                            submit.val(submitOriginal);
+                        }
+
+                        // If successful, reload.
+                    } else {
+                        // location.reload();
                     }
                 });
             });

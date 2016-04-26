@@ -46,13 +46,19 @@ Route::group(['middleware' => 'web'], function () {
 
             //Items
             Route::resource('supplies/items','Admin\Item\ItemsController');
+            Route::get('supplies/items-{categories}','Admin\Item\ItemsController@getCategories');
 
             //Items types
             Route::resource('supplies/item-types','Admin\ItemType\ItemTypesController');
 
             //Inventory
             Route::resource('supplies/inventory','Admin\Inventory\InventoryController');
-/*            Route::group(['prefix' => 'supplies/inventory'], function() {
+            Route::post('supplies/inventory/delete','Admin\Inventory\InventoryController@delReason');
+            Route::delete('supplies/inventory/delete/{inventory_id}','Admin\Inventory\InventoryController@destroy');
+            Route::get('supplies/inventory-names-{names}','Admin\Inventory\InventoryController@getItemNames');
+            Route::get('supplies/inventory-{inventories}','Admin\Inventory\InventoryController@getCategories');
+
+            /*            Route::group(['prefix' => 'supplies/inventory'], function() {
                 Route::get('/', 'Admin\Inventory\InventoryController@index');
                 Route::post('/', 'Admin\Inventory\InventoryController@store');
                 Route::post('/{userId}','Admin\Inventory\InventoryController@update');
@@ -80,8 +86,9 @@ Route::group(['middleware' => 'web'], function () {
             Route::group(['prefix'=>'requests'], function() {
                 Route::get('/','User\Request\RequestsController@index');
                 Route::get('/add', 'User\Request\RequestsController@add');
+                Route::post('/save', 'User\Request\RequestsController@request');
                 Route::post('/add', 'User\Request\RequestsController@send');
-                Route::get('/{id}/view', 'User\Request\RequestsController@view');
+                Route::get('/view/{id}', 'User\Request\RequestsController@view');
                 Route::put('/{request_id}/view', 'User\Request\RequestsController@update');
                 Route::get('/pending', 'User\Request\RequestsController@pending');
                 Route::get('/approved', 'User\Request\RequestsController@approved');

@@ -15,11 +15,45 @@ class ItemTypesSeeder extends Seeder
 
         $item_types = [
             [
-                'name'  => 'TABLES'
+                'categories'=>'Facilities',
+                'name'  => 'LABORATORY'
             ],
             [
-                'name'  => 'CHAIRS'
-            ]
+                'categories'=>'Facilities',
+                'name'  => 'CLINICS'
+            ],
+            [
+                'categories'=>'Equipments',
+                'name'  => 'COMPUTER'
+            ],
+            [
+                'categories'=>'Equipments',
+                'name'  => 'WINDOWS'
+            ],
+            [
+                'categories'=>'Equipments',
+                'name'  => 'DOOR'
+            ],
+            [
+                'categories'=>'School Supplies',
+                'name'  => 'PENCILS'
+            ],
+            [
+                'categories'=>'School Supplies',
+                'name'  => 'BALLPENS'
+            ],
+            [
+                'categories'=>'School Supplies',
+                'name'  => 'PAPERS'
+            ],
+            [
+                'categories'=>'School Supplies',
+                'name'  => 'NOTEBOOKS'
+            ],
+            [
+                'categories'=>'School Supplies',
+                'name'  => 'BOOKS'
+            ],
         ];
 
         foreach ($item_types as $item_type) {

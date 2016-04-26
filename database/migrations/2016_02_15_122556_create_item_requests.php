@@ -12,7 +12,7 @@ class CreateItemRequests extends Migration
      */
     public function up()
     {
-        Schema::create('item_requests', function (Blueprint $table) {
+        Schema::create('inventory_requests', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('request_id');
             $table->integer('inventory_id');
@@ -29,6 +29,6 @@ class CreateItemRequests extends Migration
      */
     public function down()
     {
-        Schema::drop('item_requests');
+        Schema::drop('inventory_requests');
     }
 }

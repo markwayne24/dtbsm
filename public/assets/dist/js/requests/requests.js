@@ -6,6 +6,10 @@ $(function () {
     //Initialize Select2 Elements
     $(".select2").select2();
 });
+//to make the menu active
+$(document).ready(function(){
+    $('#activeRequests').addClass('active');
+});
 
 $('document').ready(function(){
     var url = 'requests';

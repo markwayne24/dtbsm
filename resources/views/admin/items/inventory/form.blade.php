@@ -9,12 +9,27 @@
                 </div>
                 <div class="modal-body">
                         {{csrf_field()}}
-                    <div class="form-group {{ $errors->has('item_id') ? ' has-error' : '' }}">
+                    <div class="form-group">
+                        <label for="categories">Categories</label>
+                        <select class="form-control select" style="width: 100%;" name="categories" id="categories">
+                            <option value="Facilities" selected="selected">Facilities</option>
+                            <option value="Equipments">Equipments</option>
+                            <option value="School Supplies">School Supplies</option>
+                        </select>
+                    </div>
+                    <div class="form-group {{ $errors->has('item_type') ? ' has-error' : '' }}">
                         <label>Choose items</label>
-                        <select class="form-control select2" style="width: 100%;" name="item_id" id="item_id">
-                            @foreach($items as $item)
-                                <option value="{{$item->id}}">{{$item->itemTypes->name}} - {{$item->name}}</option>
-                            @endforeach
+                        <select class="form-control select2" style="width: 100%;" name="item_id" id="item_type">
+                        </select>
+                        @if ($errors->has('item_type'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('item_type') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-group {{ $errors->has('item_id') ? ' has-error' : '' }}">
+                        <label>Name</label>
+                        <select class="form-control select2" style="width: 100%;" name="item_name" id="item_id">
                         </select>
                         @if ($errors->has('item_id'))
                             <span class="help-block">

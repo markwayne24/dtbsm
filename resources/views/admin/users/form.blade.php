@@ -70,6 +70,17 @@
                         @endif
 
                     </div>
+                    <div class="form-group{{ $errors->has('school') ? ' has-error' : '' }}">
+                        <label for="school">School</label>
+                        <input type="text" class="form-control" placeholder="Enter School" name="school" id="school">
+
+                        @if ($errors->has('school'))
+                            <span class="help-block">
+                                 <strong>{{ $errors->first('school') }}</strong>
+                             </span>
+                        @endif
+
+                    </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <!-- select -->

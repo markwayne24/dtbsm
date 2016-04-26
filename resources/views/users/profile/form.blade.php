@@ -56,6 +56,16 @@
                         @endif
 
                     </div>
+                    <div class="form-group{{ $errors->has('school') ? ' has-error' : '' }}">
+                        <label for="exampleInputSchool">Address</label>
+                        <input type="text" class="form-control" placeholder="Enter Address" name="school" id="school">
+
+                        @if ($errors->has('school'))
+                            <span class="help-block">
+                                 <strong>{{ $errors->first('school') }}</strong>
+                             </span>
+                        @endif
+                    </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <!-- select -->
@@ -122,7 +132,7 @@
 
                     <div class="form-group{{ $errors->has('image_path') ? ' has-error' : '' }}">
                         <label for="exampleInputFile">Upload image</label>
-                        <input type="file" id="image_path" name="image_path">
+                        <input type="file" id="file" name="image_path">
 
                         @if ($errors->has('image_path'))
                             <span class="help-block">

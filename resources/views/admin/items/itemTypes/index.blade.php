@@ -9,6 +9,17 @@
         $(function () {
             $("#example1").DataTable();
         });
+
+        $(function () {
+            //Initialize Select2 Elements
+            $(".select2").select2();
+        });
+    </script>
+    <script>
+        //to make the menu active
+        $(document).ready(function(){
+               $('#activeSupplies').addClass('active');
+        });
     </script>
 
     <script>
@@ -139,10 +150,6 @@
                 }
               var name = $('#name').val().toUpperCase();
 
-                var formData = {
-                    name: name
-                };
-
                 //used to determine the http verb to use [add=POST], [update=PUT]
                 var state = $('.btn-save').val();
                 var type = "POST"; //for creating new resource
@@ -153,6 +160,10 @@
                     type = 'PUT';
                     my_url += '/' + type_id;
                 }
+                var formData = {
+                    categories:$('#categories').val(),
+                    name: name
+                };
 
                 console.log(formData);
                 $.ajax({
@@ -161,7 +172,7 @@
                     data: formData,
                     success: function (data) {
                         console.log(data);
-                        $('#myModal').modal('hide')
+                        $('#myModal').modal('hide');
                         location.reload();
                     },
                     error: function (data) {
@@ -219,11 +230,11 @@
                     data: {"_token": "{{ csrf_token() }}" },
 
                     beforeSend: function() {
+                        $('#confirmBox').modal('hide');
                         parent.animate({'backgroundColor':'#fb6c6c'},300);
                     },
 
                     success: function() {
-                        $('#confirmBox').modal('hide');
                         parent.fadeOut(300,function() {
                             parent.remove();
                         });

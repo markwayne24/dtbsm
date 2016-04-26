@@ -19,6 +19,4 @@ class Requests extends Model
     public function itemRequests(){
         return $this->hasMany('App\Models\ItemRequests');
     }
-
-
 }

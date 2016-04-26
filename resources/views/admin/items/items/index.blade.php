@@ -12,9 +12,82 @@
     </script>
 
     <script>
+        //to make the menu active
+        $(document).ready(function(){
+            $('#activeSupplies').addClass('active');
+        });
+    </script>
+
+    <script>
         $(function () {
             //Initialize Select2 Elements
             $(".select2").select2();
+        });
+    </script>
+
+    <script>
+        // for select categories
+        $('#categories').change(function () {
+            var categories = $(this).val();
+            var data = {
+                categories: categories
+            };
+
+            $.ajax({
+                type: 'GET',
+                url: 'items-' + categories,
+                success: function (data) {
+                    console.log(data);
+                    var select = document.getElementById("item_type_id");
+                    while (select.firstChild) {
+                        select.removeChild(select.firstChild);
+                    }
+                    if (data.length > 0) {
+                        for (x = 0; x < data.length; x++) {
+                            var option = document.createElement("option");
+                            var att = document.createAttribute("selected");
+                            option.text = data[x].name;
+                            option.value = data[x].id;
+                            select.appendChild(option);
+                        }
+                        document.getElementById("item_type_id").value = data[0].name;
+                    }
+                },
+                error: function (data) {
+                    console.log('Error: ', data);
+                }
+            });
+        });
+
+        $('#modalFormOpen').click(function () {
+            var categories = $('#categories').val();
+            var data = {
+                categories: categories
+            };
+
+            $.ajax({
+                type: 'GET',
+                url: 'items-' + categories,
+                success: function (data) {
+                    console.log(data);
+                    var select = document.getElementById("item_type_id");
+
+                    while (select.firstChild) {
+                        select.removeChild(select.firstChild);
+                    }
+                    if (data.length > 0) {
+                        for (x = 0; x < data.length; x++) {
+                            var option = document.createElement("option");
+                            option.text = data[x].name;
+                            option.value = data[x].id;
+                            select.appendChild(option);
+                        }
+                    }
+                },
+                error: function (data) {
+                    console.log('Error: ', data);
+                }
+            });
         });
     </script>
 
@@ -124,7 +197,7 @@
                     data: formData,
                     success: function (data) {
                         console.log(data);
-                       $('#confirmBox').modal('hide')
+                       $('#confirmBox').modal('hide');
                         location.reload();
                     },
                     error: function (data) {
@@ -202,7 +275,6 @@
                 var id = $(this).val();
                 $('#deleteItem').val(id);
             });
-
         });
     </script>
 @stop

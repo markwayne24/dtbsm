@@ -32,7 +32,7 @@
                     <div class="box-header">
                         <h3 class="box-title">
                             <!-- Button trigger modal -->
-                            <button type="button" class="bootstrap-modal-form-open btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                            <button type="button" class="bootstrap-modal-form-open btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" id="modalFormOpen">
                                 <i class="glyphicon glyphicon-plus"></i>
                                 Create
                             </button>
@@ -45,6 +45,7 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>Category</th>
                                 <th>Type</th>
                                 <th>Name</th>
                                 <th>SKU</th>
@@ -58,6 +59,7 @@
                                 @foreach($inventories as $inventory)
                                     <tr id="inventory-{{$inventory->id}}">
                                         <td>{{$inventory->id}}</td>
+                                        <td>{{$inventory->items->itemTypes->categories or ''}}</td>
                                         <td>{{$inventory->items->itemTypes->name or ''}}</td>
                                         <td>{{$inventory->items->name or ''}}</td>
                                         <td>{{$inventory->sku}}</td>
@@ -65,7 +67,7 @@
                                         <td>{{$inventory->stocks}}</td>
                                         <td>
                                             <button class="btn btn-info btn-flat open-modal-edit"  value="{{$inventory->id}}"><i class="fa fa-pencil-square-o"></i></button>
-                                            <button type="button" class="btn btn-danger btn-flat deleteModal" data-toggle="modal" data-target=".bs-example-modal-sm" value="{{$inventory->id}}"><i class="fa fa-trash-o"></i></button>
+                                            <button type="button" class="btn btn-danger btn-flat btn-remove" data-toggle="modal" data-target=".bs-example-modal-sm" value="{{$inventory->id}}"><i class="fa fa-trash-o"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -74,6 +76,8 @@
                             <tfoot>
                             <tr>
                                 <th>Id</th>
+                                <th>Category</th>
+                                <th>Type</th>
                                 <th>Name</th>
                                 <th>SKU</th>
                                 <th>Price</th>
@@ -82,18 +86,34 @@
                             </tr>
                             </tfoot>
                         </table>
-                        <!-- Confirmation modal -->
-                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="confirmBox">
-                            <div class="modal-dialog modal-sm">
+                        <!-- Modal for delete -->
+                        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" id="confirmBox">
+                            <div class="modal-dialog" role="document">
                                 <div class="modal-content">
-                                    <h4 class="modal-header" id="gridSystemModalLabel">Are you sure you want to delete?</h4>
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Reason</h4>
+                                    </div>
                                     <div class="modal-body">
-                                        <button class="btn btn-danger btn-flat delete-item" id="deleteItem" value="">Yes</button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                        <form>
+                                            <div class="form-group {{ $errors->has('reason') ? ' has-error' : '' }}">
+                                                <label for="message-text" class="control-label">Message:</label>
+                                                <textarea class="form-control" id="reason"></textarea>
+                                                @if ($errors->has('reason'))
+                                                    <span class="help-block">
+                                                    <strong>{{ $errors->first('reason') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary btn-flat delete-item" value="" id="save">Continue</button>
                                     </div>
                                 </div>
                             </div>
-                        </div><!-- end confirmation-->
+                        </div>
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!-- /.col -->

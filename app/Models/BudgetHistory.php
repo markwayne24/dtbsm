@@ -11,7 +11,8 @@ class BudgetHistory extends Model
     protected $hidden = ['created_at', 'updated_at'];
     protected $fillable =[
         'user_id',
-        'item_id',
+        'inventory_id',
+        'reason',
         'action',
         'amount',
         'budget_year'
@@ -22,9 +23,9 @@ class BudgetHistory extends Model
         return $this->belongsTo('App\Models\User', 'user_id');
     }
 
-    public function items()
+    public function inventory()
     {
-       return $this->belongsTo('App\Models\Items','item_id');
+       return $this->belongsTo('App\Models\Items','inventory_id');
     }
 
 }

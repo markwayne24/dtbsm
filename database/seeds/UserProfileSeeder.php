@@ -30,6 +30,7 @@ class UserProfileSeeder extends Seeder
                 'middlename' => 'User',
                 'lastname' => 'User',
                 'address' => 'Capas',
+                'school' => 'Tarlac High School',
                 'gender' => 'female',
                 'contact_number' => '09194092030',
             ],
@@ -39,6 +40,7 @@ class UserProfileSeeder extends Seeder
                 'middlename' => $faker->lastName,
                 'lastname' => $faker->lastName,
                 'address' => $faker->address,
+                'school' => 'Capas High School',
                 'gender' => 'male',
                 'contact_number' => '09124592430'
             ]

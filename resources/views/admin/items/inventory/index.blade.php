@@ -12,9 +12,188 @@
     </script>
 
     <script>
+        //to make the menu active
+        $(document).ready(function(){
+            $('#activeSupplies').addClass('active');
+        });
+    </script>
+
+    <script>
         $(function () {
             //Initialize Select2 Elements
             $(".select2").select2();
+        });
+    </script>
+
+    <script>
+        //for categories
+        $('document').ready(function(){
+            $('#categories').change(function () {
+                var categories = $(this).val();
+                var data = {
+                    categories: categories
+                };
+                console.log(data);
+                $.ajax({
+                    type: 'GET',
+                    url: 'inventory-' + categories,
+                    success: function (data) {
+                        console.log(data);
+                        var select = document.getElementById("item_type");
+                        while (select.firstChild) {
+                            select.removeChild(select.firstChild);
+                        }
+                        if (data.length > 0) {
+                            for (x = 0; x < data.length; x++) {
+                                var option = document.createElement("option");
+                                var att = document.createAttribute("selected");
+                                option.text = data[x].name;
+                                option.value = data[x].id;
+                                select.appendChild(option);
+                            }
+                            document.getElementById("item_type").value = data[0].name;
+                        }
+                    },
+                    error: function (data) {
+                        console.log('Error: ', data);
+                    }
+                });
+            });
+
+            // for select categories
+            $('#categories').click(function () {
+                var categories = $(this).val();
+                var data = {
+                    categories: categories
+                };
+                console.log(data);
+                $.ajax({
+                    type: 'GET',
+                    url: 'inventory-' + categories,
+                    success: function (data) {
+                        console.log(data);
+                        var select = document.getElementById("item_type");
+                        while (select.firstChild) {
+                            select.removeChild(select.firstChild);
+                        }
+                        if (data.length > 0) {
+                            for (x = 0; x < data.length; x++) {
+                                var option = document.createElement("option");
+                                var att = document.createAttribute("selected");
+                                option.text = data[x].name;
+                                option.value = data[x].id;
+                                select.appendChild(option);
+                            }
+                            document.getElementById("item_type").value = data[0].name;
+                        }
+                    },
+                    error: function (data) {
+                        console.log('Error: ', data);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        //for names
+        $('document').ready(function(){
+            $('#item_type').change(function () {
+                var item_type_id = $(this).val();
+                var data = {
+                    item_type_id: item_type_id
+                };
+                console.log(data);
+                $.ajax({
+                    type: 'GET',
+                    url: 'inventory-names-' + item_type_id,
+                    success: function (data) {
+                        console.log(data);
+                        var select = document.getElementById("item_id");
+                        while (select.firstChild) {
+                            select.removeChild(select.firstChild);
+                        }
+                        if (data.length > 0) {
+                            for (x = 0; x < data.length; x++) {
+                                var option = document.createElement("option");
+                                var att = document.createAttribute("selected");
+                                option.text = data[x].name;
+                                option.value = data[x].id;
+                                select.appendChild(option);
+                            }
+                            document.getElementById("item_id").value = data[0].name;
+                        }
+                    },
+                    error: function (data) {
+                        console.log('Error: ', data);
+                    }
+                });
+            });
+
+            $('#item_type').click(function () {
+                var item_type_id = $(this).val();
+                var data = {
+                    item_type_id: item_type_id
+                };
+                console.log(data);
+                $.ajax({
+                    type: 'GET',
+                    url: 'inventory-names-' + item_type_id,
+                    success: function (data) {
+                        console.log(data);
+                        console.log(url);
+                        var select = document.getElementById("item_id");
+                        while (select.firstChild) {
+                            select.removeChild(select.firstChild);
+                        }
+                        if (data.length > 0) {
+                            for (x = 0; x < data.length; x++) {
+                                var option = document.createElement("option");
+                                var att = document.createAttribute("selected");
+                                option.text = data[x].name;
+                                option.value = data[x].id;
+                                select.appendChild(option);
+                            }
+                            document.getElementById("item_id").value = data[0].name;
+                        }
+                    },
+                    error: function (data) {
+                        console.log('Error: ', data);
+                    }
+                });
+            });
+        });
+
+        $('#modalFormOpen').click(function () {
+            var categories = $('#categories').val();
+            var data = {
+                categories: categories
+            };
+            console.log(data);
+            $.ajax({
+                type: 'GET',
+                url: 'inventory-' + categories,
+                success: function (data) {
+                    console.log(data);
+                    var select = document.getElementById("item_type");
+                    while (select.firstChild) {
+                        select.removeChild(select.firstChild);
+                    }
+                    if (data.length > 0) {
+                        for (x = 0; x < data.length; x++) {
+                            var option = document.createElement("option");
+                            var att = document.createAttribute("selected");
+                            option.text = data[x].name;
+                            option.value = data[x].id;
+                            select.appendChild(option);
+                        }
+                        document.getElementById("item_type").value = data[0].name;
+                    }
+                },
+                error: function (data) {
+                    console.log('Error: ', data);
+                }
+            });
         });
     </script>
     <script>
@@ -67,39 +246,73 @@
                 resetModalFormErrors();
             });
 
+            $('.btn-remove').click(function(){
+                var id = $(this).val();
+                $('.delete-item').val(id) ;
+                $('#confirmBox').modal('show');
+            });
+
+            // Prepare reset.
+            function resetModalFormErrors() {
+                $('.form-group').removeClass('has-error');
+                $('.form-group').find('.help-block').remove();
+            }
+
             //delete task and remove it from list
             $('.delete-item').click(function(){
                 var id = $(this).val();
                 var parent = $('#inventory-'+id);
-
+                var reason = {
+                    inventory_id: id,
+                    reason: $('#reason').val()
+                };
+                console.log(reason);
                 $.ajax({
                     type: "DELETE",
-                    url: url + '/' + id ,
-                    data: {"_token": "{{ csrf_token() }}" },
-
-                    beforeSend: function() {
-                        parent.animate({'backgroundColor':'#fb6c6c'},300);
-                    },
-
+                    url: 'inventory/delete/' + reason.inventory_id,
+                    data: reason,
                     success: function(data) {
+                        console.log(data);
                             $('#confirmBox').modal('hide');
-                        parent.fadeOut(300,function() {
-                            parent.remove();
-                        });
-                        var budgetLeft = [
-                                '<h3 class="budget-left"><center>Budget Left:' + data.budget_year + '</center></h3>'
-                        ];
-                        $('.budget-left').replaceWith(budgetLeft).html();
+                            parent.fadeOut(300,function() {
+                                parent.remove();
+                            });
+                            var budgetLeft = [
+                                '<h3 class="budget-left"><center>Budget Left: ' + data.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + '</center></h3>'
+                            ];
+                            $('.budget-left').replaceWith(budgetLeft).html();
                     },
                     error: function (data) {
                         console.log('Error:', data);
                     }
-                });
-            });
+                }).always(function(response, status) {
 
-            $('.deleteModal').click(function() {
-                var id = $(this).val();
-                $('#deleteItem').val(id);
+                    // Reset errors.
+                    resetModalFormErrors();
+
+                    // Check for errors.
+                    if (response.status == 422) {
+                        var errors = $.parseJSON(response.responseText);
+
+                        // Iterate through errors object.
+                        $.each(errors, function(field, message) {
+                            console.error(field+': '+message);
+                            var formGroup = $('[name='+field+']', form).closest('.form-group');
+                            formGroup.addClass('has-error').append('<p class="help-block">'+message+'</p>');
+                        });
+
+                        // Reset submit.
+                        if (submit.is('button')) {
+                            submit.html(submitOriginal);
+                        } else if (submit.is('input')) {
+                            submit.val(submitOriginal);
+                        }
+
+                        // If successful, reload.
+                    } else {
+                        // location.reload();
+                    }
+                });
             });
 
             $('form.bootstrap-modal-form').on('submit', function(submission) {
@@ -153,7 +366,7 @@
                 var type = "POST"; //for creating new resource
                 var inventory_id = $('#inventory_id').val();
                 var my_url = "inventory";
-                var action = 'Add'
+                var action = 'Add';
 
                 if (state == "edit"){
                     type = 'PUT';
@@ -162,10 +375,11 @@
                 }
 
                 var formData = {
+                    item_type:$('#item_type').val(),
                     item_id:$('#item_id').val(),
                     price:  $('#price').val(),
                     stocks: $('#stocks').val(),
-                    action: action,
+                    action: action
                 };
 
                 console.log(formData);
@@ -175,7 +389,7 @@
                     data: formData,
                     success: function (data) {
                         console.log(data);
-                        $('#myModal').modal('hide')
+                        $('#myModal').modal('hide');
                         location.reload();
                     },
                     error: function (data) {

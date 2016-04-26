@@ -9,6 +9,14 @@
                     <h4 class="modal-title" id="myModalLabel">Create Item Types</h4>
                 </div>
                 <div class="modal-body">
+                    <div class="form-group">
+                        <label for="categories">Categories</label>
+                        <select class="form-control select2" style="width: 100%;" name="categories" id="categories">
+                            <option value="Facilities">Facilities</option>
+                            <option value="Equipments">Equipments</option>
+                            <option value="School Supplies">School Supplies</option>
+                        </select>
+                    </div>
                     <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                         <label for="exampleInputPassword1">Type Name</label>
                         <input type="text" class="form-control" placeholder="Enter Type of Items" name="name" id="name">

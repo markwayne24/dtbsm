@@ -5,7 +5,7 @@
             <form role="form" class="bootstrap-modal-form">
                 <div class="modal-header bg-primary">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Create Users</h4>
+                    <h4 class="modal-title" id="myModalLabel">Users info</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -27,14 +27,18 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="exampleInputLastName">Last Name</label>
+                                <label for="InputLastName">Last Name</label>
                                 <label class="form-control" id="infoLastName"></label>
                             </div>
                         </div>
                     </div><!--end of the row-->
                     <div class="form-group">
-                        <label for="exampleInputAddress">Address</label>
-                        <label class="form-control" id="infoAddress">
+                        <label for="InputAddress">Address</label>
+                        <label class="form-control" id="infoAddress"></label>
+                    </div>
+                    <div>
+                        <label for="School">School</label>
+                        <label class="form-control" id="infoSchool"></label>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
