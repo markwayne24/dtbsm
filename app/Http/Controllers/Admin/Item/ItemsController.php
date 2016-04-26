@@ -27,6 +27,12 @@ class ItemsController extends Controller
         return view('admin.items.items.index')->with('items', $items)->with('itemTypes', $itemTypes);
     }
 
+    public function getCategories($categories)
+    {
+        $categories = ItemType::where('categories',$categories)->get();
+        return response()->json($categories);
+    }
+
     public function store(StoreItemsRequest $request)
     {
         $input = $request->all();
