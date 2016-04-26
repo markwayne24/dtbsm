@@ -37,6 +37,9 @@ class DashboardController extends Controller
         $inventories = Inventory::all();
         $requests = Requests::all();
         $budgets = Budget::all()->first();
-        return view('admin.dashboard.index', compact('users','itemTypes','items','inventories','requests','budgets'));
+
+        return view('admin.dashboard.index', compact('users','itemTypes','items','inventories','requests','budgets'),[$budgets]);
     }
+
+
 }
