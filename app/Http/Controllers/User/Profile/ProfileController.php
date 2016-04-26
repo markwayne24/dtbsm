@@ -77,6 +77,7 @@ class ProfileController extends Controller
                     'middlename'=> $input['middlename'],
                     'lastname' => $input['lastname'],
                     'address' => $input['address'],
+                    'school' => $input['school'],
                     'gender'=>$input['gender'],
                     'contact_number'=>$input['contact_number'],
                 ];

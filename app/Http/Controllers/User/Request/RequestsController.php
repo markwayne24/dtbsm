@@ -30,7 +30,8 @@ class RequestsController extends Controller
     {
         $this->authId = Auth::user()->id;
         $id = Auth::user()->id;
-        $requests = Requests::where('user_id', $this->authId)->get();
+        $requests = Requests::where('user_id', $this->authId)
+            ->orderBy('created_at', 'ASC')->get();
 
         return view('users.requests.index')->with('requests',$requests);
     }
