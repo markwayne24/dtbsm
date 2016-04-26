@@ -7,9 +7,13 @@ use App\Models\Budget;
 use App\Models\BudgetHistory;
 use App\Models\Items;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Session\SessionManager;
 use App\Http\Controllers\Controller;
 use App\Models\Inventory;
+use Illuminate\Support\Facades\Validator;
+use App\Models\ItemType;
+use App\Http\Requests\InventoryReasonRequest;
 use Illuminate\Support\Facades\Auth;
 
 class InventoryController extends Controller
@@ -23,10 +27,26 @@ class InventoryController extends Controller
 
     public function index()
     {
-        $inventories = Inventory::with('items')->get();
+        $inventories = Inventory::with('items')
+            ->orderBy('created_at','ASC')
+            ->get();
         $items = Items::with('itemTypes')->get();
         $budgetLeft = Budget::all()->first();
         return view('admin.items.inventory.index', compact('inventories','items','budgetLeft'));
+    }
+
+    public function getCategories($categories)
+    {
+        $categories = ItemType::with('items')
+            ->where('categories',$categories)
+            ->get();
+        return response()->json($categories);
+    }
+
+    public function getItemNames($names)
+    {
+        $name = Items::where('item_type_id',$names)->get();
+        return response()->json($name);
     }
 
     public function store(StoreInventoryRequest $request)
@@ -42,26 +62,26 @@ class InventoryController extends Controller
             $budget->save();
 
             $dataInventory = [
-                'item_id'=> $input['item_id'],
+                'item_id'=>$input['item_id'],
                 'price'=> $input['price'],
                 'stocks' =>$input['stocks']
             ];
 
+            $inventories = Inventory::create($dataInventory);
+            $id = $inventories->id;
+            $inventories->sku = Carbon::now()->format('mdY'). '-Item-' . $id ;
+            $inventories->save();
+
             $budgetHistories = [
                 'user_id' => Auth()->user()->id,
-                'item_id'=>$input['item_id'],
+                'inventory_id'=> $id,
                 'action'=> $input['action'],
                 'amount' => $amount,
                 'budget_year'=> $budgetLeft
             ];
 
             BudgetHistory::create($budgetHistories);
-            $inventories = Inventory::create($dataInventory);
 
-
-            $id = $inventories->id;
-            $inventories->sku = Carbon::now()->format('mdY'). '-Item-' . $id ;
-            $inventories->save();
             \Session::flash('flash_message','Successfully created Inventory.');
 
                 return response()->json($inventories);
@@ -99,7 +119,7 @@ class InventoryController extends Controller
 
             $budgetHistories = [
                 'user_id' => Auth()->user()->id,
-                'item_id'=>$input['item_id'],
+                'inventory_id'=> $inventory->id,
                 'action'=> $input['action'],
                 'amount' => $amount,
                 'budget_year'=> $budgetLeft
@@ -117,9 +137,12 @@ class InventoryController extends Controller
         }
     }
 
-    public function destroy($inventory)
+    public function destroy(Request $request, $inventory_id)
     {
-        $inventories = Inventory::where('id',$inventory)->first();
+        $reason = $request->all();
+        $this->delReason($reason);
+
+        $inventories = Inventory::where('id',$inventory_id)->first();
         $amount = $inventories->price * $inventories->stocks;
         $budget = Budget::all()->first();
         $budgetAmount = $budget->amount;
@@ -129,17 +152,29 @@ class InventoryController extends Controller
         $budget->save();
 
         $budgetHistories = [
-            'user_id' => Auth()->user()->id,
-            'item_id'=> 1,
             'action'=> 'Delete',
             'amount' => $amount,
             'budget_year'=> $budgetLeft
         ];
 
-        BudgetHistory::create($budgetHistories);
-        $inventories = Inventory::where('id',$inventory)->delete();
+        BudgetHistory::findOrFail($inventory_id)->update($budgetHistories);
+        Inventory::where('id',$inventory_id)->delete();
+        \Session::flash('flash_message2','Successfully deleted');
 
-        return response()->json($budgetHistories);
+        return response()->json($budgetLeft);
+    }
+
+    private function delReason($reason)
+    {
+        $data = [
+            'user_id'=>Auth()->user()->id,
+            'inventory_id'=> $reason['inventory_id'],
+            'reason'=>$reason['reason']
+        ];
+
+        $saveReason = BudgetHistory::create($data);
+
+        return $saveReason;
     }
 
 }
