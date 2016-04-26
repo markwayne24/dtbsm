@@ -82,7 +82,7 @@ Route::group(['middleware' => 'web'], function () {
         });
 
         //Requests
-        Route::group(['prefix'=>'users'], function(){
+        Route::group(['prefix'=>'users','middleware'=>'admin'], function(){
             Route::group(['prefix'=>'requests'], function() {
                 Route::get('/','User\Request\RequestsController@index');
                 Route::get('/add', 'User\Request\RequestsController@add');
