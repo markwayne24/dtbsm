@@ -52,6 +52,9 @@ class VerifyController extends Controller
         }
 
         if ($code['code'] == $verificationCode) {
+
+            $this->updateCodeToComplete(\Auth::user()->id);
+
             // Security code passed...
 
             \Session::set('verified', true);
@@ -68,6 +71,13 @@ class VerifyController extends Controller
             $errors = new MessageBag(['code' => ['Incorrect code!']]);
             return redirect()->back()->withErrors($errors)->withInput();
         }
+    }
+
+    private function updateCodeToComplete($userId)
+    {
+        $code = VerficationCode::where('user_id', $userId)->update(['status' => 'completed']);
+
+        return $code;
     }
 
     private function sendSMS($number, $code)
