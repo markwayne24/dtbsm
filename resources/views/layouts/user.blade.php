@@ -55,8 +55,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="" >
-            <img src="/assets/dist/img/logo.png" class="logo" alt="Logo">
+        <a href="" class="logo">
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
