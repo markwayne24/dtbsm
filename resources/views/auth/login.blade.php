@@ -1,21 +1,33 @@
 @extends('layouts.app')
 @section('style')
     <style>
-        .logo {
-            background: rgba(0,0,0, .3);
-
+/*        .login-page{
+            background-color: darkmagenta;
         }
+        .login-box-msg{
+            color:black;
+        }*/
+        #bgImages{
+            left: 10%;
+            top: 10%;
+            width: 80%;
+            height: 70%;
+            opacity: .3;
+            position:absolute;
+            background-repeat: no-repeat;
+        }
+
     </style>
 @stop
 @section('content')
+    <div class="container">
     <div class="login-box">
-
         <div class="login-box-body">
 
             <h3 class="login-box-msg">DepEd Tarlac Budget and Supply Monitoring</h3>
             <div class="login-logo">
                 <a href="" >
-                    <img src="/assets/dist/img/logo.png" class="logo" alt="Logo">
+
                 </a>
             </div><!-- /.login-logo -->
 
@@ -57,5 +69,6 @@
             <a href="#">I forgot my password</a><br>
 
         </div><!-- /.login-box-body -->
+        </div>
     </div><!-- /.login-box -->
 @stop
