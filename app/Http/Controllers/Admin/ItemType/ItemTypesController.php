@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\ItemType;
 use App\Models\ItemType;
 use Illuminate\Http\Request;
 
-use App\Http\Requests\StoreItemsRequest;
+use App\Http\Requests\StoreItemTypesRequest;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\MessageBag;
@@ -25,13 +25,16 @@ class ItemTypesController extends Controller
         return view('admin.items.itemTypes.index')->with('types', $types);
     }
 
-    public function store(StoreItemsRequest $request){
+    public function store(StoreItemTypesRequest $request){
         $input = $request->all();
-        $item_type = ItemType::create($input);
+        $data = [
+            'categories'=>$input['categories'],
+            'name'=>$input['name']
+        ];
+        $item_type = ItemType::create($data);
         \Session::flash('flash_message','Successfully saved.');
 
-        return response()->json($item_type);
-
+        return response()->json($data);
     }
 
     public function edit($item_types)
@@ -41,7 +44,7 @@ class ItemTypesController extends Controller
         return response()->json($items);
     }
 
-    public function update(StoreItemsRequest $request, $item_types)
+    public function update(StoreItemTypesRequest $request, $item_types)
     {
         $input = $request->all();
         $item_type = ItemType::where('id', $item_types)->update($input);
