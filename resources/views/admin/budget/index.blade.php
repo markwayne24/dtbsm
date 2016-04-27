@@ -55,8 +55,8 @@
                                             <td>{{$budget->inventory->name or ''}}</td>
                                             <td>{{$budget->reason or ''}}
                                             <td>{{$budget->action}}</td>
-                                            <td>{{$budget->amount}}</td>
-                                            <td>{{$budget->budget_year}}</td>
+                                            <td>P {{number_format($budget->amount,2)}}</td>
+                                            <td>P {{number_format($budget->budget_year,2)}}</td>
                                             <td>{{$budget->created_at->format('m-d-Y')}}</td>
                                         </tr>
                                     @endforeach
