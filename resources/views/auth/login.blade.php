@@ -1,12 +1,22 @@
 @extends('layouts.app')
 @section('style')
     <style>
-/*        .login-page{
-            background-color: darkmagenta;
+        .login-page{
+            background-color: gainsboro;
         }
+
         .login-box-msg{
             color:black;
-        }*/
+            font-family: "Arial Rounded MT Bold";
+            text-shadow: 5px 10px 10px grey;
+        }
+
+        .login-box .login-box-body{
+            box-shadow: 5px 10px 10px 2px grey;
+            border-radius: 5px;
+            border: 1px solid grey;
+        }
+
         #bgImages{
             left: 10%;
             top: 10%;
@@ -23,11 +33,9 @@
     <div class="container">
     <div class="login-box">
         <div class="login-box-body">
-
-            <h3 class="login-box-msg">DepEd Tarlac Budget and Supply Monitoring</h3>
             <div class="login-logo">
                 <a href="" >
-
+                    <h3 class="login-box-msg"><strong>DepEd Tarlac Budget and Supply Monitoring</strong></h3>
                 </a>
             </div><!-- /.login-logo -->
 
