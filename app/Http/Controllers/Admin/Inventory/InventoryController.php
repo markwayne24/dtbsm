@@ -119,7 +119,7 @@ class InventoryController extends Controller
 
             $budgetHistories = [
                 'user_id' => Auth()->user()->id,
-                'inventory_id'=> $inventory->id,
+                'inventory_id'=> $inventory->item_id,
                 'action'=> $input['action'],
                 'amount' => $amount,
                 'budget_year'=> $budgetLeft
@@ -140,9 +140,9 @@ class InventoryController extends Controller
     public function destroy(Request $request, $inventory_id)
     {
         $reason = $request->all();
-        $saveReason = $this->delReason($reason);
-
         $inventories = Inventory::where('id',$inventory_id)->first();
+        $saveReason = $this->delReason($reason,$inventories->item_id);
+
         $amount = $inventories->price * $inventories->stocks;
         $budget = Budget::all()->first();
         $budgetAmount = $budget->amount;
@@ -164,11 +164,11 @@ class InventoryController extends Controller
         return response()->json($budgetLeft);
     }
 
-    private function delReason($reason)
+    private function delReason($reason,$item_id)
     {
         $data = [
             'user_id'=>Auth()->user()->id,
-            'inventory_id'=> $reason['inventory_id'],
+            'inventory_id'=> $item_id,
             'reason'=>$reason['reason']
         ];
 
