@@ -365,6 +365,7 @@
                 var state = $('.btn-save').val();
                 var type = "POST"; //for creating new resource
                 var inventory_id = $('#inventory_id').val();
+                var item_id = $('#item_id').val();
                 var my_url = "inventory";
                 var action = 'Add';
 
@@ -376,7 +377,7 @@
 
                 var formData = {
                     item_type:$('#item_type').val(),
-                    item_id:$('#item_id').val(),
+                    item_id:item_id,
                     price:  $('#price').val(),
                     stocks: $('#stocks').val(),
                     action: action
