@@ -109,7 +109,7 @@
                     </a>
 
                 </li>
-                <li class="treeview">
+                <li class="treeview" id="activeRequests">
                     <a href="">
                         <i class="fa fa-plus-square"></i>
                         <span>Requests</span><i class="fa fa-angle-left pull-right"></i>
