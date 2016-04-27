@@ -89,26 +89,29 @@ class RequestsController extends Controller
 
     public function pending()
     {
+        $user = Auth()->user()->id;
         $requests = Requests::with('user')
             ->where('status','Pending')
-            ->where('user_id',$this->authId)
+            ->where('user_id',$user)
             ->get();
         return view('users.requests.index')->with('requests',$requests);
     }
 
     public function approved()
     {
+        $user = Auth()->user()->id;
         $requests = Requests::with('user')
             ->where('status','Approved')
-            ->where('user_id',$this->authId)
+            ->where('user_id',$user)
             ->get();
         return view('users.requests.index')->with('requests',$requests);
     }
     public function declined()
     {
+        $user = Auth()->user()->id;
         $requests = Requests::with('user')
             ->where('status','Declined')
-            ->where('user_id', $this->authId)
+            ->where('user_id', $user)
             ->get();
         return view('users.requests.index')->with('requests',$requests);
     }
