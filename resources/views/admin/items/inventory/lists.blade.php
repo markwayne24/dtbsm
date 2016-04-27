@@ -39,7 +39,7 @@
                             </h3>
 
                     </div><!-- /.box-header -->
-                    <h3 class="budget-left"><center>Budget Left: {{$budgetLeft->amount}}</center></h3>
+                    <h3 class="budget-left"><center>Budget Left: P {{number_format($budgetLeft->amount,2)}}</center></h3>
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -63,10 +63,10 @@
                                         <td>{{$inventory->items->itemTypes->name or ''}}</td>
                                         <td>{{$inventory->items->name or ''}}</td>
                                         <td>{{$inventory->sku}}</td>
-                                        <td>{{$inventory->price}}</td>
+                                        <td>P {{number_format($inventory->price,2)}}</td>
                                         <td>{{$inventory->stocks}}</td>
                                         <td>
-                                            <button class="btn btn-info btn-flat open-modal-edit"  value="{{$inventory->id}}"><i class="fa fa-pencil-square-o"></i></button>
+                                            <button class="btn btn-info btn-flat open-modal-edit" value="{{$inventory->id}}"><i class="fa fa-pencil-square-o"></i></button>
                                             <button type="button" class="btn btn-danger btn-flat btn-remove" data-toggle="modal" data-target=".bs-example-modal-sm" value="{{$inventory->id}}"><i class="fa fa-trash-o"></i></button>
                                         </td>
                                     </tr>
