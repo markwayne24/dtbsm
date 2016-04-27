@@ -23,7 +23,7 @@
                     <!-- small box -->
                     <div class="small-box bg-aqua">
                         <div class="inner">
-                            <h3>{{--{{$requests->count()}}--}}</h3>
+                            <h3>{{$requests->count()}}</h3>
                             <p>Requests</p>
                         </div>
                         <div class="icon">
@@ -36,7 +36,7 @@
                     <!-- small box -->
                     <div class="small-box bg-green">
                         <div class="inner">
-                            <h3>{{--{{$inventories->count()}}--}}<sup style="font-size: 20px"></sup></h3>
+                            <h3>{{$inventories->count()}}<sup style="font-size: 20px"></sup></h3>
                             <p>Inventories</p>
                         </div>
                         <div class="icon">
@@ -49,7 +49,7 @@
                     <!-- small box -->
                     <div class="small-box bg-yellow">
                         <div class="inner">
-                            <h3>{{--{{ $users->count() }}--}}</h3>
+                            <h3>{{ $users->count() }}</h3>
                             <p>Registered Users</p>
                         </div>
                         <div class="icon">
@@ -62,7 +62,7 @@
                     <!-- small box -->
                     <div class="small-box bg-red">
                         <div class="inner">
-                            <h3 id="budget">{{--{{$budgets->amount}}--}}</h3>
+                            <h3 id="budget">{{ number_format($budgets->amount,2)}}</h3>
                             <p>Budget Left</p>
                         </div>
                         <div class="icon">
