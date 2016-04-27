@@ -102,5 +102,5 @@ Route::group(['middleware' => 'web'], function () {
             'uses' => 'User\Profile\ProfileController@getUserImage',
             'as'   => 'account.image'
         ]);
-    });
+    }); //end of verify
 });
