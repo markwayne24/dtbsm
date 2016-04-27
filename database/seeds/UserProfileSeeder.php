@@ -22,28 +22,8 @@ class UserProfileSeeder extends Seeder
                 'lastname' => 'Administrator',
                 'address' => 'Tarlac',
                 'gender' => 'male',
-                'contact_number' => '09124092030',
+                'contact_number' => '09167563096',
             ],
-            [
-                'user_id'  => 2,
-                'firstname' => 'User',
-                'middlename' => 'User',
-                'lastname' => 'User',
-                'address' => 'Capas',
-                'school' => 'Tarlac High School',
-                'gender' => 'female',
-                'contact_number' => '09194092030',
-            ],
-            [
-                'user_id'  => 3,
-                'firstname' => $faker->firstName,
-                'middlename' => $faker->lastName,
-                'lastname' => $faker->lastName,
-                'address' => $faker->address,
-                'school' => 'Capas High School',
-                'gender' => 'male',
-                'contact_number' => '09124592430'
-            ]
         ];
 
         foreach ($userProfiles as $userProfile) {
