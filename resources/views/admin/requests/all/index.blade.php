@@ -32,6 +32,7 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>School</th>
                                 <th>User</th>
                                 <th>Date</th>
                                 <th>Status</th>
@@ -45,6 +46,7 @@
                                 @foreach($requests as $request )
                                     <tr id="item-{{$request->id}}">
                                         <td>{{$request->id}}</td>
+                                        <td>{{$request->user->userProfile->school}}</td>
                                         <td>{{$request->user->userProfile->lastname}},{{$request->user->userProfile->firstname}} {{$request->user->userProfile->middlename}}.</td>
                                         <td>{{$request->updated_at->format('m/d/Y')}} - {{$request->created_at->diffForHumans()}}</td>
                                         @if($request->status == 'Approved')
@@ -66,8 +68,12 @@
                             <tfoot>
                             <tr>
                                 <th>Id</th>
-                                <th>Types</th>
-                                <th>Name</th>
+                                <th>School</th>
+                                <th>User</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Reason</th>
+                                <th>Date Approve/Decline</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
