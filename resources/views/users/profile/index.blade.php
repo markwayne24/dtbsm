@@ -2,12 +2,12 @@
 
 @section('style')
 <style>
-    #contentBg {
+    .contentBg {
         left: 20%;
-        top: 10%;
+        top: 8%;
         width: 80%;
         height: 100%;
-        opacity: 0.6;
+        opacity: .3;
         position:absolute;
         background-repeat: no-repeat;
     }
