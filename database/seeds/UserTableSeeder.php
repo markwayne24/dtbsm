@@ -27,35 +27,7 @@ class UserTableSeeder extends Seeder
                     'lastname' => 'Administrator',
                     'address' => 'Tarlac',
                     'gender' => 'male',
-                    'contact_number' => '09124092030'
-                ]
-            ],
-            [
-                'group_id' => 2,
-                'email' => 'user@gmail.com',
-                'password' => Hash::make('user'),
-                'remember_token' => str_random(10),
-                'profile'   => [
-                    'firstname' => 'User',
-                    'middlename' => 'User',
-                    'lastname' => 'User',
-                    'address' => 'Capas',
-                    'gender' => 'female',
-                    'contact_number' => '09194092030'
-                ]
-            ],
-            [
-                'group_id' => 2,
-                'email' => $faker->email,
-                'password' => Hash::make('user'),
-                'remember_token' => str_random(10),
-                'profile'   => [
-                    'firstname' => $faker->firstName,
-                    'middlename' => $faker->lastName,
-                    'lastname' => $faker->lastName,
-                    'address' => $faker->address,
-                    'gender' => 'male',
-                    'contact_number' => '09124592430'
+                    'contact_number' => '09167563096'
                 ]
             ]
         ];
