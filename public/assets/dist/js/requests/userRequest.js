@@ -2,6 +2,10 @@ $(function () {
     $("#example1").DataTable();
 });
 
+$(document).ready(function(){
+    $('#activeRequests').addClass('active');
+});
+
 $(function () {
     //Initialize Select2 Elements
     $(".select2").select2();
@@ -41,7 +45,7 @@ $(".maxmin").each(function () {
 });
 
 $('document').ready(function(){
-    var url = 'requests';
+    var url = '/users/requests';
 
     //for viewing item requests
     $('.btn-view').click(function(){
