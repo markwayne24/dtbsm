@@ -12,9 +12,9 @@
     @include('users.profile.form')
     <!-- Main content -->
     <section class="content">
+        <img class="contentBg" src="/assets/dist/img/profileBg.png">
         <div class="row">
             <div class="col-md-3">
-
                 <!-- Profile Image -->
                 <div class="box box-primary">
                     <div class="box-body box-profile">
