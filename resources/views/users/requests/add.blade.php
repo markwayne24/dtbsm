@@ -77,7 +77,7 @@
                                             <td class="type">{{$inventory->items->itemTypes->name or ''}}</td>
                                             <td class="name">{{$inventory->items->name or ''}}</td>
                                             <td class="sku">{{$inventory->sku}}</td>
-                                            <td class="price">{{$inventory->price}}</td>
+                                            <td class="price">P {{number_format($inventory->price,2)}}</td>
                                             <td class="quantity">{{$inventory->stocks}}</td>
                                             <td>
                                                 <input type="number" class=" form-control maxmin" min="1" step="1.00" value="1" max="{{$inventory->stocks}}" intOnly="true" name="quantity" id="quantity"/>
