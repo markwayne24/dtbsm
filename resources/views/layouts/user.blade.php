@@ -68,7 +68,11 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="/assets/dist/img/avatar5.png" class="user-image" alt="User Image">
+                            @if(Auth::user()->userProfile->gender == "male")
+                                <img src="/assets/dist/img/avatar5.png" class="user-image" alt="User Image">
+                            @elseif(Auth::user()->userProfile->gender == "female")
+                                <img src="/assets/dist/img/avatar2.png" class="user-image" alt="User Image">
+                            @endif
                             <span class="hidden-xs">{{ Auth::user()->userProfile->firstname  }}</span>
                         </a>
                     </li>
