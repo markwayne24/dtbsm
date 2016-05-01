@@ -46,6 +46,12 @@
                             <h4>
                                 <label>Name: {{$requested->user->userProfile->firstname}}, {{$requested->user->userProfile->firstname}} {{$requested->user->userProfile->middlename}}.</label>
                             </h4>
+                            <h5>
+                                <label>District: {{$requested->district}}</label>
+                            </h5>
+                            <h5>
+                                <label>School: {{$requested->school}}</label>
+                            </h5>
                                     <label>Reason if declined: {{$requested->reason}}</label>
                         </div><!-- /.box-body --></br>
                         <table id="example1" class="table table-bordered table-striped">
@@ -88,7 +94,7 @@
                                         <button class="btn btn-success btn-flat btn-approved" value="{{$request->request_id}}" name="Approved">Approve</button>
                                         <button class="btn btn-danger btn-flat btn-declined" value="{{$request->request_id}}" name="Declined">Decline</button>
                                     @else
-                                        <a href="{{url('/admin/dashboard/requests')}}" class="btn btn-primary btn-flat">Back</a>
+                                        <a href="{{url('/admin/dashboard/requests/'.$request->requests->district)}}" class="btn btn-primary btn-flat">Back</a>
                                     @endif
                                 </td>
                             </div>
