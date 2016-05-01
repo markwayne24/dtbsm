@@ -28,9 +28,8 @@ class RequestsController extends Controller
 
     public function index()
     {
-        $this->authId = Auth::user()->id;
         $id = Auth::user()->id;
-        $requests = Requests::where('user_id', $this->authId)
+        $requests = Requests::where('user_id', $id)
             ->orderBy('created_at', 'ASC')->get();
 
         return view('users.requests.index')->with('requests',$requests);
@@ -42,7 +41,6 @@ class RequestsController extends Controller
 
         return view('users.requests.add')->with('inventories',$inventories);
     }
-
 
     public function view($id)
     {
