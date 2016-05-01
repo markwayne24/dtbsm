@@ -44,7 +44,9 @@ class ItemsController extends Controller
 
     public function edit($itemId)
     {
-        $items = Items::findOrFail($itemId);
+        $items = Items::with('itemTypes')
+            ->where('id',$itemId)
+            ->first();
 
         return response()->json($items);
     }
