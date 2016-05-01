@@ -1,5 +1,19 @@
 @extends('layouts.app')
 
+@section('style')
+    <style>
+        #bgImages{
+            left: 10%;
+            top: 10%;
+            width: 80%;
+            height: 70%;
+            opacity: .3;
+            position:absolute;
+            background-repeat: no-repeat;
+        }
+    </style>
+@stop
+
 @section('content')
 <div class="container">
     <div class="row">
