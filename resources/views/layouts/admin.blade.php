@@ -127,9 +127,9 @@
                         <span class="label label-primary pull-right"></span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ url('/admin/dashboard/supplies/item-types') }}">Item Types</a></li>
-                        <li><a href="{{ url('/admin/dashboard/supplies/items') }}">Items</a></li>
-                        <li><a href="{{ url('/admin/dashboard/supplies/inventory') }}">Inventory</a></li>
+                        <li id="itemTypes"><a href="{{ url('/admin/dashboard/supplies/item-types') }}">Item Types</a></li>
+                        <li id="items"><a href="{{ url('/admin/dashboard/supplies/items') }}">Items</a></li>
+                        <li id="inventories"><a href="{{ url('/admin/dashboard/supplies/inventory') }}">Inventory</a></li>
                     </ul>
 
                 </li>
@@ -140,11 +140,24 @@
                         <span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>
                     </a>
                     <ul class="treeview-menu">
+                        <li id="district1"><a href="{{ url('/admin/dashboard/requests/1') }}">District 1 @if(\App\Models\Requests::where('status','Pending')->where('district',1)->count() > 0)<span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>@endif</a></li>
+                        <li id="district2"><a href="{{ url('/admin/dashboard/requests/2') }}">District 2 @if(\App\Models\Requests::where('status','Pending')->where('district',2)->count() > 0)<span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>@endif</a></li>
+                        <li id="district3"><a href="{{ url('/admin/dashboard/requests/3') }}">District 3 @if(\App\Models\Requests::where('status','Pending')->where('district',3)->count() > 0)<span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>@endif</a></li>
+                        <li id="district4"><a href="{{ url('/admin/dashboard/requests/4') }}">District 4 @if(\App\Models\Requests::where('status','Pending')->where('district',4)->count() > 0)<span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>@endif</a></li>
+                        <li id="district5"><a href="{{ url('/admin/dashboard/requests/5') }}">District 5 @if(\App\Models\Requests::where('status','Pending')->where('district',5)->count() > 0)<span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>@endif</a></li>
+                        <li id="district6"><a href="{{ url('/admin/dashboard/requests/6') }}">District 6 @if(\App\Models\Requests::where('status','Pending')->where('district',6)->count() > 0)<span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>@endif</a></li>
+                        <li id="district7"><a href="{{ url('/admin/dashboard/requests/7') }}">District 7 @if(\App\Models\Requests::where('status','Pending')->where('district',7)->count() > 0)<span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>@endif</a></li>
+                        <li id="district8"><a href="{{ url('/admin/dashboard/requests/8') }}">District 8 @if(\App\Models\Requests::where('status','Pending')->where('district',8)->count() > 0)<span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>@endif</a></li>
+                        <li id="district9"><a href="{{ url('/admin/dashboard/requests/9') }}">District 9 @if(\App\Models\Requests::where('status','Pending')->where('district',9)->count() > 0)<span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>@endif</a></li>
+                        <li id="district10"><a href="{{ url('/admin/dashboard/requests/10') }}">District 10 @if(\App\Models\Requests::where('status','Pending')->where('district',10)->count() > 0)<span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>@endif</a></li>
+                    </ul>
+
+{{--                    <ul class="treeview-menu">
                         <li><a href="{{ url('/admin/dashboard/requests') }}">All</a></li>
                         <li><a href="{{ url('/admin/dashboard/requests/pending') }}">Pending</a></li>
                         <li><a href="{{ url('/admin/dashboard/requests/approved') }}">Approve</a></li>
                         <li><a href="{{ url('/admin/dashboard/requests/declined') }}">Decline</a></li>
-                    </ul>
+                    </ul>--}}
 
                 </li>
 
