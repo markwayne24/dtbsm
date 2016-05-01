@@ -50,7 +50,6 @@
                             option.value = data[x].id;
                             select.appendChild(option);
                         }
-                        document.getElementById("item_type_id").value = data[0].name;
                     }
                 },
                 error: function (data) {
@@ -93,6 +92,10 @@
 
     <script>
         $(document).ready(function(){
+            if(window.location.href.toString().split(window.location.host)[1] == '/admin/dashboard/supplies/items'){
+                $('#items').addClass('active');
+            }
+
             var url = "items";
             var options;
 
@@ -103,13 +106,61 @@
             }
 
             $('.open-modal-edit').click(function(){
-                var id = $(this).val();
+                var categories = $(this).closest('tr').find('td:nth-child(2)').text();
+                var data = {
+                    categories: categories
+                };
 
+                $.ajax({
+                    type: 'GET',
+                    url: 'items-' + categories,
+                    success: function (data) {
+                        console.log(data);
+                        var select = document.getElementById("item_type_id");
+                        while (select.firstChild) {
+                            select.removeChild(select.firstChild);
+                        }
+                        if (data.length > 0) {
+                            for (x = 0; x < data.length; x++) {
+                                var option = document.createElement("option");
+                                var att = document.createAttribute("selected");
+                                option.text = data[x].name;
+                                option.value = data[x].id;
+                                select.appendChild(option);
+                            }
+                        }
+                    },
+                    error: function (data) {
+                        console.log('Error: ', data);
+                    }
+                });
+
+                var id = $(this).val();
                 $.ajax({
                     type: 'GET',
                     url: url + '/' + id + '/edit',
                     success: function (data) {
                         console.log(data);
+                        {{--for categories--}}
+                        var categoriesToFind = document.getElementById('categories');
+                        var itemId = data.item_types.categories;
+                        for(var x = 0; x < categoriesToFind.length;x++){
+                            if (categoriesToFind.options[x].innerHTML == itemId) {
+                                categoriesToFind.selectedIndex = x;
+                            }
+                        }
+
+                        {{--for itemTypes--}}
+                        var itemTypeToFind = document.getElementById('item_type_id');
+                        var itemTypeId = data.item_types.name;
+                        for(var y = 0; y < itemTypeToFind.length;y++){
+                            if (itemTypeToFind.options[y].innerHTML == itemTypeId) {
+                                itemTypeToFind.selectedIndex = y;
+                            }
+                        }
+                        console.log(itemTypeId);
+
+
                         $('#item_type_id').val(data.item_type_id);
                         $('#name').val(data.name);
                         $('.btn-save').html('Update');
