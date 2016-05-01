@@ -144,13 +144,13 @@
                             </div>
                         </div><!-- end confirmation-->
                         <h3 class="box-title pull-right">
-                            @if(\Carbon\Carbon::now('PHT')->isWeekday())
+                            {{--@if(\Carbon\Carbon::now('PHT')->isWeekday())
                                 @if(\Carbon\Carbon::now('PHT')->toTimeString() >= \Carbon\Carbon::createFromFormat('H:i:s', '07:00:00')->toTimeString())
-                                    @if(\Carbon\Carbon::now('PHT')->toTimeString() <= \Carbon\Carbon::createFromFormat('H:i:s', '17:00:00')->toTimeString())
+                                    @if(\Carbon\Carbon::now('PHT')->toTimeString() <= \Carbon\Carbon::createFromFormat('H:i:s', '17:00:00')->toTimeString())--}}
                                         <button class="btn btn-primary btn-send">Send</button>
-                                    @endif
+{{--                                    @endif
                                 @endif
-                            @endif
+                            @endif--}}
                         </h3>
 
                        {{-- <button class="btn btn-primary btn-send">Send</button>--}}
