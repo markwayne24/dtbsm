@@ -42,6 +42,10 @@ class UsersController extends Controller
         $user->password = Hash::make($request->input([('password')]));
         $user->save();
         $user->userProfile()->create($input);
+        $profileData = [
+            'district'=>$input['district']
+        ];
+        $user->userProfile()->update($profileData);
         \Session::flash('flash_message','Successfully saved.');
 
         return response()->json($user);
@@ -72,7 +76,8 @@ class UsersController extends Controller
             'middlename'=> $input['middlename'],
             'lastname'  => $input['lastname'],
             'address'   =>  $input['address'],
-            'school'   =>  $input['school'],
+            'district'  => $input['district'],
+            'school'    =>  $input['school'],
             'gender'    =>  $input['gender'],
             'contact_number' => $input['contact_number'],
         ];
