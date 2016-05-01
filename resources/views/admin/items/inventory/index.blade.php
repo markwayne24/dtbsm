@@ -28,6 +28,10 @@
     <script>
         //for categories
         $('document').ready(function(){
+            if(window.location.href.toString().split(window.location.host)[1] == '/admin/dashboard/supplies/inventory'){
+                $('#inventories').addClass('active');
+            }
+
             $('#categories').change(function () {
                 var categories = $(this).val();
                 var data = {
