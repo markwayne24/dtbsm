@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('active1')
+
+@stop
+
 @section('content')
         <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -22,10 +26,8 @@
 
     <!-- Main content -->
     <section class="content">
-
         <div class="row">
             <div class="col-xs-12">
-
                 <div class="box">
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
@@ -44,24 +46,26 @@
                             <tbody id="request-list" name="request-list">
                             @if($requests)
                                 @foreach($requests as $request )
-                                    <tr id="item-{{$request->id}}">
-                                        <td>{{$request->id}}</td>
-                                        <td>{{$request->user->userProfile->school}}</td>
-                                        <td>{{$request->user->userProfile->lastname}},{{$request->user->userProfile->firstname}} {{$request->user->userProfile->middlename}}.</td>
-                                        <td>{{$request->updated_at->format('m/d/Y')}} - {{$request->created_at->diffForHumans()}}</td>
-                                        @if($request->status == 'Approved')
-                                            <td><label class="bg-green">{{$request->status or ''}}</label></td>
-                                        @elseif($request->status == 'Declined')
-                                            <td><label class="bg-red">{{$request->status or ''}}</label></td>
-                                        @else
-                                            <td><label class="bg-yellow-gradient">{{$request->status or ''}}</label></td>
-                                        @endif
-                                        <th>{{$request->reason or ''}}</th>
-                                        <td>{{$request->approved_at or ''}} </td>
-                                        <td>
-                                            <button class="btn btn-info btn-flat btn-view" value="{{$request->id}}"><i class="glyphicon glyphicon-eye-open"></i></button>
-                                        </td>
-                                    </tr>
+                                    @if($request)
+                                        <tr id="item-{{$request->id}}">
+                                            <td>{{$request->id}}</td>
+                                            <td>{{$request->user->userProfile->school}}</td>
+                                            <td>{{$request->user->userProfile->lastname}},{{$request->user->userProfile->firstname}} {{$request->user->userProfile->middlename}}.</td>
+                                            <td>{{$request->created_at->format('m/d/Y')}} - {{$request->created_at->diffForHumans()}}</td>
+                                            @if($request->status == 'Approved')
+                                                <td><label class="bg-green">{{$request->status or ''}}</label></td>
+                                            @elseif($request->status == 'Declined')
+                                                <td><label class="bg-red">{{$request->status or ''}}</label></td>
+                                            @else
+                                                <td><label class="bg-yellow-gradient">{{$request->status or ''}}</label></td>
+                                            @endif
+                                            <th>{{$request->reason or ''}}</th>
+                                            <td>{{$request->approved_at or ''}} </td>
+                                            <td>
+                                                <button class="btn btn-info btn-flat btn-view" value="{{$request->id}}"><i class="glyphicon glyphicon-eye-open"></i></button>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             @endif
                             </tbody>
@@ -78,7 +82,6 @@
                             </tr>
                             </tfoot>
                         </table>
-
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!-- /.col -->
