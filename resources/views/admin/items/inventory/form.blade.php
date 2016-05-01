@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group {{ $errors->has('item_type') ? ' has-error' : '' }}">
                         <label>Choose items</label>
-                        <select class="form-control select2" style="width: 100%;" name="item_type" id="item_type">
+                        <select class="form-control select" style="width: 100%;" name="item_type" id="item_type">
                         </select>
                         @if ($errors->has('item_type'))
                             <span class="help-block">
@@ -29,7 +29,7 @@
                     </div>
                     <div class="form-group {{ $errors->has('item_id') ? ' has-error' : '' }}">
                         <label>Name</label>
-                        <select class="form-control select2" style="width: 100%;" name="item_id" id="item_id">
+                        <select class="form-control select" style="width: 100%;" name="item_id" id="item_id">
                         </select>
                         @if ($errors->has('item_id'))
                             <span class="help-block">
