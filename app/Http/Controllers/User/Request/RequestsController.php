@@ -59,9 +59,13 @@ class RequestsController extends Controller
     public function request()
     {
         $user = Auth()->user()->id;
+        $district = Auth::user()->userProfile->district;
+        $school = Auth::user()->userProfile->school;
 
         $data = [
-            'user_id'=> $user
+            'user_id'=> $user,
+            'district'=> $district,
+            'school' => $school
         ];
 
         $request = Requests::create($data);
@@ -71,7 +75,7 @@ class RequestsController extends Controller
 
     public function send()
     {
-        $input = Input::all();
+      $input = Input::all();
         $data = [
             'request_id'=> $input['request_id'],
             'inventory_id'=> $input['inventory_id'],
