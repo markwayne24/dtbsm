@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 use Illuminate\Session\SessionManager;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 /**
  * Created by PhpStorm.
@@ -23,12 +24,12 @@ class RequestsController extends Controller
         $this->session = $session;
     }
 
-    public function index()
+    public function index($district_id)
     {
         $requests = Requests::with('user')
-            ->whereNotNull('status')
-            ->orderBy('created_at', 'ASC')
+            ->where('district',$district_id)
             ->get();
+
         return view('admin.requests.all.index')
             ->with('requests',$requests);
     }
