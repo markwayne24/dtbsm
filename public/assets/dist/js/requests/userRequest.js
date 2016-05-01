@@ -45,6 +45,18 @@ $(".maxmin").each(function () {
 });
 
 $('document').ready(function(){
+    if(window.location.href.toString().split(window.location.host)[1] == '/users/requests'){
+        $('#all').addClass('active');
+    }
+    if(window.location.href.toString().split(window.location.host)[1] == '/users/requests/pending'){
+        $('#pending').addClass('active');
+    }
+    if(window.location.href.toString().split(window.location.host)[1] == '/users/requests/declined'){
+        $('#decline').addClass('active');
+    }
+    if(window.location.href.toString().split(window.location.host)[1] == '/users/requests/approved'){
+        $('#approve').addClass('active');
+    }
     var url = '/users/requests';
 
     //for viewing item requests
@@ -57,12 +69,10 @@ $('document').ready(function(){
             success: function (data) {
                 console.log(data);
                 window.location.href= url + '/view/' + id;
-
             },
             error: function(data){
                 console.log('Error:',data);
             }
-
         });
     });
 
@@ -228,7 +238,7 @@ $('document').ready(function(){
                                 request_id: request_id,
                                 inventory_id : $(tr).find('td:eq(0)').text(),
                                 quantity : $(tr).find('td:eq(5)').text(),
-                                price : $(tr).find('td:eq(4)').text()
+                                price : ($(tr).find('td:eq(4)').text()).replace(/[^\d]/g, "")
                             };
                             console.log(TableData);
                             $.ajax({
