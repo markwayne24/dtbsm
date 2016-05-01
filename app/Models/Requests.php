@@ -8,7 +8,7 @@ class Requests extends Model
 {
     protected $table = 'requests';
 
-    protected $fillable = ['user_id','approved_at', 'created_at'];
+    protected $fillable = ['user_id','district','school','approved_at', 'created_at'];
 
     protected $dates = ['approved_at'];
 
