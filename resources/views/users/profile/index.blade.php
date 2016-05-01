@@ -142,13 +142,15 @@
                 var user_id = $('#user_id').val();
                 var my_url = 'users' + '/' +user_id;
 
-                console.log(formData)
+                console.log(formData);
                 $.ajax({
                     type: type,
                     url: my_url,
                     data: formData,
                     success: function (data) {
                         console.log(data);
+                        $('#myModal').modal('hide');
+                        location.reload();
 
                     },
                     error: function (data) {
