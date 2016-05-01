@@ -70,16 +70,71 @@
                         @endif
 
                     </div>
-                    <div class="form-group{{ $errors->has('school') ? ' has-error' : '' }}">
-                        <label for="school">School</label>
-                        <input type="text" class="form-control" placeholder="Enter School" name="school" id="school">
-
+                    <div class="form-group {{ $errors->has('school') ? ' has-error' : '' }}">
+                        <label>School</label>
+                        <select class="form-control select" style="width: 100%;" name="school" id="school">
+                            {{--District 1--}}
+                            <option value="1">Sto. Cristo Integrated School</option>
+                            <option value="1">Binauganan Elem. School</option>
+                            <option value="1">San Nicolas Elem. School</option>
+                            <option value="1">San Sebastian Elem. School</option>
+                            <option value="1">San Rafael Elem. School</option>
+                            {{--District 2--}}
+                            <option value="2">Matatalaib Buno Elem. School</option>
+                            <option value="2">Trinidad Elem. School</option>
+                            <option value="2">Natividad De Leon Elem. School</option>
+                            <option value="2">Panampunan Elem. School</option>
+                            <option value="2">Buhilit</option>
+                            {{--District 3--}}
+                            <option value="3">Sta. Cruz Elem. School</option>
+                            <option value="3">Aguso Central School</option>
+                            <option value="3">Dalayap Elem. School</option>
+                            <option value="3">Tarisi Elem. School</option>
+                            <option value="3">Banaba Elem. School</option>
+                            {{--District 4--}}
+                            <option value="4">Sta. Marie Elem. School</option>
+                            <option value="4">Mapalad Elem. School</option>
+                            <option value="4">Sto. Nino Elem. School</option>
+                            <option value="4">Baras-Baras Central</option>
+                            <option value="4">Sto. Domingo Elem. School</option>
+                            {{--District 5--}}
+                            <option value="5">Suizo Bliss Elem. School</option>
+                            <option value="5">Paraiso Elem. School</option>
+                            <option value="5">Camp Aquino</option>
+                            <option value="5">Maligaya Elem. School</option>
+                            <option value="5">Ungot Elem. School</option>
+                            {{--District 6--}}
+                            <option value="6">San Pablo Elem. School</option>
+                            <option value="6">Carangian Elem. School</option>
+                            <option value="6">Balanti Elem. School</option>
+                            <option value="6">San Vicente Elem. School</option>
+                            <option value="6">Apalan Elem. School</option>
+                            {{--District 7--}}
+                            <option value="7">Care Elem. School</option>
+                            <option value="7">Tibagan Elem. School</option>
+                            <option value="7">Sapang Maragul Elem. School</option>
+                            <option value="7">Tibag Elem. School</option>
+                            <option value="7">San Isidro Central School</option>
+                            {{--District 8--}}
+                            <option value="8">Burot Elem. School</option>
+                            <option value="8">Sapang Tagalog </option>
+                            <option value="8">San Miguel Central School</option>
+                            <option value="8">San Carlos Elem. School</option>
+                            <option value="8">San Francisco</option>
+                            {{--District 9--}}
+                            <option value="9">Balete Integrated</option>
+                            <option value="9">Asturias Elem. School</option>
+                            <option value="9">Capehan Elem. School</option>
+                            <option value="9">Buenavista Elem. School</option>
+                            <option value="9">Lourdes Elem. School</option>
+                            {{--District 10--}}
+                            <option value="10">Amucao Elem. School</option>
+                        </select>
                         @if ($errors->has('school'))
                             <span class="help-block">
-                                 <strong>{{ $errors->first('school') }}</strong>
-                             </span>
+                                <strong>{{ $errors->first('school') }}</strong>
+                            </span>
                         @endif
-
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
