@@ -120,10 +120,10 @@
                         <span class="label label-primary pull-right"></span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ url('/users/requests') }}">All</a></li>
-                        <li><a href="{{ url('/users/requests/pending') }}">Pending</a></li>
-                        <li><a href="{{ url('/users/requests/approved') }}">Approve</a></li>
-                        <li><a href="{{ url('/users/requests/declined') }}">Decline</a></li>
+                        <li id="all"><a href="{{ url('/users/requests') }}">All</a></li>
+                        <li id="pending"><a href="{{ url('/users/requests/pending') }}">Pending</a></li>
+                        <li id="approve"><a href="{{ url('/users/requests/approved') }}">Approve</a></li>
+                        <li id="decline"><a href="{{ url('/users/requests/declined') }}">Decline</a></li>
                     </ul>
 
                 </li>
