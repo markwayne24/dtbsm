@@ -23,13 +23,15 @@
 */
 
 Route::group(['middleware' => 'web'], function () {
-
     //Login
     // Authentication Routes...
     Route::get('/', 'Auth\AuthController@showLoginForm');
     Route::get('/login', 'Auth\AuthController@showLoginForm');
     Route::post('/login', 'Auth\AuthController@login');
     Route::get('logout', 'Auth\AuthController@logout');
+    Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+    Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
+    Route::post('password/reset', 'Auth\PasswordController@reset');
         //checked if verified
     Route::group(['middleware'=>'verify'], function(){
 
@@ -67,8 +69,8 @@ Route::group(['middleware' => 'web'], function () {
 
             //Requests
             Route::group(['prefix'=>'requests'], function(){
-                Route::get('/','Admin\Request\RequestsController@index');
                 Route::get('/{id}/view','Admin\Request\RequestsController@view');
+                Route::get('/{district_id}','Admin\Request\RequestsController@index');
                 Route::put('/{request_id}/view','Admin\Request\RequestsController@update');
                 Route::get('/pending', 'Admin\Request\RequestsController@pending');
                 Route::get('/approved', 'Admin\Request\RequestsController@approved');
