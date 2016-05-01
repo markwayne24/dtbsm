@@ -40,7 +40,13 @@
                         $('#middlename').val(data.user_profile.middlename);
                         $('#lastname').val(data.user_profile.lastname);
                         $('#address').val(data.user_profile.address);
-                        $('#school').val(data.user_profile.school);
+                        var schoolToFind = document.getElementById('school');
+                        var school = data.user_profile.school;
+                        for(var x = 0; x < schoolToFind.length;x++){
+                            if (schoolToFind.options[x].innerHTML == school) {
+                                schoolToFind.selectedIndex = x;
+                            }
+                        }
                         $('#gender').val(data.user_profile.gender);
                         $('#contact_number').val(data.user_profile.contact_number);
                         $('#email').val(data.email);
@@ -85,7 +91,6 @@
 
             $('form.bootstrap-modal-form').on('submit', function(submission) {
                 submission.preventDefault();
-
                 // Set vars.
                 var form   = $(this),
                         url    = form.attr('action'),
@@ -141,7 +146,8 @@
                     lastname: lastname,
                     gender:$('#gender').val(),
                     address:$('#address').val(),
-                    school:$('#school').val(),
+                    district:$('#school').val(),
+                    school:$('#school option:selected').text(),
                     contact_number: $('#contact_number').val(),
                     email:$('#email').val(),
                     password:$('#password').val(),
