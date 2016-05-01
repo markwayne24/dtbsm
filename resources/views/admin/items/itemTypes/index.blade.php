@@ -24,6 +24,9 @@
 
     <script>
         $(document).ready(function(){
+            if(window.location.href.toString().split(window.location.host)[1] == '/admin/dashboard/supplies/item-types'){
+                $('#itemTypes').addClass('active');
+            }
             var url = "item-types";
 
             $('.open-modal').click(function(){
