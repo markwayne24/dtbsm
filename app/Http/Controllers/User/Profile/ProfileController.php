@@ -64,12 +64,12 @@ class ProfileController extends Controller
                 ];
 
                $user = User::where('id', $users)->update($userData);
-                $imageName = $users . '.' .
+              /*  $imageName = $users . '.' .
                     $request->file('image_path')->getClientOriginalName();
 
                 $request->file('image_path')->move(
                     base_path() . '/public/uploads/images/', $imageName
-                );
+                );*/
 
 
                 $profileData = [
@@ -82,7 +82,7 @@ class ProfileController extends Controller
                     'contact_number'=>$input['contact_number'],
                 ];
                 $user = UserProfile::where('user_id',$users)->update($profileData);
-                $user->image = $imageName;
+               /* $user->image = $imageName;
 
                 $photo = null;
                 $file= Input::file('image_path');
@@ -99,11 +99,11 @@ class ProfileController extends Controller
                 $dataStore = [
                     'image_path'=> $photo
                 ];
-        UserProfile::where('user_id', $users)->update($dataStore);
+        UserProfile::where('user_id', $users)->update($dataStore);*/
 
 
 
-        return response()->json($dataStore);
+        return response()->json($user);
 
         /*
                 public function upload() {
