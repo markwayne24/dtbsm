@@ -12,6 +12,11 @@ $(document).ready(function(){
 });
 
 $('document').ready(function(){
+    for(var loop=1; loop <=10;loop++){
+        if(window.location.href.toString().split(window.location.host)[1] == '/admin/dashboard/requests/'+ loop){
+            $('#district'+loop).addClass('active');
+        }
+    }
     var url = 'requests';
 
     //for viewing item requests
