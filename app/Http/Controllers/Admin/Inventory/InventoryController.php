@@ -69,7 +69,7 @@ class InventoryController extends Controller
 
             $inventories = Inventory::create($dataInventory);
             $id = $inventories->id;
-            $inventories->sku = Carbon::now()->format('mdY'). '-Item-' . $id ;
+            $inventories->sku = Carbon::now()->format('mdY'). '-' . $id ;
             $inventories->save();
 
             $budgetHistories = [
