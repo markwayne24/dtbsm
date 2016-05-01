@@ -15,6 +15,8 @@ class CreateRequests extends Migration
         Schema::create('requests', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->integer('district')->nullable();
+            $table->string('school');
             $table->enum('status',['Approved','Declined','Pending'])->default('Pending');
             $table->string('reason');
             $table->timestamps();
