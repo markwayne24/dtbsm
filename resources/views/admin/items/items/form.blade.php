@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group {{ $errors->has('item_type_id') ? ' has-error' : '' }}">
                         <label>Item Type</label>
-                        <select class="form-control select2" style="width: 100%;" name="item_type_id" id="item_type_id">
+                        <select class="form-control select" style="width: 100%;" name="item_type_id" id="item_type_id">
                         </select>
                         @if ($errors->has('item_type_id'))
                             <span class="help-block">
