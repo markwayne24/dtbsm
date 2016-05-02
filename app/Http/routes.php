@@ -100,9 +100,7 @@ Route::group(['middleware' => 'web'], function () {
 
         //User's page
         Route::resource('users','User\Profile\ProfileController');
-        Route::get('/userimage/{filename}',[
-            'uses' => 'User\Profile\ProfileController@getUserImage',
-            'as'   => 'account.image'
-        ]);
+        Route::post('/upload','User\Profile\ProfileController@upload');
+
     }); //end of verify
 });
