@@ -50,7 +50,18 @@
                                         <tr id="item-{{$request->id}}">
                                             <td>{{$request->id}}</td>
                                             <td>{{$request->user->userProfile->school}}</td>
-                                            <td>{{$request->user->userProfile->lastname}},{{$request->user->userProfile->firstname}} {{$request->user->userProfile->middlename}}.</td>
+                                            <td>
+                                                @if(file_exists('uploads/' .  $request->user->id . '.jpg'))
+                                                    <img class="profile-user-img img-responsive img-circle" src="/uploads/{{  $request->user->id . '.jpg'}}" alt="User profile picture">
+                                                @else
+                                                    @if(Auth::user()->userProfile->gender == "male")
+                                                        <img class="profile-user-img img-responsive img-circle" src="/assets/dist/img/avatar5.png" alt="User profile picture">
+                                                    @elseif(Auth::user()->userProfile->gender == "female")
+                                                        <img class="profile-user-img img-responsive img-circle" src="/assets/dist/img/avatar2.png" alt="User profile picture">
+                                                    @endif
+                                                @endif
+                                                {{$request->user->userProfile->lastname}},{{$request->user->userProfile->firstname}} {{$request->user->userProfile->middlename}}.
+                                            </td>
                                             <td>{{$request->created_at->format('m/d/Y')}} - {{$request->created_at->diffForHumans()}}</td>
                                             @if($request->status == 'Approved')
                                                 <td><label class="bg-green">{{$request->status or ''}}</label></td>
