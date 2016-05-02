@@ -129,17 +129,6 @@
                              </span>
                         @endif
                     </div>
-
-                    <div class="form-group{{ $errors->has('image_path') ? ' has-error' : '' }}">
-                        <label for="exampleInputFile">Upload image</label>
-                        <input type="file" id="file" name="image_path">
-
-                        @if ($errors->has('image_path'))
-                            <span class="help-block">
-                                 <strong>{{ $errors->first('image_path') }}</strong>
-                             </span>
-                        @endif
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
