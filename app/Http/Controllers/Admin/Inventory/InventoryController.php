@@ -40,6 +40,7 @@ class InventoryController extends Controller
         $categories = ItemType::with('items')
             ->where('categories',$categories)
             ->get();
+
         return response()->json($categories);
     }
 
@@ -60,6 +61,7 @@ class InventoryController extends Controller
         if($budgetLeft >= $amount){
             $budget->amount = $budgetLeft;
             $budget->save();
+            $school = Auth::user()->userProfile->school;
 
             $dataInventory = [
                 'item_id'=>$input['item_id'],
@@ -70,6 +72,7 @@ class InventoryController extends Controller
             $inventories = Inventory::create($dataInventory);
             $id = $inventories->id;
             $inventories->sku = Carbon::now()->format('mdY'). '-' . $id ;
+            $inventories->school = $school;
             $inventories->save();
 
             $budgetHistories = [
@@ -94,9 +97,11 @@ class InventoryController extends Controller
 
     public function edit($inventory)
     {
-        $input = Inventory::findOrFail($inventory);
+        $items = Items::with('itemTypes')
+            ->where('id',$inventory)
+            ->first();
 
-        return response()->json($input);
+        return response()->json($items);
     }
 
     public function update(StoreInventoryRequest $request, $inventory)
