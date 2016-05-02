@@ -11,6 +11,27 @@
         position:absolute;
         background-repeat: no-repeat;
     }
+
+     #alertModal, #alertModal2  {
+         /*   display: block;*/
+         padding-right: 0px;
+         background-color: rgba(4, 4, 4, 0.8);
+     }
+
+    #modal-dialog {
+        top: 20%;
+        width: 100%;
+        position: absolute;
+    }
+    #modal-content {
+        border-radius: 0px;
+        border: none;
+        top: 40%;
+        background-color: green;
+    }
+    .message{
+        color: white;
+    }
 </style>
 
 @stop
@@ -23,6 +44,24 @@
     <script>
         $(function () {
             $("#example1").DataTable();
+        });
+    </script>
+
+    <script>
+        var form = document.getElementById('upload');
+        var request = new XMLHttpRequest();
+
+        form.addEventListener('submit',function(e){
+            e.preventDefault();
+            var formdata = new FormData(form);
+
+            request.open('post','/upload');
+            request.addEventListener("load", transferComplete);
+            request.send(formdata);
+
+            function transferComplete(data){
+                console.log(data.currentTarget.response);
+            }
         });
     </script>
 
@@ -187,4 +226,19 @@
             });
         });
     </script>
+
+    <script>
+        $(document).ready(function(){
+            function hide_modal(){
+                $('#alertModal').modal('hide');
+            }
+
+            $('#clickUpload').click(function(){
+                $('#alertModal').modal('show');
+                window.location.href = 'users';
+            });
+        });
+
+    </script>
+
 @stop
