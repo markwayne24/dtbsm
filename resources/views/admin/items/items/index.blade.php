@@ -136,6 +136,7 @@
                 });
 
                 var id = $(this).val();
+                console.log(id);
                 $.ajax({
                     type: 'GET',
                     url: url + '/' + id + '/edit',
