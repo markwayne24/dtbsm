@@ -68,10 +68,14 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            @if(Auth::user()->userProfile->gender == "male")
-                                <img src="/assets/dist/img/avatar5.png" class="user-image" alt="User Image">
-                            @elseif(Auth::user()->userProfile->gender == "female")
-                                <img src="/assets/dist/img/avatar2.png" class="user-image" alt="User Image">
+                            @if(file_exists('uploads/' .  Auth::user()->id . '.jpg'))
+                                <img class="user-image" src="/uploads/{{ Auth::user()->id . '.jpg'}}" alt="User profile picture">
+                            @else
+                                @if(Auth::user()->userProfile->gender == "male")
+                                    <img class="user-image" src="/assets/dist/img/avatar5.png" alt="User Image">
+                                @elseif(Auth::user()->userProfile->gender == "female")
+                                    <img class="user-image" src="/assets/dist/img/avatar2.png" alt="User Image">
+                                @endif
                             @endif
                             <span class="hidden-xs">{{ Auth::user()->userProfile->firstname  }}</span>
                         </a>
@@ -91,10 +95,14 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    @if(Auth::user()->userProfile->gender == "male")
-                        <img src="/assets/dist/img/avatar5.png" class="img-circle" alt="User Image">
-                    @elseif(Auth::user()->userProfile->gender == "female")
-                        <img src="/assets/dist/img/avatar2.png" class="img-circle" alt="User Image">
+                    @if(file_exists('uploads/' .  Auth::user()->id . '.jpg'))
+                        <img class="img-circle" src="/uploads/{{ Auth::user()->id . '.jpg'}}" alt="User profile picture">
+                    @else
+                        @if(Auth::user()->userProfile->gender == "male")
+                            <img class="img-circle" src="/assets/dist/img/avatar5.png" alt="User Image">
+                        @elseif(Auth::user()->userProfile->gender == "female")
+                            <img class="img-circle" src="/assets/dist/img/avatar2.png" alt="User Image">
+                        @endif
                     @endif
                 </div>
                 <div class="pull-left info">
