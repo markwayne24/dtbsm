@@ -9,13 +9,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Input;
+use Storage;
+use Image;
 
 use App\Models\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Session\SessionManager;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -137,6 +138,22 @@ class ProfileController extends Controller
     public function getUserImage($filename){
         $file = Storage::disk('local')->get($filename);
         return new \Response($file, 200);
+    }
+
+    public function upload(Request $request){
+        $files = $request->file('file');
+
+        if(!empty($files)):
+            $extension = $files->getClientOriginalExtension();
+            $filename  = Auth::user()->id . '.' . $extension;
+            $img = Image::make($files);
+            $files = Image::make($files->getRealPath())->resize(20, 20)->save();
+            $files->move('uploads',$filename);
+        endif;
+
+        \Session::flash('flash_message','Successfully uploaded picture');
+
+        return response()->json();
     }
 
     public function destroy($users)
