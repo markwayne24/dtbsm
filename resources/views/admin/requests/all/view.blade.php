@@ -28,10 +28,8 @@
 
     <!-- Main content -->
     <section class="content">
-
         <div class="row">
             <div class="col-xs-12">
-
                 <div class="box">
                     <div class="box-body">
                         <div class="box-header with-border">
@@ -43,6 +41,17 @@
                             </h3>
                         </div>
                         <div class="box-header with-border">
+                            <div class="box-header pull-right">
+                                @if(file_exists('uploads/' .  $requested->user->id . '.jpg'))
+                                    <img class="profile-user-img img-responsive img-circle" src="/uploads/{{  $requested->user->id . '.jpg'}}" alt="User profile picture">
+                                @else
+                                    @if($requested->user->userProfile->gender == "male")
+                                        <img class="profile-user-img img-responsive img-circle" src="/assets/dist/img/avatar5.png" alt="User profile picture">
+                                    @elseif($requested->user->userProfile->gender == "female")
+                                        <img class="profile-user-img img-responsive img-circle" src="/assets/dist/img/avatar2.png" alt="User profile picture">
+                                    @endif
+                                @endif
+                            </div>
                             <h4>
                                 <label>Name: {{$requested->user->userProfile->lastname}}, {{$requested->user->userProfile->firstname}} {{$requested->user->userProfile->middlename}}.</label>
                             </h4>
