@@ -56,6 +56,7 @@
                                 select.appendChild(option);
                             }
                             document.getElementById("item_type").value = data[0].name;
+                            document.getElementById("item_id").value = data[0].name;
                         }
                     },
                     error: function (data) {
@@ -125,40 +126,6 @@
                                 option.value = data[x].id;
                                 select.appendChild(option);
                             }
-                            document.getElementById("item_id").value = data[0].name;
-                        }
-                    },
-                    error: function (data) {
-                        console.log('Error: ', data);
-                    }
-                });
-            });
-
-            $('#item_type').click(function () {
-                var item_type_id = $(this).val();
-                var data = {
-                    item_type_id: item_type_id
-                };
-                console.log(data);
-                $.ajax({
-                    type: 'GET',
-                    url: 'inventory-names-' + item_type_id,
-                    success: function (data) {
-                        console.log(data);
-                        console.log(url);
-                        var select = document.getElementById("item_id");
-                        while (select.firstChild) {
-                            select.removeChild(select.firstChild);
-                        }
-                        if (data.length > 0) {
-                            for (x = 0; x < data.length; x++) {
-                                var option = document.createElement("option");
-                                var att = document.createAttribute("selected");
-                                option.text = data[x].name;
-                                option.value = data[x].id;
-                                select.appendChild(option);
-                            }
-                            document.getElementById("item_id").value = data[0].name;
                         }
                     },
                     error: function (data) {
@@ -212,15 +179,110 @@
                 $('.form-group').find('.help-block').remove();
             }
 
-
             $('.open-modal-edit').click(function(){
-                var id = $(this).val();
+                var categories = $(this).closest('tr').find('td:nth-child(3)').text();
+                var retrieveCategories;
+                var data = {
+                    categories: categories
+                };
+                {{--for categories--}}
+                var categoriesToFind = document.getElementById('categories');
+                var itemId = categories;
+                for(var x = 0; x < categoriesToFind.length;x++){
+                    if (categoriesToFind.options[x].innerHTML == itemId) {
+                        categoriesToFind.selectedIndex = x;
+                    }
+                }
 
+
+                console.log(data);
                 $.ajax({
+                    type: 'GET',
+                    url: 'inventory-' + categories,
+                    success: function (data) {
+                        console.log(data);
+                        var select = document.getElementById("item_type");
+                        while (select.firstChild) {
+                            select.removeChild(select.firstChild);
+                        }
+                        if (data.length > 0) {
+                            for (x = 0; x < data.length; x++) {
+                                var option = document.createElement("option");
+                                var att = document.createAttribute("selected");
+                                option.text = data[x].name;
+                                option.value = data[x].id;
+                                select.appendChild(option);
+                            }
+                        }
+
+                        var item_type_id = $('#item_type').val();
+                        var data = {
+                            item_type_id: item_type_id
+                        };
+                        console.log(data);
+                        $.ajax({
+                            type: 'GET',
+                            url: 'inventory-names-' + item_type_id,
+                            success: function (data) {
+                                console.log(data);
+                                var select = document.getElementById("item_id");
+                                while (select.firstChild) {
+                                    select.removeChild(select.firstChild);
+                                }
+                                if (data.length > 0) {
+                                    for (x = 0; x < data.length; x++) {
+                                        var option = document.createElement("option");
+                                        var att = document.createAttribute("selected");
+                                        option.text = data[x].name;
+                                        option.value = data[x].id;
+                                        select.appendChild(option);
+                                    }
+                                }
+                            },
+                            error: function (data) {
+                                console.log('Error: ', data);
+                            }
+                        });
+
+                    },
+                    error: function (data) {
+                        console.log('Error: ', data);
+                    }
+                });
+
+
+                $('#price').val($(this).closest('tr').find('td:nth-child(7)').text().replace(/[^\d]/g, ""));
+                $('#stocks').val($(this).closest('tr').find('td:nth-child(8)').text());
+                $('.btn-save').html('Update');
+                $('#myModalLabel').html('Update Item');
+                $('.btn-save').val('edit');
+                $('#inventory_id').val(data.id);
+                $('#myModal').modal('show');
+
+               /* $.ajax({
                     type: 'GET',
                     url: url + '/' + id + '/edit',
                     success: function (data) {
                         console.log(data);
+                        {{--for categories--}}
+                        var categoriesToFind = document.getElementById('categories');
+                        var itemId = data.item_types.categories;
+                        for(var x = 0; x < categoriesToFind.length;x++){
+                            if (categoriesToFind.options[x].innerHTML == itemId) {
+                                categoriesToFind.selectedIndex = x;
+                            }
+                        }
+
+                        {{--for itemTypes--}}
+                        var itemTypeToFind = document.getElementById('item_type');
+                        var itemTypeId = data.item_types.name;
+                        for(var y = 0; y < itemTypeToFind.length;y++){
+                            if (itemTypeToFind.options[y].innerHTML == itemTypeId) {
+                                itemTypeToFind.selectedIndex = y;
+                            }
+                        }
+                        console.log(itemTypeId);
+
                         $('#item_id').val(data.item_id);
                         $('#price').val(data.price);
                         $('#stocks').val(data.stocks);
@@ -234,7 +296,7 @@
                     error: function (data) {
                         console.log('Error:', data);
                     }
-                });
+                });*/
 
             });
 
