@@ -45,6 +45,7 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>School</th>
                                 <th>Category</th>
                                 <th>Type</th>
                                 <th>Name</th>
@@ -59,6 +60,7 @@
                                 @foreach($inventories as $inventory)
                                     <tr id="inventory-{{$inventory->id}}">
                                         <td>{{$inventory->id}}</td>
+                                        <td>{{$inventory->school}}</td>
                                         <td>{{$inventory->items->itemTypes->categories or ''}}</td>
                                         <td>{{$inventory->items->itemTypes->name or ''}}</td>
                                         <td>{{$inventory->items->name or ''}}</td>
@@ -76,6 +78,7 @@
                             <tfoot>
                             <tr>
                                 <th>Id</th>
+                                <th>School</th>
                                 <th>Category</th>
                                 <th>Type</th>
                                 <th>Name</th>
