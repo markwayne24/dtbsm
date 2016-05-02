@@ -136,7 +136,6 @@ class VerifyController extends Controller
             ->orderBy('code', 'DESC')
             ->first();
 
-
         return $code ? $code['code'] : 0;
     }
 }
