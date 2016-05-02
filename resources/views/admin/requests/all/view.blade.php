@@ -44,7 +44,7 @@
                         </div>
                         <div class="box-header with-border">
                             <h4>
-                                <label>Name: {{$requested->user->userProfile->firstname}}, {{$requested->user->userProfile->firstname}} {{$requested->user->userProfile->middlename}}.</label>
+                                <label>Name: {{$requested->user->userProfile->lastname}}, {{$requested->user->userProfile->firstname}} {{$requested->user->userProfile->middlename}}.</label>
                             </h4>
                             <h5>
                                 <label>District: {{$requested->district}}</label>
