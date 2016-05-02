@@ -29,7 +29,9 @@ class ItemsController extends Controller
 
     public function getCategories($categories)
     {
-        $categories = ItemType::where('categories',$categories)->get();
+        $categories = ItemType::with('items')
+            ->where('categories',$categories)
+            ->get();
         return response()->json($categories);
     }
 
