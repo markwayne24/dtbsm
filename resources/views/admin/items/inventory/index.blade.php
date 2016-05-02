@@ -187,15 +187,16 @@
                 };
                 {{--for categories--}}
                 var categoriesToFind = document.getElementById('categories');
-                var itemId = categories;
+                var itemId1 = categories;
                 for(var x = 0; x < categoriesToFind.length;x++){
-                    if (categoriesToFind.options[x].innerHTML == itemId) {
+                    if (categoriesToFind.options[x].innerHTML == itemId1) {
                         categoriesToFind.selectedIndex = x;
                     }
                 }
 
 
                 console.log(data);
+                //get itemType from the database
                 $.ajax({
                     type: 'GET',
                     url: 'inventory-' + categories,
