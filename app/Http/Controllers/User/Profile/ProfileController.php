@@ -146,8 +146,6 @@ class ProfileController extends Controller
         if(!empty($files)):
             $extension = $files->getClientOriginalExtension();
             $filename  = Auth::user()->id . '.' . $extension;
-            $img = Image::make($files);
-            $files = Image::make($files->getRealPath())->resize(20, 20)->save();
             $files->move('uploads',$filename);
         endif;
 
