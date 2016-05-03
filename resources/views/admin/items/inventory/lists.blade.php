@@ -41,11 +41,10 @@
                     </div><!-- /.box-header -->
                     <h3 class="budget-left"><center>Budget Left: P {{number_format($budgetLeft->amount,2)}}</center></h3>
                     <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered .table-condensed">
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>School</th>
                                 <th>Category</th>
                                 <th>Type</th>
                                 <th>Name</th>
@@ -60,7 +59,6 @@
                                 @foreach($inventories as $inventory)
                                     <tr id="inventory-{{$inventory->id}}">
                                         <td>{{$inventory->id}}</td>
-                                        <td>{{$inventory->school}}</td>
                                         <td>{{$inventory->items->itemTypes->categories or ''}}</td>
                                         <td>{{$inventory->items->itemTypes->name or ''}}</td>
                                         <td>{{$inventory->items->name or ''}}</td>
@@ -78,7 +76,6 @@
                             <tfoot>
                             <tr>
                                 <th>Id</th>
-                                <th>School</th>
                                 <th>Category</th>
                                 <th>Type</th>
                                 <th>Name</th>
