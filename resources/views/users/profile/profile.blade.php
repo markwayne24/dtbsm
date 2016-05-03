@@ -41,7 +41,7 @@
                             <div class="col-md-6">
                                 <label class="box-header">Upload image</label>
                                 <input type="file" name="file" multiple><br/>
-                                <input type="submit" id="clickUpload">
+                                <input type="submit" class="btn btn-primary" value="Upload" id="clickUpload">
                             </div>
                         </div>
                     </form>
