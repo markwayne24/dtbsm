@@ -1,7 +1,12 @@
 @extends('layouts.admin')
 
-@section('active1')
-
+@section('style')
+    <style>
+        #imgSize{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
 @stop
 
 @section('content')
@@ -51,7 +56,16 @@
                                             <td>{{$request->id}}</td>
                                             <td>{{$request->user->userProfile->school}}</td>
                                             <td>
-                                                {{$request->user->userProfile->lastname}},{{$request->user->userProfile->firstname}} {{$request->user->userProfile->middlename}}.
+                                                @if(file_exists('uploads/' .  $request->user->id . '.jpg'))
+                                                    <img class="profile-user-img img-responsive img-circle" id="imgSize" src="/uploads/{{  $request->user->id . '.jpg'}}" alt="User Image">
+                                                @else
+                                                    @if($request->user->userProfile->gender == "male")
+                                                        <img class="profile-user-img img-responsive img-circle" id="imgSize" src="/assets/dist/img/avatar5.png" alt="User profile picture">
+                                                    @elseif($request->user->userProfile->gender == "female")
+                                                        <img class="profile-user-img img-responsive img-circle" id="imgSize" src="/assets/dist/img/avatar2.png" alt="User profile picture">
+                                                    @endif
+                                                @endif
+                                                <center>{{$request->user->userProfile->lastname}},{{$request->user->userProfile->firstname}} {{$request->user->userProfile->middlename}}.</center>
                                             </td>
                                             <td>{{$request->created_at->format('m/d/Y')}} - {{$request->created_at->diffForHumans()}}</td>
                                             @if($request->status == 'Approved')
