@@ -257,9 +257,8 @@
                 $('.btn-save').html('Update');
                 $('#myModalLabel').html('Update Item');
                 $('.btn-save').val('edit');
-                $('#inventory_id').val(data.id);
+                $('#inventory_id').val($(this).closest('tr').find('td:nth-child(1)').text());
                 $('#myModal').modal('show');
-
                /* $.ajax({
                     type: 'GET',
                     url: url + '/' + id + '/edit',
