@@ -11,7 +11,7 @@
         </h1><br>
         <label class="bg-yellow">Yellow</label>- Pending
         <label class="bg-green">Green</label> - Approved
-        <label class="bg-red">Red</label> - Declines
+        <label class="bg-red">Red</label> - Declined
 
 
     </section>
