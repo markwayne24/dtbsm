@@ -260,52 +260,13 @@
                     }
                 });
 
-                $('#price').val($(this).closest('tr').find('td:nth-child(6)').text().replace(/[^\d]/g, ""));
+                $('#price').val($(this).closest('tr').find('td:nth-child(6)').text().replace(/[^\d]/g, "")/ Math.pow(10, 2));
                 $('#stocks').val($(this).closest('tr').find('td:nth-child(7)').text());
                 $('.btn-save').html('Update');
                 $('#myModalLabel').html('Update Item');
                 $('.btn-save').val('edit');
                 $('#inventory_id').val($(this).closest('tr').find('td:nth-child(1)').text());
                 $('#myModal').modal('show');
-               /* $.ajax({
-                    type: 'GET',
-                    url: url + '/' + id + '/edit',
-                    success: function (data) {
-                        console.log(data);
-                        {{--for categories--}}
-                        var categoriesToFind = document.getElementById('categories');
-                        var itemId = data.item_types.categories;
-                        for(var x = 0; x < categoriesToFind.length;x++){
-                            if (categoriesToFind.options[x].innerHTML == itemId) {
-                                categoriesToFind.selectedIndex = x;
-                            }
-                        }
-
-                        {{--for itemTypes--}}
-                        var itemTypeToFind = document.getElementById('item_type');
-                        var itemTypeId = data.item_types.name;
-                        for(var y = 0; y < itemTypeToFind.length;y++){
-                            if (itemTypeToFind.options[y].innerHTML == itemTypeId) {
-                                itemTypeToFind.selectedIndex = y;
-                            }
-                        }
-                        console.log(itemTypeId);
-
-                        $('#item_id').val(data.item_id);
-                        $('#price').val(data.price);
-                        $('#stocks').val(data.stocks);
-                        $('.btn-save').html('Update');
-                        $('#myModalLabel').html('Update Item');
-                        $('.btn-save').val('edit');
-                        $('#inventory_id').val(data.id);
-                        $('#myModal').modal('show');
-
-                    },
-                    error: function (data) {
-                        console.log('Error:', data);
-                    }
-                });*/
-
             });
 
                    // Clear form fields in a designated area of a page
