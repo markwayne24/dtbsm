@@ -74,7 +74,7 @@
                         <label>School</label>
                         <select class="form-control select" style="width: 100%;" name="school" id="school">
                             {{--District 1--}}
-                            <option value="1">Sto. Cristo Integrated School</option>
+                            <option value="1" selected="selected">Sto. Cristo Integrated School</option>
                             <option value="1">Binauganan Elem. School</option>
                             <option value="1">San Nicolas Elem. School</option>
                             <option value="1">San Sebastian Elem. School</option>
