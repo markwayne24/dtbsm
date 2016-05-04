@@ -28,7 +28,22 @@
                 $('.form-group').find('.help-block').remove();
             }
 
+            function disablingSchool(){
+                var school = document.getElementById('school');
+                if($('#group_id').val()== 1){
+                    school.disabled =true;
+                }else{
+                    school.disabled =false;
+                }
+            }
+
+            //disabling shcool if admin
+            $('#group_id').change(function(){
+                disablingSchool();
+            });
+
             $('.open-modal-edit').click(function(){
+                disablingSchool();
                 var id = $(this).val();
                 $.ajax({
                     type: 'GET',
@@ -91,6 +106,7 @@
 
             $('form.bootstrap-modal-form').on('submit', function(submission) {
                 submission.preventDefault();
+                disablingSchool();
                 // Set vars.
                 var form   = $(this),
                         url    = form.attr('action'),
@@ -138,6 +154,18 @@
             var firstname = $('#firstname').val().substring(0, 1).toUpperCase() + $('#firstname').val().substring(1);
             var middlename = $('#middlename').val().substring(0, 1).toUpperCase() + $('#middlename').val().substring(1);
             var lastname = $('#lastname').val().substring(0, 1).toUpperCase() + $('#lastname').val().substring(1);
+                var school;
+                var district;
+                //check if is admin
+                if($('#group_id').val()== 1){
+                    school = '';
+                    district = '';
+                }else{
+                    school = $('#school option:selected').text();
+                    district = $('#school').val();
+                }
+
+
 
                 var formData = {
                     group_id:$('#group_id').val(),
@@ -146,8 +174,8 @@
                     lastname: lastname,
                     gender:$('#gender').val(),
                     address:$('#address').val(),
-                    district:$('#school').val(),
-                    school:$('#school option:selected').text(),
+                    district:district,
+                    school:school,
                     contact_number: $('#contact_number').val(),
                     email:$('#email').val(),
                     password:$('#password').val(),
