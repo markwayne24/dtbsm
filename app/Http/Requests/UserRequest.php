@@ -30,7 +30,6 @@ class UserRequest extends Request
             'middlename' => 'required|string|min:1|max:56',
             'lastname' => 'required|string|min:2|max:56',
             'address' => 'required|min:2',
-            'school' =>'required|min:3',
             'gender' => 'required',
             'contact_number' => [ 'regex:/^(09|9)\d{9}$/' ],
             'image'=>'mimes:jpg,jpeg|max:100',
