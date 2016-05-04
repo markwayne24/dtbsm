@@ -180,7 +180,9 @@
             }
 
             $('.open-modal-edit').click(function(){
-                var categories = $(this).closest('tr').find('td:nth-child(3)').text();
+                var categories = $(this).closest('tr').find('td:nth-child(2)').text();
+                var itemTypes = $(this).closest('tr').find('td:nth-child(3)').text();
+                var items = $(this).closest('tr').find('td:nth-child(4)').text();
                 var retrieveCategories;
                 var data = {
                     categories: categories
@@ -203,6 +205,7 @@
                     success: function (data) {
                         console.log(data);
                         var select = document.getElementById("item_type");
+                        var item_ids;
                         while (select.firstChild) {
                             select.removeChild(select.firstChild);
                         }
@@ -213,10 +216,14 @@
                                 option.text = data[x].name;
                                 option.value = data[x].id;
                                 select.appendChild(option);
+                                if(itemTypes == data[x].name){
+                                    select.selectedIndex = x;
+                                    item_ids = data[x].id;
+                                }
                             }
                         }
 
-                        var item_type_id = $('#item_type').val();
+                        var item_type_id = item_ids;
                         var data = {
                             item_type_id: item_type_id
                         };
@@ -237,6 +244,9 @@
                                         option.text = data[x].name;
                                         option.value = data[x].id;
                                         select.appendChild(option);
+                                        if(items == data[x].name){
+                                            select.selectedIndex = x;
+                                        }
                                     }
                                 }
                             },
@@ -244,16 +254,14 @@
                                 console.log('Error: ', data);
                             }
                         });
-
                     },
                     error: function (data) {
                         console.log('Error: ', data);
                     }
                 });
 
-
-                $('#price').val($(this).closest('tr').find('td:nth-child(7)').text().replace(/[^\d]/g, ""));
-                $('#stocks').val($(this).closest('tr').find('td:nth-child(8)').text());
+                $('#price').val($(this).closest('tr').find('td:nth-child(6)').text().replace(/[^\d]/g, ""));
+                $('#stocks').val($(this).closest('tr').find('td:nth-child(7)').text());
                 $('.btn-save').html('Update');
                 $('#myModalLabel').html('Update Item');
                 $('.btn-save').val('edit');
