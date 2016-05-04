@@ -139,7 +139,6 @@
                         <span>Requests</span><i class="fa fa-angle-left pull-right"></i>
                         <span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->count()}}</span>
                     </a>
-                    {{\App\Models\Requests::where('status','Pending')->where('district',9)->count()}}
                     <ul class="treeview-menu">
                         <li id="district1"><a href="{{ url('/admin/dashboard/requests/1') }}">District 1 @if(\App\Models\Requests::where('status','Pending')->where('district',1)->count() > 0)<span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->where('district',1)->count()}}</span>@endif</a></li>
                         <li id="district2"><a href="{{ url('/admin/dashboard/requests/2') }}">District 2 @if(\App\Models\Requests::where('status','Pending')->where('district',2)->count() > 0)<span class="label label-primary pull-right">{{\App\Models\Requests::where('status','Pending')->where('district',2)->count()}}</span>@endif</a></li>
