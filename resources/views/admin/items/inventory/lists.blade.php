@@ -51,6 +51,7 @@
                                 <th>SKU</th>
                                 <th>Price</th>
                                 <th>Stocks</th>
+                                <th>Total</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -65,6 +66,7 @@
                                         <td>{{$inventory->sku}}</td>
                                         <td>P {{number_format($inventory->price,2)}}</td>
                                         <td>{{$inventory->stocks}}</td>
+                                        <td>P {{number_format($inventory->price * $inventory->stocks)}}</td>
                                         <td>
                                             <button class="btn btn-info btn-flat open-modal-edit" value="{{$inventory->id}}"><i class="fa fa-pencil-square-o"></i></button>
                                             <button type="button" class="btn btn-danger btn-flat btn-remove" data-toggle="modal" data-target=".bs-example-modal-sm" value="{{$inventory->id}}"><i class="fa fa-trash-o"></i></button>
@@ -82,6 +84,7 @@
                                 <th>SKU</th>
                                 <th>Price</th>
                                 <th>Stocks</th>
+                                <th>Total</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
