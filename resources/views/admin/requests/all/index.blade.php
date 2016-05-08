@@ -1,3 +1,4 @@
+
 @extends('layouts.admin')
 
 @section('style')
@@ -18,10 +19,6 @@
         <h1>
             All Requests
         </h1><br>
-
-        <label class="bg-yellow">Yellow</label>- Pending
-        <label class="bg-green">Green</label> - Approved
-        <label class="bg-red">Red</label> - Declined
     </section>
     <section>
         @if(\Session::has('flash_message'))
@@ -35,6 +32,10 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-body">
+                        <h4 class="box-title">
+                            <label>District: {{$district_id}} </label></br>
+                            <label>Approved Amount: P{{number_format($total_price,2)}}</label>
+                        </h4>
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
@@ -42,8 +43,7 @@
                                 <th>School</th>
                                 <th>User</th>
                                 <th>Date</th>
-                                <th>Status</th>
-                                <th>Reason</th>
+                                <th>Total approved</th>
                                 <th>Date Approve/Decline</th>
                                 <th>Action</th>
                             </tr>
@@ -68,15 +68,12 @@
                                                 <center>{{$request->user->userProfile->lastname}},{{$request->user->userProfile->firstname}} {{$request->user->userProfile->middlename}}.</center>
                                             </td>
                                             <td>{{$request->created_at->format('m/d/Y')}} - {{$request->created_at->diffForHumans()}}</td>
-                                            @if($request->status == 'Approved')
-                                                <td><label class="bg-green">{{$request->status or ''}}</label></td>
-                                            @elseif($request->status == 'Declined')
-                                                <td><label class="bg-red">{{$request->status or ''}}</label></td>
-                                            @else
-                                                <td><label class="bg-yellow-gradient">{{$request->status or ''}}</label></td>
-                                            @endif
-                                            <th>{{$request->reason or ''}}</th>
-                                            <td>{{$request->approved_at or ''}} </td>
+                                            <th><h4><center>
+                                                        @if(\App\Models\ItemRequests::where('request_id',$request->id)->count())
+                                                            {{\App\Models\ItemRequests::where('request_id',$request->id)->where('status','Approved')->count()}}/{{\App\Models\ItemRequests::where('request_id',$request->id)->count()}}
+                                                        @endif
+                                                    </center></h4></th>
+                                            <td>{{$request->approved_at or ''}}</td>
                                             <td>
                                                 <button class="btn btn-info btn-flat btn-view" value="{{$request->id}}"><i class="glyphicon glyphicon-eye-open"></i></button>
                                             </td>
@@ -91,8 +88,7 @@
                                 <th>School</th>
                                 <th>User</th>
                                 <th>Date</th>
-                                <th>Status</th>
-                                <th>Reason</th>
+                                <th>Total approved</th>
                                 <th>Date Approve/Decline</th>
                                 <th>Action</th>
                             </tr>
