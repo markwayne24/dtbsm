@@ -30,8 +30,25 @@ class RequestsController extends Controller
             ->where('district',$district_id)
             ->get();
 
+        $total_price = 0;
+
+        foreach ($requests as $request) {
+            $requestId = $request['id'];
+
+            $totals = ItemRequests::where('request_id',$requestId)
+                ->where('status','Approved')
+                ->get();
+
+            foreach($totals as $total){
+                $total_price += $total['quantity'] * $total['price'] ;
+            }
+        }
+
+
         return view('admin.requests.all.index')
-            ->with('requests',$requests);
+            ->with('requests',$requests)
+            ->with('district_id',$district_id)
+            ->with('total_price',$total_price);
     }
 
     public function view($id)
@@ -75,10 +92,14 @@ class RequestsController extends Controller
         $dataStatus = [
             'status' => $input['status'],
             'reason' => $input['reason'],
+        ];
+
+        $approveStatus =[
             'approved_at' => Carbon::now()
         ];
 
-        $statusUpdate = Requests::where('id',$requests_id)->update($dataStatus);
+        $statusUpdate = ItemRequests::where('id',$requests_id)->update($dataStatus);
+        Requests::where('id',$input['id'])->update($approveStatus);
 
         \Session::flash('flash_message','Successfully Updated Status');
 
