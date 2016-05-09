@@ -37,7 +37,7 @@
                                     <label>Date: {{$requested->created_at->format('m/d/Y')}} - {{$requested->created_at->diffForHumans()}}</label>
                             </h3>
                             <h3 class="box-title pull-right">
-                                <label>Status: {{$requested->approved_at}}</label>
+                                <label>Date Approved: {{$requested->approved_at}}</label>
                             </h3>
                         </div>
                         <div class="box-header with-border">
@@ -61,6 +61,13 @@
                             <h5>
                                 <label>School: {{$requested->school}}</label>
                             </h5>
+                            <h4>
+                                <label>Total Amount: P{{number_format($total_amount,2)}}</label>
+                            </h4>
+
+                            <h4>
+                                <label>Amount Approved: P{{number_format($total_approved,2)}}</label>
+                            </h4>
                             <label class="bg-yellow">Yellow</label>- Pending
                             <label class="bg-green">Green</label> - Approved
                             <label class="bg-red">Red</label> - Declined
