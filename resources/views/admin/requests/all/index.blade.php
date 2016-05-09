@@ -43,7 +43,7 @@
                                 <th>School</th>
                                 <th>User</th>
                                 <th>Date</th>
-                                <th>Total approved</th>
+                                <th>No. of approved</th>
                                 <th>Date Approve/Decline</th>
                                 <th>Action</th>
                             </tr>
@@ -90,7 +90,7 @@
                                 <th>School</th>
                                 <th>User</th>
                                 <th>Date</th>
-                                <th>Total approved</th>
+                                <th>No. of approved</th>
                                 <th>Date Approve/Decline</th>
                                 <th>Action</th>
                             </tr>
