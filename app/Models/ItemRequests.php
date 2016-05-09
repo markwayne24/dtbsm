@@ -13,7 +13,8 @@ class ItemRequests extends Model
         'inventory_id',
         'status',
         'quantity',
-        'price'
+        'price',
+        'reason'
     ];
 
     public function requests(){
