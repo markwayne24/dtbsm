@@ -18,6 +18,8 @@ class CreateItemRequests extends Migration
             $table->integer('inventory_id');
             $table->integer('quantity');
             $table->double('price');
+            $table->enum('status',['Approved','Declined','Pending'])->default('Pending');
+            $table->string('reason');
             $table->timestamps();
         });
     }
