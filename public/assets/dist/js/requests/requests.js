@@ -71,25 +71,59 @@ $('document').ready(function(){
 
     $('.btn-save').click(function(){
         var reason = $('#reason').val();
-        var id = $('.btn-save').val();
+        var id = $(this).val();
         var data = {
             status: 'Declined',
             reason: reason
         };
 
-        $.ajax({
-            type: 'PUT',
-            data:  data,
-            url: '/admin/dashboard/requests/' + id +'/'+ 'view',
-            success: function (data) {
-                console.log(data);
-                $('#myModal').modal('hide');
-                location.reload();
+        $('#example1 tr').each(function(row, tr){
+            if(row != 0){
+                var id =$(tr).find('td:eq(0)').text();
+                var status;
+                var reason = document.getElementById('reason-'+id).value;
 
-            },
-            error: function(data){
-                console.log('Error:',data);
+                if(document.getElementById('statusApproved'+id).checked){
+                    status = 'Approved';
+                }else{
+                    status = 'Declined';
+                }
+
+                var TableData = {
+                    id: $('.btn-save').val(),
+                    status: status,
+                    reason: reason
+                };
+                console.log(TableData);
+                $.ajax({
+                    type: 'PUT',
+                    data:  TableData,
+                    url: '/admin/dashboard/requests/' + id +'/'+ 'view',
+                    success: function (data) {
+                        console.log(data);
+                        $('#myModal').modal('hide');
+                        location.reload();
+
+                    },
+                    error: function(data){
+                        console.log('Error:',data);
+                    }
+                });
             }
         });
+    });
+
+    $('.radio .statusApproved').click(function(){
+       var id = $(this).val();
+        var focus = document.getElementById('reason-'+id);
+        focus.value = '';
+        focus.disabled = true;
+    });
+
+    $('.radio .statusDeclined').click(function(){
+        var id = $(this).val();
+        var focus = document.getElementById('reason-'+id);
+        focus.disabled = false;
+        focus.focus();
     });
 });
