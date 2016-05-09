@@ -20,7 +20,7 @@ class VerifyController extends Controller
 
     public function index()
     {
-        $userId = \Auth::user()->id;
+        /*$userId = \Auth::user()->id;
 
         $rawCode = $this->thereIsAPendingCodeForUser($userId);
         if ($rawCode) {
@@ -33,7 +33,7 @@ class VerifyController extends Controller
         }
 
         $number = \Auth::user()->userProfile->contact_number;
-        $this->sendSMS($number, $verificationCode);
+        $this->sendSMS($number, $verificationCode);*/
 
         return view('auth.verify');
     }
