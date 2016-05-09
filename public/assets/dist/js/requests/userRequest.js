@@ -238,7 +238,7 @@ $('document').ready(function(){
                                 request_id: request_id,
                                 inventory_id : $(tr).find('td:eq(0)').text(),
                                 quantity : $(tr).find('td:eq(5)').text(),
-                                price : ($(tr).find('td:eq(4)').text()).replace(/[^\d]/g, "")
+                                price : ($(tr).find('td:eq(4)').text()).replace(/[^\d]/g, "") / Math.pow(10,2)
                             };
                             console.log(TableData);
                             $.ajax({
