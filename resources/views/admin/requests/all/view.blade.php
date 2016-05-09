@@ -62,11 +62,11 @@
                                 <label>School: {{$requested->school}}</label>
                             </h5>
                             <h4>
-                                <label>Total Amount: P{{number_format($total_amount,2)}}</label>
+                                <label>Total Amount: P {{number_format($total_amount,2)}}</label>
                             </h4>
 
                             <h4>
-                                <label>Amount Approved: P{{number_format($total_approved,2)}}</label>
+                                <label>Amount Approved: P {{number_format($total_approved,2)}}</label>
                             </h4>
                             <label class="bg-yellow">Yellow</label>- Pending
                             <label class="bg-green">Green</label> - Approved
