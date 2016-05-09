@@ -21,10 +21,8 @@
 
     <!-- Main content -->
     <section class="content">
-
         <div class="row">
             <div class="col-xs-12">
-
                 <div class="box">
                     <div class="box-body">
                         <div class="box-header with-border">
@@ -38,6 +36,13 @@
 
                         </div><!-- /.box-body --></br>
                         <table id="example1" class="table table-bordered table-striped">
+                            <h4>
+                                <label>Total Amount: P {{number_format($total_amount,2)}}</label>
+                            </h4>
+
+                            <h4>
+                                <label>Amount Approved: P {{number_format($total_approved,2)}}</label>
+                            </h4>
                             <thead>
                             <tr>
                                 <th>Id</th>
