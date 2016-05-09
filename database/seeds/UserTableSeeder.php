@@ -29,6 +29,22 @@ class UserTableSeeder extends Seeder
                     'gender' => 'male',
                     'contact_number' => '09167563096'
                 ]
+            ],
+            [
+                'group_id' => 2,
+                'email' => 'user@gmail.com',
+                'password' => Hash::make('user'),
+                'remember_token' => str_random(10),
+                'profile'   => [
+                    'firstname' => 'User',
+                    'middlename' => 'U',
+                    'lastname' => 'User',
+                    'address' => 'Tarlac',
+                    'gender' => 'male',
+                    'contact_number' => '09124092030',
+                    'school'=> 'Buhilit',
+                    'district'=> 2
+                ]
             ]
         ];
 
