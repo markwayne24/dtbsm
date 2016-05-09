@@ -72,7 +72,9 @@
                                                         @if(\App\Models\ItemRequests::where('request_id',$request->id)->count())
                                                             {{\App\Models\ItemRequests::where('request_id',$request->id)->where('status','Approved')->count()}}/{{\App\Models\ItemRequests::where('request_id',$request->id)->count()}}
                                                         @endif
-                                                    </center></h4></th>
+                                                    </center>
+                                                </h4>
+                                            </th>
                                             <td>{{$request->approved_at or ''}}</td>
                                             <td>
                                                 <button class="btn btn-info btn-flat btn-view" value="{{$request->id}}"><i class="glyphicon glyphicon-eye-open"></i></button>
