@@ -37,7 +37,7 @@
                                     <label>Date: {{$requested->created_at->format('m/d/Y')}} - {{$requested->created_at->diffForHumans()}}</label>
                             </h3>
                             <h3 class="box-title pull-right">
-                                <label>Status: {{$requested->status}}</label>
+                                <label>Status: {{$requested->approved_at}}</label>
                             </h3>
                         </div>
                         <div class="box-header with-border">
@@ -61,7 +61,9 @@
                             <h5>
                                 <label>School: {{$requested->school}}</label>
                             </h5>
-                                    <label>Reason if declined: {{$requested->reason}}</label>
+                            <label class="bg-yellow">Yellow</label>- Pending
+                            <label class="bg-green">Green</label> - Approved
+                            <label class="bg-red">Red</label> - Declined
                         </div><!-- /.box-body --></br>
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -71,6 +73,9 @@
                                 <th>SKU</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Reason</th>
                             </tr>
                             </thead>
                             <tbody id="itemRequest-list">
@@ -80,30 +85,47 @@
                                         <td>{{$request->id}}</td>
                                         <td>{{$request->inventory->items->name}}</td>
                                         <td>{{$request->inventory->sku}}</td>
-                                        <td>{{$request->inventory->price}}</td>
-                                        <td>{{$request->inventory->stocks}}</td>
+                                        <td>P {{number_format($request->price,2)}}</td>
+                                        <td>{{$request->quantity}}</td>
+                                        <td>P {{number_format($request->quantity * $request->price,2)}}</td>
+                                        <td>
+                                            @if($requested->approved_at)
+                                                @if($request->status == 'Approved')
+                                                    <label class="bg-green">Approved</label>
+                                                @else($request->status == "Declined")
+                                                    <label class="bg-red">Declined</label>
+                                                @endif
+                                            @else
+                                                <div class="radio">
+                                                    <label><input type="radio" class="statusApproved" name="status{{$request->id}}" id="statusApproved{{$request->id}}" value="{{$request->id}}" checked>Approve</label>
+                                                    <label><input type="radio" class="statusDeclined" name="status{{$request->id}}" id="statusDeclined{{$request->id}}" value="{{$request->id}}">Decline</label>
+                                                </div>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($requested->approved_at)
+                                                @if($request->status == 'Approved')
+
+                                                @else($request->status == "Declined")
+                                                    {{$request->reason}}
+                                                @endif
+                                            @else
+
+                                                <input type= text class="form-control" id="reason-{{$request->id}}" name="reason" min="1" disabled>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             @endif
                             </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>Id</th>
-                                <th>Item</th>
-                                <th>SKU</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                            </tr>
-                            </tfoot>
                         </table>
                         <div class="box-footer">
                             <div class="box-tools pull-right">
                                 <td>
-                                    @if($request->requests->status == 'Pending')
-                                        <button class="btn btn-success btn-flat btn-approved" value="{{$request->request_id}}" name="Approved">Approve</button>
-                                        <button class="btn btn-danger btn-flat btn-declined" value="{{$request->request_id}}" name="Declined">Decline</button>
-                                    @else
+                                    @if($request->requests->approved_at)
                                         <a href="{{url('/admin/dashboard/requests/'.$request->requests->district)}}" class="btn btn-primary btn-flat">Back</a>
+                                    @else
+                                        <button type="submit" class="btn btn-primary btn-flat btn-save" value="{{$request->request_id}}" id="save">Continue</button>
                                     @endif
                                 </td>
                             </div>
