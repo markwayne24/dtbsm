@@ -9,6 +9,9 @@
         <h1>
             Item Requests
         </h1>
+        <label class="bg-yellow">Yellow</label>- Pending
+        <label class="bg-green">Green</label> - Approved
+        <label class="bg-red">Red</label> - Declined
     </section>
     <section>
         @if(\Session::has('flash_message'))
@@ -29,11 +32,10 @@
                                     <label>Date: {{$requested->created_at->format('m/d/Y')}} - {{$requested->created_at->diffForHumans()}}</label>
                             </h3>
                             <h3 class="box-title pull-right">
-                                <label>Status: {{$requested->status}}</label>
                             </h3>
                         </div>
                         <div class="box-header with-border">
-                            <label>Reason if declined: {{$requested->reason}}</label>
+
                         </div><!-- /.box-body --></br>
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -43,6 +45,9 @@
                                 <th>SKU</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Reason</th>
                             </tr>
                             </thead>
                             <tbody id="itemRequest-list">
@@ -52,8 +57,18 @@
                                         <td>{{$request->id}}</td>
                                         <td>{{$request->inventory->items->name}}</td>
                                         <td>{{$request->inventory->sku}}</td>
-                                        <td>{{$request->inventory->price}}</td>
-                                        <td>{{$request->inventory->stocks}}</td>
+                                        <td>P {{number_format($request->price,2)}}</td>
+                                        <td>{{$request->quantity}}</td>
+                                        <td>P {{number_format($request->price * $request->quantity,2)}}</td>
+                                            @if($request->status == 'Approved')
+                                                <td><label class="bg-green">{{$request->status or ''}}</label></td>
+                                            @elseif($request->status == 'Declined')
+                                                <td><label class="bg-red">{{$request->status or ''}}</label></td>
+                                            @else
+                                                <td><label class="bg-yellow-gradient">{{$request->status or ''}}</label></td>
+                                            @endif
+
+                                        <td>{{$request->reason or ''}}</td>
                                     </tr>
                                 @endforeach
                             @endif
@@ -65,6 +80,9 @@
                                 <th>SKU</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Reason</th>
                             </tr>
                             </tfoot>
                         </table>
