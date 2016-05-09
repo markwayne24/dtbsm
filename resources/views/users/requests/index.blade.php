@@ -34,8 +34,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Date</th>
-                                <th>Status</th>
-                                <th>Reason</th>
+                                <th>Total Approved</th>
                                 <th>Date Approve/Decline</th>
                                 <th>Action</th>
                             </tr>
@@ -46,14 +45,14 @@
                                     <tr id="item-{{$request->id}}">
                                         <td>{{$request->id}}</td>
                                         <td>{{$request->created_at->format('m/d/Y')}} - {{$request->created_at->diffForHumans()}}</td>
-                                        @if($request->status == 'Approved')
-                                            <td><label class="bg-green">{{$request->status or ''}}</label></td>
-                                        @elseif($request->status == 'Declined')
-                                            <td><label class="bg-red">{{$request->status or ''}}</label></td>
-                                        @else
-                                            <td><label class="bg-yellow-gradient">{{$request->status or ''}}</label></td>
-                                        @endif
-                                        <th>{{$request->reason or ''}}</th>
+                                        <td>
+                                            <h4><center>
+                                                    @if(\App\Models\ItemRequests::where('request_id',$request->id)->count())
+                                                        {{\App\Models\ItemRequests::where('request_id',$request->id)->where('status','Approved')->count()}}/{{\App\Models\ItemRequests::where('request_id',$request->id)->count()}}
+                                                    @endif
+                                                </center>
+                                            </h4>
+                                        </td>
                                         @if($request->approved_at)
                                             <td>{{$request->approved_at or ''}} </td>
                                         @else
@@ -69,8 +68,9 @@
                             <tfoot>
                             <tr>
                                 <th>Id</th>
-                                <th>Types</th>
-                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Total Approved</th>
+                                <th>Date Approve/Decline</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
