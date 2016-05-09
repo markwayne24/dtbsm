@@ -122,18 +122,10 @@
 
                 </li>
                 <li class="treeview" id="activeRequests">
-                    <a href="">
+                    <a href="{{ url('/users/requests') }}">
                         <i class="fa fa-plus-square"></i>
-                        <span>Requests</span><i class="fa fa-angle-left pull-right"></i>
-                        <span class="label label-primary pull-right"></span>
+                        <span>Requests</span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li id="all"><a href="{{ url('/users/requests') }}">All</a></li>
-                        <li id="pending"><a href="{{ url('/users/requests/pending') }}">Pending</a></li>
-                        <li id="approve"><a href="{{ url('/users/requests/approved') }}">Approve</a></li>
-                        <li id="decline"><a href="{{ url('/users/requests/declined') }}">Decline</a></li>
-                    </ul>
-
                 </li>
             </ul>
         </section>
