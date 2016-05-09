@@ -47,11 +47,25 @@ class RequestsController extends Controller
         $requests = ItemRequests::with('requests','inventory')
             ->where('request_id',$id)
             ->get();
+
+        $total_amount = 0;
+        $total_approved = 0;
+
+        foreach($requests as $request){
+            $total_amount += $request['quantity'] * $request['price'];
+
+            if($request['status']== 'Approved' ){
+                $total_approved += $request['quantity'] * $request['price'];
+            }
+        }
+
         $requested = Requests::with('user')
             ->where('id',$id)
             ->first();
         return view('users.requests.view')->with('requests',$requests)
-            ->with('requested', $requested);
+            ->with('requested', $requested)
+            ->with('total_amount',$total_amount)
+            ->with('total_approved',$total_approved);
     }
 
     public function request()
